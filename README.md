@@ -7,12 +7,28 @@ Azure Resource Launcher (`azrez`) is a console application that aims to support 
 - **Suppot for MacOS**: using the built-in brew packet manager to grab az cli, besides that just your Azure subscription
 - **Support for Linux**: using the curl utility to grab az cli, and the rest is only your Azure subscription account
 
+## How to get it
+
+For Windows:
+(...)
+
+For MacOS:
+(...)
+
+For Linux:
+(...)
+
+## How to run it
+
+(...)
+
 ## Flows
 
+There are 2 main flows you can choose from:
 - **Basic**
 - **Scenarios**
 
-Here's a step-by-step description of the flows:
+Here's a step-by-step description of its running flows:
 
 (a) Once started, the `azrez` tool, in the current version v1.0, prompts the user to select the operating system on which it is running on: Windows, MacOS, or Linux.
 
