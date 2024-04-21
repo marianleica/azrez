@@ -16,7 +16,7 @@ https://docs.github.com/en/repositories/creating-and-managing-repositories/cloni
 
 ### Using other console commands:
 
-`Start-BitsTransfer https://github.com/marianleica/azrez/tree/main -Destination .
+`Start-BitsTransfer https://github.com/marianleica/azrez/tree/main -Destination .`
 
 ### Setting it as environment variable for easy access from the terminal
 
