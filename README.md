@@ -3,7 +3,9 @@ Azure Resource Launcher (`azrez`) is a console application for Windows that aims
 
 ## Supported operating systems
 
-- **Support for Windows**: using the built-in PowerShell with minimum dependencies for Windows-based operating systems, just the AzModule, AZ CLI, and your Azure subscription account
+- **Support for Windows**: The initial sync requires the PowerShell AzModule installed, it prompts Azure Login, and it uses built-in PowerShell for all runs;
+- **Support for Linux**: The initial sync grabs AZ CLI using curl, it prompts Azure login, and it uses AZ CLI for all runs;
+- **Support for MacOS**: The initial sync grabs AZ CLI using brew, it prompts Azure login, and it uses AZ CLI for all runs.
 
 ## How to get it
 
