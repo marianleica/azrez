@@ -40,3 +40,23 @@ Here's a step-by-step description of its running flows:
 - **Scenarios** supports so far the creation of AKS public or private clusters, with kubenet or azurecni, in a UDR outbound type with Azure Firewall as a next hop
 
 (d) Once the user selects the desired resource, the backend scripts will be deploying the resources in the "azrez" Resource Group in the "uksouth" region.
+
+### Basic flow
+
+For Azure Virtual Machines ("VM"):
+- Ubuntu2204 -> `Ubuntu2204`, `ubuntu2204`, or `ubuntu`
+- Windows11 -> `Windows11`, `windows11`, or `windows`
+- WindowsServer2022 -> `WindowsServer2022`, `windowsserver2022`, or `windowsserver`
+
+For Azure Kubenretes Services ("AKS"), select networking options:
+- Kubenet -> `Kubenet` or `kubenet`
+  - LoadBalancer Outbound -> `LoadBalancer`, `loadbalancer`, or `lb`
+  - UserDefinedRouting Outbound -> `UserdefinedRouting`, `userdefinedrouting`, or `udr`
+- AzureCNI -> `AzureCNI` or `azurecni`
+  - LoadBalancer Outbound -> `LoadBalancer`, `loadbalancer`, or `lb`
+  - UserDeginedRouting Outbound -> `UserdefinedRouting`, `userdefinedrouting`, or `udr`
+
+### Scenarios flow
+
+(...)
+
