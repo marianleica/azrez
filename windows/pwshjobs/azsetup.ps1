@@ -38,13 +38,15 @@ Update-Module -Name Az -Force
 
 # Now login to Azure and set subscription
 Start-Sleep -Seconds 1
-Write-Output "Please login to Azure:"
+Write-Output "Your browser will open now. Please login to Azure:"
 Connect-AzAccount
 Write-Output ""
+
+Start-Sleep -Seconds 1
 Write-Output "These are the subscriptions associated with your account:"
 Get-AzContext | fl *Name,Subscription,SubscriptionName,Account*
-Start-Sleep -Seconds 1
 Write-Output ""
+Start-Sleep -Seconds 1
 $subscriptionid = Read-Host "Please choose your subscription from the list above and paste it here: "
 Write-Output ""
 Write-Output "Setting the subscription $subscriptionid for use"
