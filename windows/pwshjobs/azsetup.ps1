@@ -10,6 +10,7 @@ Write-Output "Running initial setup for Windows development environment"
 
 Start-Sleep -Seconds 1
 
+Write-Output "Install winget, if not present"
 # Install winget
 $progressPreference = 'silentlyContinue'
 Write-Information "Downloading WinGet and its dependencies..."
@@ -20,9 +21,15 @@ Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
 Add-AppxPackage Microsoft.UI.Xaml.2.8.x64.appx
 Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 
+Start-Sleep -Seconds 1
+
+Write-Output "Install Az CLI"
 # Install az cli on windows
 winget install -e --id Microsoft.AzureCLI
 
+Start-Sleep -Seconds 1
+
+Write-Output "Installing Az PowerShell Module"
 # Install Az PowerShell module
 Install-Module -Name PowerShellGet -Force
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
