@@ -13,6 +13,13 @@ Start-Sleep -Seconds 1
 # Install az cli on windows
 winget install -e --id Microsoft.AzureCLI
 
+# Install Az PowerShell module
+Install-Module -Name PowerShellGet -Force
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Install-Module -Name Az -Repository PSGallery -Force
+Update-Module -Name Az -Force
+
+# Now login to Azure and set subscription
 Start-Sleep -Seconds 1
 Write-Output "Please login to Azure:"
 Connect-AzAccount
