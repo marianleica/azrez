@@ -3,7 +3,7 @@ suffix=$((10000 + RANDOM % 99999))
 rg="azresourcelauncher"
 location="uksouth"
 vmName="azvm-windows11-${suffix}"
-image='MicrosoftWindowsDesktop:windows-11:win11-23h2-pro:22631.2428.231023'
+image='MicrosoftWindowsDesktop:windows-11:win11-23h2-pro:22631.3296.240303'
 # az vm image list -f windows-11 -o table --all 
 
 # Generating a random string to use as password
