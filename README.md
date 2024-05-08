@@ -16,11 +16,19 @@ Using git:
 For more information, see:
 https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
 
-### Using other console commands:
+### Or download it with native commands:
 
 **For Windows:**
 
 `Start-BitsTransfer https://github.com/marianleica/azrez/tree/main -Destination .`
+
+<p>Add azrez to your environment variables:</p>
+
+`code`
+
+<p>Now you should be able to open it from any console</p>
+
+e.g. open `CMD` or `PowerShell` and type `azrez`
 
 ### Setting it as environment variable for easy access from the terminal
 
