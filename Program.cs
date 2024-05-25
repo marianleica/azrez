@@ -4,20 +4,12 @@
 using System;
 using System.Diagnostics;
 
-// Storing
+// Variables for storing data
 string? readResult;
 string menuSelection = "";
-
-/*
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-string readResult = Console.ReadLine();
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-*/
-
 string os = Environment.OSVersion.ToString(); // Get OS informaiton
 
-do
-{
+do {
     Console.Clear();
 
     // Show the current OS version
