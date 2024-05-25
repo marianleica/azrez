@@ -257,7 +257,6 @@ do
                         // Console.WriteLine(unixazakspublickubenetlb.StandardOutput.ReadToEnd());
                         unixazakspublickubenetlb.WaitForExit();
                     }
-                    
                     break;
 
                     case "2": {
