@@ -95,7 +95,7 @@ do
         break;
 
         case "2":
-        
+
             Console.WriteLine("Enter your selection number: ");
             Console.WriteLine(" 1. Ubuntu2204");
             Console.WriteLine(" 2. Windows11");
@@ -257,6 +257,7 @@ do
                         // Console.WriteLine(unixazakspublickubenetlb.StandardOutput.ReadToEnd());
                         unixazakspublickubenetlb.WaitForExit();
                     }
+                    
                     break;
 
                     case "2": {
