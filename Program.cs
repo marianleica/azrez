@@ -20,11 +20,13 @@ do
 {
     Console.Clear();
 
+    // Show the current OS version
+    // For MacOS it shows "Unix"
     Console.WriteLine($"OS identified: "+ os);
 
     Console.WriteLine("Welcome to the AZREZ app! Here's the main menu:");
     Console.WriteLine();
-    Console.WriteLine(" 1. Perform initial setup, if your Azure account and subscription are NOT already set in your console");
+    Console.WriteLine(" 1. Perform initial setup, if your Azure account and subscription are not already set in your console");
     Console.WriteLine(" 2. Create a basic Azure VM");
     Console.WriteLine(" 3. Create a basic AKS cluster");
     Console.WriteLine(" 4. See AKS scenarios");
@@ -42,9 +44,10 @@ do
 
     switch (menuSelection){
 
-        case "1": // 
+        case "1": {
 
-            {
+            Thread.Sleep(5000);
+
             Console.WriteLine("Then let's do the initial setup.");
             // if yes, run azsetup.ps1
             using Process winazsetup = new();
@@ -56,6 +59,7 @@ do
             // Console.WriteLine(winazsetup.StandardOutput.ReadToEnd());
             winazsetup.WaitForExit();
             }
+            Thread.Sleep(1000);
 
         break;
 
@@ -119,22 +123,29 @@ do
                     Console.WriteLine("Invalid entry. Try again");
                     break;
             }
-
         break;
 
-        case "3":
+        case "3": {
+            Console.WriteLine("This section is under construction...");
+            Thread.Sleep(1000);
+        }    
         break;
 
-        case "4":
+        case "4": {
+            Console.WriteLine("This section is under construction...");
+            Thread.Sleep(1000);
+        }
         break;
 
-        case "5":
-        Console.WriteLine("This section is under construction...");
+        case "5": {
+            Console.WriteLine("This section is under construction...");
+            Thread.Sleep(1000);
+        }
         break;
 
-        default:
-
-        Console.WriteLine("Invalid entry. Try again");
+        default: {
+        Console.WriteLine("Bye :)");
+        }
         break;
 
     }
