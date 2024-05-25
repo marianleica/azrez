@@ -14,13 +14,17 @@ string readResult = Console.ReadLine();
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 */
 
+string os = Environment.OSVersion.ToString(); // Get OS informaiton
+
 do
 {
     Console.Clear();
 
-    Console.WriteLine("Welcome to the AZREZ app. Here's the main menu:");
+    Console.WriteLine($"OS identified: "+ os);
+
+    Console.WriteLine("Welcome to the AZREZ app! Here's the main menu:");
     Console.WriteLine();
-    Console.WriteLine(" 1. If your Azure account and subscription are not already set in your console, perform initial setup (Windows)");
+    Console.WriteLine(" 1. Perform initial setup, if your Azure account and subscription are NOT already set in your console");
     Console.WriteLine(" 2. Create a basic Azure VM");
     Console.WriteLine(" 3. Create a basic AKS cluster");
     Console.WriteLine(" 4. See AKS scenarios");
@@ -129,6 +133,7 @@ do
         break;
 
         default:
+
         Console.WriteLine("Invalid entry. Try again");
         break;
 
