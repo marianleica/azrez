@@ -441,13 +441,36 @@ do
 
         case "5": {
             Console.WriteLine("This section is under construction...");
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
         }
         break;
 
         case "6": {
-            Console.WriteLine("This section is under construction...");
-            Thread.Sleep(1000);
+            
+            if (os.Contains("Windows")){
+                // Run azgroup-delete.ps1        
+                using Process azgroupdelete = new();
+                azgroupdelete.StartInfo.FileName = "powershell";
+                azgroupdelete.StartInfo.Arguments = ".\\pwshjobs\\azgroup-delete.ps1";
+                azgroupdelete.StartInfo.UseShellExecute = true;
+                // azgroupdelete.StartInfo.RedirectStandardOutput = true;
+                azgroupdelete.Start();
+                // Console.WriteLine(azgroupdelete.StandardOutput.ReadToEnd());
+                azgroupdelete.WaitForExit();
+            }
+            else {
+                // Run azgroup-delete.sh        
+                using Process azgroupdelete = new();
+                azgroupdelete.StartInfo.FileName = "sh";
+                azgroupdelete.StartInfo.Arguments = "./azjobs/azgroup-delete.sh";
+                azgroupdelete.StartInfo.UseShellExecute = true;
+                // azgroupdelete.StartInfo.RedirectStandardOutput = true;
+                azgroupdelete.Start();
+                // Console.WriteLine(azgroupdelete.StandardOutput.ReadToEnd());
+                azgroupdelete.WaitForExit();
+                }
+
+            Thread.Sleep(2000);
         }
         break;
 
