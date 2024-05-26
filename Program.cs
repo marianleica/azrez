@@ -317,6 +317,30 @@ do
                 }
             }
 
+            Console.WriteLine("What will it be?. Enter your selection number:");
+            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            string scenarioAKS = Console.ReadLine();
+            #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+
+            switch (scenarioAKS){
+
+                case "1":
+                break;
+
+                case "2":
+                break;
+
+                case "3":
+                break;
+
+                case "4":
+                break;
+
+                default:
+                break;
+
+            }
+
             Thread.Sleep(2000);
         }
         break;
