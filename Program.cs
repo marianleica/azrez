@@ -377,10 +377,57 @@ do
                 }
                 break;
 
-                case "3":
+                case "3": {
+
+                    if (os.Contains("Windows")){
+                        // Run aksAzureCniUdrFw.ps1     
+                        using Process azaksAzureCniUdrFw = new();
+                        azaksAzureCniUdrFw.StartInfo.FileName = "powershell";
+                        azaksAzureCniUdrFw.StartInfo.Arguments = ".\\pwshjobs\\aksAzureCniUdrFw.ps1";
+                        azaksAzureCniUdrFw.StartInfo.UseShellExecute = true;
+                        // azaksAzureCniUdrFw.StartInfo.RedirectStandardOutput = true;
+                        azaksAzureCniUdrFw.Start();
+                        // Console.WriteLine(azaksAzureCniUdrFw.StandardOutput.ReadToEnd());
+                        azaksAzureCniUdrFw.WaitForExit();
+                    }
+                    else {
+                        // Run aksAzureCniUdrFw.sh        
+                        using Process azaksAzureCniUdrFw = new();
+                        azaksAzureCniUdrFw.StartInfo.FileName = "sh";
+                        azaksAzureCniUdrFw.StartInfo.Arguments = "./azjobs/aksAzureCniUdrFw.sh";
+                        azaksAzureCniUdrFw.StartInfo.UseShellExecute = true;
+                        // azaksAzureCniUdrFw.StartInfo.RedirectStandardOutput = true;
+                        azaksAzureCniUdrFw.Start();
+                        // Console.WriteLine(azaksAzureCniUdrFw.StandardOutput.ReadToEnd());
+                        azaksAzureCniUdrFw.WaitForExit();
+                    }
+                }
                 break;
 
-                case "4":
+                case "4": {
+                    if (os.Contains("Windows")){
+                        // Run aksAzureCniUdrFw-private.ps1     
+                        using Process azaksAzureCniUdrFwprivate = new();
+                        azaksAzureCniUdrFwprivate.StartInfo.FileName = "powershell";
+                        azaksAzureCniUdrFwprivate.StartInfo.Arguments = ".\\pwshjobs\\aksAzureCniUdrFw-private.ps1";
+                        azaksAzureCniUdrFwprivate.StartInfo.UseShellExecute = true;
+                        // azaksAzureCniUdrFwprivate.StartInfo.RedirectStandardOutput = true;
+                        azaksAzureCniUdrFwprivate.Start();
+                        // Console.WriteLine(azaksAzureCniUdrFwprivate.StandardOutput.ReadToEnd());
+                        azaksAzureCniUdrFwprivate.WaitForExit();
+                    }
+                    else {
+                        // Run aksAzureCniUdrFwprivate.sh        
+                        using Process azaksAzureCniUdrFwprivate = new();
+                        azaksAzureCniUdrFwprivate.StartInfo.FileName = "sh";
+                        azaksAzureCniUdrFwprivate.StartInfo.Arguments = "./azjobs/aksAzureCniUdrFw-private.sh";
+                        azaksAzureCniUdrFwprivate.StartInfo.UseShellExecute = true;
+                        // azaksAzureCniUdrFwprivate.StartInfo.RedirectStandardOutput = true;
+                        azaksAzureCniUdrFwprivate.Start();
+                        // Console.WriteLine(azaksAzureCniUdrFwprivate.StandardOutput.ReadToEnd());
+                        azaksAzureCniUdrFwprivate.WaitForExit();
+                    }
+                }
                 break;
 
                 default:
