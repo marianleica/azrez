@@ -278,37 +278,37 @@ do
         case "4": {
 
             Console.Clear();
-            string[] winScenario = new string[4];
-            winScenario[0]=" 1. aksKubenetUdrFw";
-            winScenario[1]=" 2. aksKubenetUdrFw-private";
-            winScenario[2]=" 3. aksAzureCniUdrFw";
-            winScenario[3]=" 4. aksAzureCniUdrFw-private";
+            string[] scenAKS = new string[4];
+            scenAKS[0]=" 1. aksKubenetUdrFw";
+            scenAKS[1]=" 2. aksKubenetUdrFw-private";
+            scenAKS[2]=" 3. aksAzureCniUdrFw";
+            scenAKS[3]=" 4. aksAzureCniUdrFw-private";
 
-            string [] winScenarioDescription = new string[4];
-            winScenarioDescription[0]="AKS cluster with kubenet CNI and userDefinedRouting outbound type via Azure Firewall";
-            winScenarioDescription[1]="Private AKS cluster with kubenet CNI and userDefinedRouting outbound type via Azure Firewall";
-            winScenarioDescription[2]="AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
-            winScenarioDescription[3]="Private AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
+            string [] scenAKSDescription = new string[4];
+            scenAKSDescription[0]="AKS cluster with kubenet CNI and userDefinedRouting outbound type via Azure Firewall";
+            scenAKSDescription[1]="Private AKS cluster with kubenet CNI and userDefinedRouting outbound type via Azure Firewall";
+            scenAKSDescription[2]="AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
+            scenAKSDescription[3]="Private AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
 
             // Print the scenarios and their description in a 2-column format
-            foreach (string scenario in winScenario){
+            foreach (string scenario in scenAKS){
                 Thread.Sleep(100);
                 switch (scenario){
 
                     case " 1. aksKubenetUdrFw":
-                    Console.WriteLine($"{scenario}\t\t\t{winScenarioDescription[0]}");
+                    Console.WriteLine($"{scenario}\t\t\t{scenAKSDescription[0]}");
                     break;
 
                     case " 2. aksKubenetUdrFw-private":
-                    Console.WriteLine($"{scenario}\t\t{winScenarioDescription[1]}");
+                    Console.WriteLine($"{scenario}\t\t{scenAKSDescription[1]}");
                     break;
 
                     case " 3. aksAzureCniUdrFw":
-                    Console.WriteLine($"{scenario}\t\t\t{winScenarioDescription[2]}");
+                    Console.WriteLine($"{scenario}\t\t\t{scenAKSDescription[2]}");
                     break;
 
                     case " 4. aksAzureCniUdrFw-private":
-                    Console.WriteLine($"{scenario}\t\t{winScenarioDescription[3]}"); 
+                    Console.WriteLine($"{scenario}\t\t{scenAKSDescription[3]}"); 
                     break;
 
                     default:
@@ -324,10 +324,57 @@ do
 
             switch (scenarioAKS){
 
-                case "1":
+                case "1": {
+                    if (os.Contains("Windows")){
+                        // Run azaksKubenetUdrFw.ps1        
+                        using Process azaksKubenetUdrFw = new();
+                        azaksKubenetUdrFw.StartInfo.FileName = "powershell";
+                        azaksKubenetUdrFw.StartInfo.Arguments = ".\\pwshjobs\\azaksKubenetUdrFw.ps1";
+                        azaksKubenetUdrFw.StartInfo.UseShellExecute = true;
+                        // azaksKubenetUdrFw.StartInfo.RedirectStandardOutput = true;
+                        azaksKubenetUdrFw.Start();
+                        // Console.WriteLine(azaksKubenetUdrFw.StandardOutput.ReadToEnd());
+                        azaksKubenetUdrFw.WaitForExit();
+                    }
+                    else {
+                        // Run azaksKubenetUdrFw.sh        
+                        using Process azaksKubenetUdrFw = new();
+                        azaksKubenetUdrFw.StartInfo.FileName = "sh";
+                        azaksKubenetUdrFw.StartInfo.Arguments = "./azjobs/azaksKubenetUdrFw.sh";
+                        azaksKubenetUdrFw.StartInfo.UseShellExecute = true;
+                        // azaksKubenetUdrFw.StartInfo.RedirectStandardOutput = true;
+                        azaksKubenetUdrFw.Start();
+                        // Console.WriteLine(azaksKubenetUdrFw.StandardOutput.ReadToEnd());
+                        azaksKubenetUdrFw.WaitForExit();
+                    }
+                }
                 break;
 
-                case "2":
+                case "2": {
+
+                    if (os.Contains("Windows")){
+                        // Run azaksKubenetUdrFw-private.ps1        
+                        using Process azaksKubenetUdrFwprivate = new();
+                        azaksKubenetUdrFwprivate.StartInfo.FileName = "powershell";
+                        azaksKubenetUdrFwprivate.StartInfo.Arguments = ".\\pwshjobs\\azaksKubenetUdrFw-private.ps1";
+                        azaksKubenetUdrFwprivate.StartInfo.UseShellExecute = true;
+                        // azaksKubenetUdrFwprivate.StartInfo.RedirectStandardOutput = true;
+                        azaksKubenetUdrFwprivate.Start();
+                        // Console.WriteLine(azaksKubenetUdrFwprivate.StandardOutput.ReadToEnd());
+                        azaksKubenetUdrFwprivate.WaitForExit();
+                    }
+                    else {
+                        // Run azaksKubenetUdrFwprivate.sh        
+                        using Process azaksKubenetUdrFwprivate = new();
+                        azaksKubenetUdrFwprivate.StartInfo.FileName = "sh";
+                        azaksKubenetUdrFwprivate.StartInfo.Arguments = "./azjobs/azaksKubenetUdrFw-private.sh";
+                        azaksKubenetUdrFwprivate.StartInfo.UseShellExecute = true;
+                        // azaksKubenetUdrFwprivate.StartInfo.RedirectStandardOutput = true;
+                        azaksKubenetUdrFwprivate.Start();
+                        // Console.WriteLine(azaksKubenetUdrFwprivate.StandardOutput.ReadToEnd());
+                        azaksKubenetUdrFwprivate.WaitForExit();
+                    }
+                }
                 break;
 
                 case "3":
