@@ -9,7 +9,8 @@ string? readResult;
 string menuSelection = "";
 string os = Environment.OSVersion.ToString(); // Get OS informaiton
 
-do {
+do
+{
     Console.Clear();
 
     // Show the current OS version
