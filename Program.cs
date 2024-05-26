@@ -41,6 +41,7 @@ do
         case "1": {
 
             Thread.Sleep(5000);
+            Console.Clear();            
 
             if (os.Contains("Windows")){
 
@@ -89,6 +90,7 @@ do
 
         case "2":
 
+            Console.Clear();
             Console.WriteLine("Enter your selection number: ");
             Console.WriteLine(" 1. Ubuntu2204");
             Console.WriteLine(" 2. Windows11");
@@ -197,6 +199,7 @@ do
 
         case "3": {
 
+            Console.Clear();
             Console.WriteLine("Choose the CNI option. Enter your selection number: ");
             Console.WriteLine(" 1. Kubenet (default)");
             Console.WriteLine(" 2. Azure CNI (advanced)");
@@ -273,8 +276,48 @@ do
         break;
         
         case "4": {
-            Console.WriteLine("This section is under construction...");
-            Thread.Sleep(1000);
+
+            Console.Clear();
+            string[] winScenario = new string[4];
+            winScenario[0]=" 1. aksKubenetUdrFw";
+            winScenario[1]=" 2. aksKubenetUdrFw-private";
+            winScenario[2]=" 3. aksAzureCniUdrFw";
+            winScenario[3]=" 4. aksAzureCniUdrFw-private";
+
+            string [] winScenarioDescription = new string[4];
+            winScenarioDescription[0]="AKS cluster with kubenet CNI and userDefinedRouting outbound type via Azure Firewall";
+            winScenarioDescription[1]="Private AKS cluster with kubenet CNI and userDefinedRouting outbound type via Azure Firewall";
+            winScenarioDescription[2]="AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
+            winScenarioDescription[3]="Private AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
+
+            // Print the scenarios and their description in a 2-column format
+            foreach (string scenario in winScenario){
+                Thread.Sleep(100);
+                switch (scenario){
+
+                    case " 1. aksKubenetUdrFw":
+                    Console.WriteLine($"{scenario}\t\t\t{winScenarioDescription[0]}");
+                    break;
+
+                    case " 2. aksKubenetUdrFw-private":
+                    Console.WriteLine($"{scenario}\t\t{winScenarioDescription[1]}");
+                    break;
+
+                    case " 3. aksAzureCniUdrFw":
+                    Console.WriteLine($"{scenario}\t\t\t{winScenarioDescription[2]}");
+                    break;
+
+                    case " 4. aksAzureCniUdrFw-private":
+                    Console.WriteLine($"{scenario}\t\t{winScenarioDescription[3]}"); 
+                    break;
+
+                    default:
+                    Console.WriteLine(""); break;
+
+                }
+            }
+
+            Thread.Sleep(2000);
         }
         break;
 
