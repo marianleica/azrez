@@ -91,10 +91,11 @@ do
         case "2":
 
             Console.Clear();
-            Console.WriteLine("Enter your selection number: ");
+            Console.WriteLine("The Azure VM OS options are the following:")
             Console.WriteLine(" 1. Ubuntu2204");
             Console.WriteLine(" 2. Windows11");
             Console.WriteLine(" 3. WindowsServer2022");
+            Console.WriteLine("Enter your selection number: ");
             #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             string basicVM = Console.ReadLine();
             #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
@@ -200,9 +201,10 @@ do
         case "3": {
 
             Console.Clear();
-            Console.WriteLine("Choose the CNI option. Enter your selection number: ");
+            Console.WriteLine("Choose the CNI option for the AKS cluster from: Enter your selection number: ");
             Console.WriteLine(" 1. Kubenet (default)");
             Console.WriteLine(" 2. Azure CNI (advanced)");
+            Console.Write("Enter your selection number: ");
             #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             string basicAKS = Console.ReadLine();
             #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
@@ -290,6 +292,8 @@ do
             scenAKSDescription[2]="AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
             scenAKSDescription[3]="Private AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
 
+            Console.WriteLine("The available AKS scenarios are the following:");
+
             // Print the scenarios and their description in a 2-column format
             foreach (string scenario in scenAKS){
                 Thread.Sleep(100);
@@ -317,7 +321,7 @@ do
                 }
             }
 
-            Console.WriteLine("What will it be?. Enter your selection number:");
+            Console.WriteLine("Enter your selection number:");
             #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             string scenarioAKS = Console.ReadLine();
             #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
