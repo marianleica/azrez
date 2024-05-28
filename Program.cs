@@ -300,19 +300,19 @@ do
                 switch (scenario){
 
                     case " 1. aksKubenetUdrFw":
-                    Console.WriteLine($"{scenario}\t\t\t{scenAKSDescription[0]}");
+                    Console.WriteLine($"{scenario}\t\t{scenAKSDescription[0]}");
                     break;
 
                     case " 2. aksKubenetUdrFw-private":
-                    Console.WriteLine($"{scenario}\t\t{scenAKSDescription[1]}");
+                    Console.WriteLine($"{scenario}\t{scenAKSDescription[1]}");
                     break;
 
                     case " 3. aksAzureCniUdrFw":
-                    Console.WriteLine($"{scenario}\t\t\t{scenAKSDescription[2]}");
+                    Console.WriteLine($"{scenario}\t\t{scenAKSDescription[2]}");
                     break;
 
                     case " 4. aksAzureCniUdrFw-private":
-                    Console.WriteLine($"{scenario}\t\t{scenAKSDescription[3]}"); 
+                    Console.WriteLine($"{scenario}\t{scenAKSDescription[3]}"); 
                     break;
 
                     default:
@@ -444,7 +444,54 @@ do
         break;
 
         case "5": {
-            Console.WriteLine("This section is under construction...");
+
+            Console.Clear();
+            string[] scenARC = new string[4];
+            scenARC[0]=" 1. aksArc";
+            scenARC[1]=" 2. aksArcAppServiceExt";
+            scenARC[2]=" 3. aksArcAppServiceExtWebApp";
+            scenARC[3]=" 4. upstreamKubernetes";
+
+            string [] scenARCDescription = new string[4];
+            scenARCDescription[0]="Basic AKS cluster onboarded to Azure Arc";
+            scenARCDescription[1]="Basic AKS cluster onboarded to Azure Arc with the AppService extension";
+            scenARCDescription[2]="Basic AKS cluster onboarded to Azure Arc with the AppService extension and webapp on it";
+            scenARCDescription[3]="Basic upstream Kubernetes cluster on Azure VMs";
+
+            Console.WriteLine("The available AKS scenarios are the following:");
+
+            // Print the scenarios and their description in a 2-column format
+            foreach (string scenario in scenARC){
+                Thread.Sleep(100);
+                switch (scenario){
+
+                    case " 1. aksArc":
+                    Console.WriteLine($"{scenario}\t\t{scenARCDescription[0]}");
+                    break;
+
+                    case " 2. aksArcAppServiceExt":
+                    Console.WriteLine($"{scenario}\t{scenARCDescription[1]}");
+                    break;
+
+                    case " 3. aksArcAppServiceExtWebApp":
+                    Console.WriteLine($"{scenario}\t\t{scenARCDescription[2]}");
+                    break;
+
+                    case " 4. upstreamKubernetes":
+                    Console.WriteLine($"{scenario}\t{scenARCDescription[3]}"); 
+                    break;
+
+                    default:
+                    Console.WriteLine(""); break;
+
+                }
+            }
+
+            Console.WriteLine("Enter your selection number:");
+            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            string scenarioARC = Console.ReadLine();
+            #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+
             Thread.Sleep(2000);
         }
         break;
