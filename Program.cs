@@ -91,7 +91,7 @@ do
         case "2":
 
             Console.Clear();
-            Console.WriteLine("The Azure VM OS options are the following:")
+            Console.WriteLine("The Azure VM OS options are the following:");
             Console.WriteLine(" 1. Ubuntu2204");
             Console.WriteLine(" 2. Windows11");
             Console.WriteLine(" 3. WindowsServer2022");
