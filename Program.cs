@@ -492,6 +492,119 @@ do
             string scenarioARC = Console.ReadLine();
             #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
+            switch (scenarioARC){
+
+                case "1": {
+                    if (os.Contains("Windows")){
+                        // Run aksArc.ps1        
+                        using Process aksArc = new();
+                        aksArc.StartInfo.FileName = "powershell";
+                        aksArc.StartInfo.Arguments = ".\\pwshjobs\\aksArc.ps1";
+                        aksArc.StartInfo.UseShellExecute = true;
+                        // aksArc.StartInfo.RedirectStandardOutput = true;
+                        aksArc.Start();
+                        // Console.WriteLine(aksArc.StandardOutput.ReadToEnd());
+                        aksArc.WaitForExit();
+                    }
+                    else {
+                        // Run aksArc.sh        
+                        using Process aksArc = new();
+                        aksArc.StartInfo.FileName = "sh";
+                        aksArc.StartInfo.Arguments = "./azjobs/aksArc.sh";
+                        aksArc.StartInfo.UseShellExecute = true;
+                        // aksArc.StartInfo.RedirectStandardOutput = true;
+                        aksArc.Start();
+                        // Console.WriteLine(aksArc.StandardOutput.ReadToEnd());
+                        aksArc.WaitForExit();
+                    }
+                }
+                break;
+
+                case "2": {
+
+                    if (os.Contains("Windows")){
+                        // Run aksArcAppServiceExt.ps1        
+                        using Process aksArcAppServiceExt = new();
+                        aksArcAppServiceExt.StartInfo.FileName = "powershell";
+                        aksArcAppServiceExt.StartInfo.Arguments = ".\\pwshjobs\\aksArcAppServiceExt.ps1";
+                        aksArcAppServiceExt.StartInfo.UseShellExecute = true;
+                        // aksArcAppServiceExt.StartInfo.RedirectStandardOutput = true;
+                        aksArcAppServiceExt.Start();
+                        // Console.WriteLine(aksArcAppServiceExt.StandardOutput.ReadToEnd());
+                        aksArcAppServiceExt.WaitForExit();
+                    }
+                    else {
+                        // Run aksArcAppServiceExt.sh        
+                        using Process aksArcAppServiceExt = new();
+                        aksArcAppServiceExt.StartInfo.FileName = "sh";
+                        aksArcAppServiceExt.StartInfo.Arguments = "./azjobs/aksArcAppServiceExt.sh";
+                        aksArcAppServiceExt.StartInfo.UseShellExecute = true;
+                        // aksArcAppServiceExt.StartInfo.RedirectStandardOutput = true;
+                        aksArcAppServiceExt.Start();
+                        // Console.WriteLine(aksArcAppServiceExt.StandardOutput.ReadToEnd());
+                        aksArcAppServiceExt.WaitForExit();
+                    }
+                }
+                break;
+
+                case "3": {
+
+                    if (os.Contains("Windows")){
+                        // Run aksArcAppServiceExtWebApp.ps1     
+                        using Process aksArcAppServiceExtWebApp = new();
+                        aksArcAppServiceExtWebApp.StartInfo.FileName = "powershell";
+                        aksArcAppServiceExtWebApp.StartInfo.Arguments = ".\\pwshjobs\\aksArcAppServiceExtWebApp.ps1";
+                        aksArcAppServiceExtWebApp.StartInfo.UseShellExecute = true;
+                        // aksArcAppServiceExtWebApp.StartInfo.RedirectStandardOutput = true;
+                        aksArcAppServiceExtWebApp.Start();
+                        // Console.WriteLine(aksArcAppServiceExtWebApp.StandardOutput.ReadToEnd());
+                        aksArcAppServiceExtWebApp.WaitForExit();
+                    }
+                    else {
+                        // Run aksArcAppServiceExtWebApp.sh        
+                        using Process aksArcAppServiceExtWebApp = new();
+                        aksArcAppServiceExtWebApp.StartInfo.FileName = "sh";
+                        aksArcAppServiceExtWebApp.StartInfo.Arguments = "./azjobs/aksArcAppServiceExtWebApp.sh";
+                        aksArcAppServiceExtWebApp.StartInfo.UseShellExecute = true;
+                        // aksArcAppServiceExtWebApp.StartInfo.RedirectStandardOutput = true;
+                        aksArcAppServiceExtWebApp.Start();
+                        // Console.WriteLine(aksArcAppServiceExtWebApp.StandardOutput.ReadToEnd());
+                        aksArcAppServiceExtWebApp.WaitForExit();
+                    }
+                }
+                break;
+
+                case "4": {
+                    if (os.Contains("Windows")){
+                        // Run upstreamKubernetes.ps1     
+                        using Process upstreamKubernetes = new();
+                        upstreamKubernetes.StartInfo.FileName = "powershell";
+                        upstreamKubernetes.StartInfo.Arguments = ".\\pwshjobs\\upstreamKubernetes.ps1";
+                        upstreamKubernetes.StartInfo.UseShellExecute = true;
+                        // upstreamKubernetes.StartInfo.RedirectStandardOutput = true;
+                        upstreamKubernetes.Start();
+                        // Console.WriteLine(upstreamKubernetes.StandardOutput.ReadToEnd());
+                        upstreamKubernetes.WaitForExit();
+                    }
+                    else {
+                        // Run upstreamKubernetes.sh        
+                        using Process upstreamKubernetes = new();
+                        upstreamKubernetes.StartInfo.FileName = "sh";
+                        upstreamKubernetes.StartInfo.Arguments = "./azjobs/upstreamKubernetes.sh";
+                        upstreamKubernetes.StartInfo.UseShellExecute = true;
+                        // upstreamKubernetes.StartInfo.RedirectStandardOutput = true;
+                        upstreamKubernetes.Start();
+                        // Console.WriteLine(upstreamKubernetes.StandardOutput.ReadToEnd());
+                        upstreamKubernetes.WaitForExit();
+                    }
+                }
+                break;
+
+                default:
+                break;
+
+            }
+
             Thread.Sleep(2000);
         }
         break;
