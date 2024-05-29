@@ -35,12 +35,12 @@ echo ""
 echo "Onboarding cluster $AKS to Azure Arc-enabled Kubernetes"
 # Onboarding the cluster to Azure Arc-enabled Kubernetes
 ARC="arc-aks-${namesuffix}" # Name of the ARC cluster
-az extension add connectedk8s
+az extension install --name connectedk8s
 az connectedk8s connect --resource-Group $RG --name $ARC
 
 sleep 5
 echo ""
 echo "The azure-arc namespace status:"
 # Showcase the azure-arc namespace
-az aks command invok --resource-group $RG --name $AKS --command "kubectl get all -n azure-arc"
+az aks command invoke --resource-group $RG --name $AKS --command "kubectl get all -n azure-arc"
 echo ""
