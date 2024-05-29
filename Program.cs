@@ -466,19 +466,19 @@ do
                 switch (scenario){
 
                     case " 1. aksArc":
-                    Console.WriteLine($"{scenario}\t\t{scenARCDescription[0]}");
+                    Console.WriteLine($"{scenario}\t\t\t{scenARCDescription[0]}");
                     break;
 
                     case " 2. aksArcAppServiceExt":
-                    Console.WriteLine($"{scenario}\t{scenARCDescription[1]}");
+                    Console.WriteLine($"{scenario}\t\t{scenARCDescription[1]}");
                     break;
 
                     case " 3. aksArcAppServiceExtWebApp":
-                    Console.WriteLine($"{scenario}\t\t{scenARCDescription[2]}");
+                    Console.WriteLine($"{scenario}\t{scenARCDescription[2]}");
                     break;
 
                     case " 4. upstreamKubernetes":
-                    Console.WriteLine($"{scenario}\t{scenARCDescription[3]}"); 
+                    Console.WriteLine($"{scenario}\t\t{scenARCDescription[3]}"); 
                     break;
 
                     default:
