@@ -13,13 +13,7 @@ sleep 5 # this is just to have the time for the resource group to create
 
 # Create VM
 echo "The virtual machine:"
-az vm create -n $VM -g $RG \
---image Ubuntu2204 \
---generate-ssh-keys \
---admin-username bestuser \
---size Standard_D2s_v3 \
---nsg-rule ssh \
---public-ip-sku Standard
+az vm create -n $VM -g $RG --image Ubuntu2204 --generate-ssh-keys --admin-username bestuser --size Standard_D2s_v3 --nsg-rule ssh --public-ip-sku Standard
 
 sleep 5
 

@@ -38,17 +38,11 @@ sleep 1
 echo ""
 echo "The virtual machine $vmName:"
 # Create Windows 11
-az vm create -g $rg -n $vmName \
---image $image \
---admin-user "azrez" --admin-password $password \
---public-ip-sku Standard \
---nsg NSG4VM \
---nsg-rule RDP
+az vm create -g $rg -n $vmName --image $image --admin-user "azrez" --admin-password $password --public-ip-sku Standard --nsg NSG4VM --nsg-rule RDP
 
 sleep 2
 # This is the public IP address
-vmip=$(az vm list-ip-addresses -g $rg -n $vmName \
---query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
+vmip=$(az vm list-ip-addresses -g $rg -n $vmName --query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
 
 sleep 1
 echo ""

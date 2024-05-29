@@ -13,20 +13,11 @@ echo ""
 
 # Create virtual network and subnets
 echo "The BYO VNET: "
-az network vnet create \
---resource-group $RG \
---name aksVnet \
---address-prefixes 10.0.0.0/8 \
---subnet-name aks_subnet \
---subnet-prefix 10.240.0.0/16
+az network vnet create --resource-group $RG --name aksVnet --address-prefixes 10.0.0.0/8 --subnet-name aks_subnet --subnet-prefix 10.240.0.0/16
 echo ""
 
 echo "the BYO VNET subnet: "
-az network vnet subnet create \
---resource-group $RG \
---vnet-name aksVnet \
---name vnode_subnet \
---address-prefixes 10.241.0.0/16
+az network vnet subnet create --resource-group $RG --vnet-name aksVnet --name vnode_subnet --address-prefixes 10.241.0.0/16
 
 # Create AKS cluster
 subnetId=$(az network vnet subnet show --resource-group $RG --vnet-name aksVnet --name aks_subnet --query id -o tsv)
@@ -35,13 +26,7 @@ echo ""
 sleep 2
 
 echo "The AKS cluster: "
-az aks create \
---resource-group $RG \
---name $AKS \
---node-count 1 \
---network-plugin azure \
---vnet-subnet-id $subnetId \
---enable-aad --generate-ssh-keys
+az aks create --resource-group $RG --name $AKS --node-count 1 --network-plugin azure --vnet-subnet-id $subnetId --enable-aad --generate-ssh-keys
 
 sleep 5
 # Wait for the AKS cluster creation to be in Running state

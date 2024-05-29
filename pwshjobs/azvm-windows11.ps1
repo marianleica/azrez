@@ -28,15 +28,11 @@ Write-Output ""
 Write-Output "The virtual machine $vmName:"
 
 # Create Windows 11
-New-AzVm -ResourceGroupName $rg -Name $vmName -Location $location -Image $image \
--VirtualNetworkName "myVnet-${suffix}" -SubnetName "vmsubnet" -SecurityGroupName "vmNSG" \
--PublicIpAddressName $publicIp -OpenPorts 80,3389
+New-AzVm -ResourceGroupName $rg -Name $vmName -Location $location -Image $image -VirtualNetworkName "myVnet-${suffix}" -SubnetName "vmsubnet" -SecurityGroupName "vmNSG" -PublicIpAddressName $publicIp -OpenPorts 80,3389
 
 Start-Sleep -Seconds 2
 # This is the public IP address
-$vmip=$(az vm list-ip-addresses -g $rg -n $vmName \
---query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
-
+# $vmip=$(az vm list-ip-addresses -g $rg -n $vmName --query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
 $vmip=$(Get-AzPublicIpAddress -Name $publicIp -ResourceGroupName $rg)
 Start-Sleep -Seconds 1
 Write-Output ""
