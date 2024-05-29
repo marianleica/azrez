@@ -13,10 +13,6 @@ do
 {
     Console.Clear();
 
-    // Show the current OS version
-    // For MacOS it shows "Unix"
-    Console.WriteLine($"OS identified: "+ os);
-
     Console.WriteLine("Welcome to the AZREZ app! Here's the main menu:");
     Console.WriteLine();
     Console.WriteLine(" 1. Perform initial setup, if your Azure account and subscription are not already set in your console");
@@ -26,6 +22,10 @@ do
     Console.WriteLine(" 5. See Azure Arc scenarios");
     Console.WriteLine(" 6. Clean the azrez resource group");
     Console.WriteLine();
+
+    // Show the current OS version
+    // For MacOS it shows "Unix"
+    Console.WriteLine($"Your OS: "+ os);
     Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
 
     readResult = Console.ReadLine();
