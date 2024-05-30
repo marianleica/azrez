@@ -31,7 +31,7 @@ do
     readResult = Console.ReadLine();
     if (readResult != null)
     {
-        // This is so that we only work with lowercase inputs
+        // This is so that we work only with lowercase inputs
         // This makes the selection easier to match the control flow
         menuSelection = readResult.ToLower();
     }
@@ -96,9 +96,7 @@ do
             Console.WriteLine(" 2. Windows11");
             Console.WriteLine(" 3. WindowsServer2022");
             Console.WriteLine("Enter your selection number: ");
-            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-            string basicVM = Console.ReadLine();
-            #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+            string? basicVM = Console.ReadLine();
 
             if (os.Contains("Windows")){
 
@@ -205,9 +203,7 @@ do
             Console.WriteLine(" 1. Kubenet (default)");
             Console.WriteLine(" 2. Azure CNI (advanced)");
             Console.Write("Enter your selection number: ");
-            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-            string basicAKS = Console.ReadLine();
-            #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+            string? basicAKS = Console.ReadLine();
 
             if (os.Contains("Windows")){
 
@@ -322,9 +318,7 @@ do
             }
 
             Console.WriteLine("Enter your selection number:");
-            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-            string scenarioAKS = Console.ReadLine();
-            #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+            string? scenarioAKS = Console.ReadLine();
 
             switch (scenarioAKS){
 
@@ -489,9 +483,7 @@ do
             }
 
             Console.WriteLine("Enter your selection number:");
-            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-            string scenarioARC = Console.ReadLine();
-            #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+            string? scenarioARC = Console.ReadLine();
 
             switch (scenarioARC){
 
