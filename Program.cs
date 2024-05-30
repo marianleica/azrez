@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 
 // Variables for storing data
-string? readResult;
+string? readResult; // Non-nullable string variable
 string menuSelection = "";
 string os = Environment.OSVersion.ToString(); // Get OS informaiton
 
@@ -143,7 +143,7 @@ do
                     }
                     break;
 
-                    default: Console.WriteLine("Invalid entry. Try again"); break;
+                    default: Console.WriteLine("Invalid entry. Try again."); break;
                 }
             }
             else {
@@ -191,7 +191,7 @@ do
                     break;
 
                     default:
-                    Console.WriteLine("Invalid entry. Try again");
+                    Console.WriteLine("Invalid entry. Try again.");
                     break;
                 }
         }
@@ -237,7 +237,7 @@ do
                         winazakspublicazurecnilb.WaitForExit();
                     } break;
 
-                    default: Console.WriteLine("Invalid entry. Try again"); break;
+                    default: Console.WriteLine("Invalid entry. Try again."); break;
                 }
             }
             else {
@@ -270,7 +270,7 @@ do
                     }
                     break;
 
-                    default: Console.WriteLine("Invalid entry. Try again"); break;
+                    default: Console.WriteLine("Invalid entry. Try again."); break;
                 }
             }
         }
@@ -435,6 +435,7 @@ do
                 break;
 
                 default:
+                Console.WriteLine("Invalid entry. Try again.");
                 break;
 
             }
@@ -601,6 +602,7 @@ do
                 break;
 
                 default:
+                Console.WriteLine("Invalid entry. Try again.");
                 break;
 
             }
