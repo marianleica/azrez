@@ -18,7 +18,7 @@ do
     Console.WriteLine(" 1. Perform initial setup, if your Azure account and subscription are not already set in your console");
     Console.WriteLine(" 2. Create a basic Azure VM");
     Console.WriteLine(" 3. Create a basic AKS cluster");
-    Console.WriteLine(" 4. See AKS scenarios");
+    Console.WriteLine(" 4. See Azure Containers scenarios");
     Console.WriteLine(" 5. See Azure Arc scenarios");
     Console.WriteLine(" 6. Clean the azrez resource group");
     Console.WriteLine();
@@ -276,39 +276,39 @@ do
         case "4": {
 
             Console.Clear();
-            string[] scenAKS = new string[4];
-            scenAKS[0]=" 1. aksKubenetUdrFw";
-            scenAKS[1]=" 2. aksKubenetUdrFw-private";
-            scenAKS[2]=" 3. aksAzureCniUdrFw";
-            scenAKS[3]=" 4. aksAzureCniUdrFw-private";
+            string[] scenACT = new string[4];
+            scenACT[0]=" 1. aksKubenetUdrFw";
+            scenACT[1]=" 2. aksKubenetUdrFw-private";
+            scenACT[2]=" 3. aksAzureCniUdrFw";
+            scenACT[3]=" 4. aksAzureCniUdrFw-private";
 
-            string [] scenAKSDescription = new string[4];
-            scenAKSDescription[0]="AKS cluster with kubenet CNI and userDefinedRouting outbound type via Azure Firewall";
-            scenAKSDescription[1]="Private AKS cluster with kubenet CNI and userDefinedRouting outbound type via Azure Firewall";
-            scenAKSDescription[2]="AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
-            scenAKSDescription[3]="Private AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
+            string [] scenACTDescription = new string[4];
+            scenACTDescription[0]="AKS cluster with kubenet CNI and userDefinedRouting outbound type via Azure Firewall";
+            scenACTDescription[1]="Private AKS cluster with kubenet CNI and userDefinedRouting outbound type via Azure Firewall";
+            scenACTDescription[2]="AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
+            scenACTDescription[3]="Private AKS cluster with azure CNI and userDefinedRouting outbound type via Azure Firewall";
 
             Console.WriteLine("The available AKS scenarios are the following:");
 
             // Print the scenarios and their description in a 2-column format
-            foreach (string scenario in scenAKS){
+            foreach (string scenario in scenACT){
                 Thread.Sleep(100);
                 switch (scenario){
 
                     case " 1. aksKubenetUdrFw":
-                    Console.WriteLine($"{scenario}\t\t{scenAKSDescription[0]}");
+                    Console.WriteLine($"{scenario}\t\t{scenACTDescription[0]}");
                     break;
 
                     case " 2. aksKubenetUdrFw-private":
-                    Console.WriteLine($"{scenario}\t{scenAKSDescription[1]}");
+                    Console.WriteLine($"{scenario}\t{scenACTDescription[1]}");
                     break;
 
                     case " 3. aksAzureCniUdrFw":
-                    Console.WriteLine($"{scenario}\t\t{scenAKSDescription[2]}");
+                    Console.WriteLine($"{scenario}\t\t{scenACTDescription[2]}");
                     break;
 
                     case " 4. aksAzureCniUdrFw-private":
-                    Console.WriteLine($"{scenario}\t{scenAKSDescription[3]}"); 
+                    Console.WriteLine($"{scenario}\t{scenACTDescription[3]}"); 
                     break;
 
                     default:
@@ -318,9 +318,9 @@ do
             }
 
             Console.WriteLine("Enter your selection number:");
-            string? scenarioAKS = Console.ReadLine();
+            string? scenarioACT = Console.ReadLine();
 
-            switch (scenarioAKS){
+            switch (scenarioACT){
 
                 case "1": {
                     if (os.Contains("Windows")){
