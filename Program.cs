@@ -26,7 +26,7 @@ do
     // Show the current OS version
     // For MacOS it shows "Unix"
     Console.WriteLine($"Your OS: "+ os);
-    Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
+    Console.Write("Enter your selection number (or type Exit to exit the program): ");
 
     readResult = Console.ReadLine();
     if (readResult != null)
@@ -95,7 +95,7 @@ do
             Console.WriteLine(" 1. Ubuntu2204");
             Console.WriteLine(" 2. Windows11");
             Console.WriteLine(" 3. WindowsServer2022");
-            Console.WriteLine("Enter your selection number: ");
+            Console.Write("Enter your selection number: ");
             string? basicVM = Console.ReadLine();
 
             if (os.Contains("Windows")){
@@ -317,7 +317,7 @@ do
                 }
             }
 
-            Console.WriteLine("Enter your selection number:");
+            Console.Write("Enter your selection number: ");
             string? scenarioACT = Console.ReadLine();
 
             switch (scenarioACT){
@@ -482,7 +482,7 @@ do
                 }
             }
 
-            Console.WriteLine("Enter your selection number:");
+            Console.Write("Enter your selection number: ");
             string? scenarioARC = Console.ReadLine();
 
             switch (scenarioARC){
