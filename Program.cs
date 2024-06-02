@@ -36,6 +36,8 @@ do
         menuSelection = readResult.ToLower();
     }
 
+    // int option = Convert.ToInt32(menuSelection);
+
     switch (menuSelection){
 
         case "1": {
