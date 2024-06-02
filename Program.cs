@@ -51,7 +51,7 @@ do
                 // if yes, run azsetup.ps1
                 using Process winazsetup = new();
                 winazsetup.StartInfo.FileName = "powershell";
-                winazsetup.StartInfo.Arguments = "Start-Process -FilePath .\\pwshjobs\\azsetup.ps1";
+                winazsetup.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\azsetup.ps1";
                 winazsetup.StartInfo.UseShellExecute = true;
                 // winazsetup.StartInfo.RedirectStandardOutput = true;
                 winazsetup.Start();
@@ -109,7 +109,7 @@ do
                         // Run azvm-ubuntu2204ssh.ps1
                         using Process winazvmubuntu2204ssh = new();
                         winazvmubuntu2204ssh.StartInfo.FileName = "powershell";
-                        winazvmubuntu2204ssh.StartInfo.Arguments = ".\\pwshjobs\\azvm-ubuntu2204ssh.ps1";
+                        winazvmubuntu2204ssh.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\azvm-ubuntu2204ssh.ps1";
                         winazvmubuntu2204ssh.StartInfo.UseShellExecute = true;
                         // winazvmubuntu2204ssh.StartInfo.RedirectStandardOutput = true;
                         winazvmubuntu2204ssh.Start();
@@ -122,7 +122,7 @@ do
                         // Run azvm-windows11.ps1
                         using Process winazvmwindows11 = new();
                         winazvmwindows11.StartInfo.FileName = "powershell";
-                        winazvmwindows11.StartInfo.Arguments = ".\\pwshjobs\\azsvm-windows11.ps1";
+                        winazvmwindows11.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\azsvm-windows11.ps1";
                         winazvmwindows11.StartInfo.UseShellExecute = true;
                         // winazvmwindows11.StartInfo.RedirectStandardOutput = true;
                         winazvmwindows11.Start();
@@ -134,7 +134,7 @@ do
                     case "3": {
                         using Process winazvmwindowsserver2022 = new();
                         winazvmwindowsserver2022.StartInfo.FileName = "powershell";
-                        winazvmwindowsserver2022.StartInfo.Arguments = ".\\pwshjobs\\azvm-windowsserver2022.ps1";
+                        winazvmwindowsserver2022.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\azvm-windowsserver2022.ps1";
                         winazvmwindowsserver2022.StartInfo.UseShellExecute = true;
                         // winazvmwindowsserver2022.StartInfo.RedirectStandardOutput = true;
                         winazvmwindowsserver2022.Start();
@@ -215,7 +215,7 @@ do
                         // Run azaks-public-kubenet-lb.ps1
                         using Process winazakspublickubenetlb = new();
                         winazakspublickubenetlb.StartInfo.FileName = "powershell";
-                        winazakspublickubenetlb.StartInfo.Arguments = ".\\pwshjobs\\azaks-public-kubenet-lb.ps1";
+                        winazakspublickubenetlb.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\azaks-public-kubenet-lb.ps1";
                         winazakspublickubenetlb.StartInfo.UseShellExecute = true;
                         // winazakspublickubenetlb.StartInfo.RedirectStandardOutput = true;
                         winazakspublickubenetlb.Start();
@@ -227,7 +227,7 @@ do
                         // Run azaks-public-azurecni-lb.ps1
                         using Process winazakspublicazurecnilb = new();
                         winazakspublicazurecnilb.StartInfo.FileName = "powershell";
-                        winazakspublicazurecnilb.StartInfo.Arguments = ".\\pwshjobs\\azaks-public-azurecni-lb.ps1";
+                        winazakspublicazurecnilb.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\azaks-public-azurecni-lb.ps1";
                         winazakspublicazurecnilb.StartInfo.UseShellExecute = true;
                         // winazakspublicazurecnilb.StartInfo.RedirectStandardOutput = true;
                         winazakspublicazurecnilb.Start();
@@ -329,7 +329,7 @@ do
                         // Run azaksKubenetUdrFw.ps1        
                         using Process azaksKubenetUdrFw = new();
                         azaksKubenetUdrFw.StartInfo.FileName = "powershell";
-                        azaksKubenetUdrFw.StartInfo.Arguments = ".\\pwshjobs\\azaksKubenetUdrFw.ps1";
+                        azaksKubenetUdrFw.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\azaksKubenetUdrFw.ps1";
                         azaksKubenetUdrFw.StartInfo.UseShellExecute = true;
                         // azaksKubenetUdrFw.StartInfo.RedirectStandardOutput = true;
                         azaksKubenetUdrFw.Start();
@@ -356,7 +356,7 @@ do
                         // Run azaksKubenetUdrFw-private.ps1        
                         using Process azaksKubenetUdrFwprivate = new();
                         azaksKubenetUdrFwprivate.StartInfo.FileName = "powershell";
-                        azaksKubenetUdrFwprivate.StartInfo.Arguments = ".\\pwshjobs\\azaksKubenetUdrFw-private.ps1";
+                        azaksKubenetUdrFwprivate.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\azaksKubenetUdrFw-private.ps1";
                         azaksKubenetUdrFwprivate.StartInfo.UseShellExecute = true;
                         // azaksKubenetUdrFwprivate.StartInfo.RedirectStandardOutput = true;
                         azaksKubenetUdrFwprivate.Start();
@@ -383,7 +383,7 @@ do
                         // Run aksAzureCniUdrFw.ps1     
                         using Process azaksAzureCniUdrFw = new();
                         azaksAzureCniUdrFw.StartInfo.FileName = "powershell";
-                        azaksAzureCniUdrFw.StartInfo.Arguments = ".\\pwshjobs\\aksAzureCniUdrFw.ps1";
+                        azaksAzureCniUdrFw.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\aksAzureCniUdrFw.ps1";
                         azaksAzureCniUdrFw.StartInfo.UseShellExecute = true;
                         // azaksAzureCniUdrFw.StartInfo.RedirectStandardOutput = true;
                         azaksAzureCniUdrFw.Start();
@@ -409,7 +409,7 @@ do
                         // Run aksAzureCniUdrFw-private.ps1     
                         using Process azaksAzureCniUdrFwprivate = new();
                         azaksAzureCniUdrFwprivate.StartInfo.FileName = "powershell";
-                        azaksAzureCniUdrFwprivate.StartInfo.Arguments = ".\\pwshjobs\\aksAzureCniUdrFw-private.ps1";
+                        azaksAzureCniUdrFwprivate.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\aksAzureCniUdrFw-private.ps1";
                         azaksAzureCniUdrFwprivate.StartInfo.UseShellExecute = true;
                         // azaksAzureCniUdrFwprivate.StartInfo.RedirectStandardOutput = true;
                         azaksAzureCniUdrFwprivate.Start();
@@ -494,7 +494,7 @@ do
                         // Run aksArc.ps1        
                         using Process aksArc = new();
                         aksArc.StartInfo.FileName = "powershell";
-                        aksArc.StartInfo.Arguments = ".\\pwshjobs\\aksArc.ps1";
+                        aksArc.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\aksArc.ps1";
                         aksArc.StartInfo.UseShellExecute = true;
                         // aksArc.StartInfo.RedirectStandardOutput = true;
                         aksArc.Start();
@@ -521,7 +521,7 @@ do
                         // Run aksArcAppServiceExt.ps1        
                         using Process aksArcAppServiceExt = new();
                         aksArcAppServiceExt.StartInfo.FileName = "powershell";
-                        aksArcAppServiceExt.StartInfo.Arguments = ".\\pwshjobs\\aksArcAppServiceExt.ps1";
+                        aksArcAppServiceExt.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\aksArcAppServiceExt.ps1";
                         aksArcAppServiceExt.StartInfo.UseShellExecute = true;
                         // aksArcAppServiceExt.StartInfo.RedirectStandardOutput = true;
                         aksArcAppServiceExt.Start();
@@ -548,7 +548,7 @@ do
                         // Run aksArcAppServiceExtWebApp.ps1     
                         using Process aksArcAppServiceExtWebApp = new();
                         aksArcAppServiceExtWebApp.StartInfo.FileName = "powershell";
-                        aksArcAppServiceExtWebApp.StartInfo.Arguments = ".\\pwshjobs\\aksArcAppServiceExtWebApp.ps1";
+                        aksArcAppServiceExtWebApp.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\aksArcAppServiceExtWebApp.ps1";
                         aksArcAppServiceExtWebApp.StartInfo.UseShellExecute = true;
                         // aksArcAppServiceExtWebApp.StartInfo.RedirectStandardOutput = true;
                         aksArcAppServiceExtWebApp.Start();
@@ -574,7 +574,7 @@ do
                         // Run upstreamKubernetes.ps1     
                         using Process upstreamKubernetes = new();
                         upstreamKubernetes.StartInfo.FileName = "powershell";
-                        upstreamKubernetes.StartInfo.Arguments = ".\\pwshjobs\\upstreamKubernetes.ps1";
+                        upstreamKubernetes.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\upstreamKubernetes.ps1";
                         upstreamKubernetes.StartInfo.UseShellExecute = true;
                         // upstreamKubernetes.StartInfo.RedirectStandardOutput = true;
                         upstreamKubernetes.Start();
@@ -611,7 +611,7 @@ do
                 // Run azgroup-delete.ps1        
                 using Process azgroupdelete = new();
                 azgroupdelete.StartInfo.FileName = "powershell";
-                azgroupdelete.StartInfo.Arguments = ".\\pwshjobs\\azgroup-delete.ps1";
+                azgroupdelete.StartInfo.Arguments = @"Start-Process -FilePath .\pwshjobs\azgroup-delete.ps1";
                 azgroupdelete.StartInfo.UseShellExecute = true;
                 // azgroupdelete.StartInfo.RedirectStandardOutput = true;
                 azgroupdelete.Start();
