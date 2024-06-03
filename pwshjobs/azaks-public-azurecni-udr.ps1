@@ -25,7 +25,7 @@ New-AzResourceGroup -Name $RG -Location $LOC
 
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "Creating VNET with subnet $AKSSUBNET_NAME:"
+Write-Output "Creating VNET with subnet {$AKSSUBNET_NAME}:"
 # Dedicated virtual network with AKS subnet
 az network vnet create --resource-group $RG --name $VNET_NAME --location $LOC --address-prefixes 10.42.0.0/16 --subnet-name $AKSSUBNET_NAME --subnet-prefix 10.42.1.0/24
 

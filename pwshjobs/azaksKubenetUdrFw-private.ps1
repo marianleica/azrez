@@ -19,13 +19,13 @@ $FWROUTE_TABLE_NAME="${PREFIX}-fwrt-${SUFFIX}"
 $WROUTE_NAME="${PREFIX}-fwr-${SUFFIX}"
 $FWROUTE_NAME_INTERNET="${PREFIX}-fwinternet$SUFFIX}"
 
-Write-Output "Creating resource group $RG in $LOC:"
+Write-Output "Creating resource group {$RG} in {$LOC}:"
 # Creating resource group
 New-AzResourceGroup -Name $RG -Location $LOC
 
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "Creating VNET with subnet $AKSSUBNET_NAME:"
+Write-Output "Creating VNET with subnet {$AKSSUBNET_NAME}:"
 # Dedicated virtual network with AKS subnet
 az network vnet create --resource-group $RG --name $VNET_NAME --location $LOC --address-prefixes 10.42.0.0/16 --subnet-name $AKSSUBNET_NAME --subnet-prefix 10.42.1.0/24
 
@@ -107,7 +107,7 @@ Write-Output "To be able to connect to the cluster we are adding your IP address
 $CURRENT_IP=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)
 
 Start-Sleep -Seconds 1
-Write-Output "Your IP address should be $CURRENT_IP"
+Write-Output "Your IP address should be {$CURRENT_IP}"
 Write-Output ""
 
 Start-Sleep -Seconds 1

@@ -17,7 +17,7 @@ $randompass = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 30 | Fo
 $Password = ConvertTo-SecureString $randompass -AsPlainText -Force
 $psCred = New-Object System.Management.Automation.PSCredential($UserName, $Password)
 
-Write-Output "Creating virtual machine $vmName in resource group $rg in location $location"
+Write-Output "Creating virtual machine {$vmName} in resource group {$rg} in location {$location}"
 Start-Sleep -Seconds 1
 Write-Output ""
 Write-Output "The Resource Group:"
@@ -25,7 +25,7 @@ Write-Output "The Resource Group:"
 New-AzResourceGroup -Name $rg -Location $location
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "The virtual machine $vmName:"
+Write-Output "The virtual machine {$vmName}:"
 
 # Create Windows 11
 New-AzVm -ResourceGroupName $rg -Name $vmName -Location $location -Image $image -VirtualNetworkName "myVnet-${suffix}" -SubnetName "vmsubnet" -SecurityGroupName "vmNSG" -PublicIpAddressName $publicIp -OpenPorts 80,3389
@@ -36,9 +36,9 @@ Start-Sleep -Seconds 2
 $vmip=$(Get-AzPublicIpAddress -Name $publicIp -ResourceGroupName $rg)
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "The public IP address allocated to VM $vmName is $vmip"
+Write-Output "The public IP address allocated to VM {$vmName} is {$vmip}"
 Write-Output "The admin user name is: azrez"
-Write-Output "The unique password is: $password"
+Write-Output "The unique password is: {$password}"
 
 #pwsh
 #$rg='myVM'
