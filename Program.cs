@@ -50,8 +50,8 @@ do
                 Console.WriteLine("Performing initial setup for Windows OS.");
                 // if yes, run azsetup.ps1
                 using Process winazsetup = new();
-                winazsetup.StartInfo.FileName = "";
-                winazsetup.StartInfo.Arguments = @".\pwshjobs\azsetup.ps1";
+                winazsetup.StartInfo.FileName = "powershell";
+                winazsetup.StartInfo.Arguments = @"-File .\pwshjobs\azsetup.ps1";
                 winazsetup.StartInfo.UseShellExecute = true;
                 // winazsetup.StartInfo.RedirectStandardOutput = true;
                 winazsetup.Start();
