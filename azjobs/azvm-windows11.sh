@@ -1,9 +1,9 @@
 # Setting variables
-suffix=$((10000 + RANDOM % 99999))
+suffix=$((100 + RANDOM % 999))
 rg="azresourcelauncher"
 location="uksouth"
-vmName="azvm-windows11-${suffix}"
-image='MicrosoftWindowsDesktop:windows-11:win11-23h2-pro:22631.3296.240303'
+vmName=$"azvm-win11-${suffix}"
+image="MicrosoftWindowsDesktop:windows-11:win11-23h2-pro:22631.3296.240303"
 # az vm image list -f windows-11 -o table --all 
 
 # Generating a random string to use as password
@@ -49,10 +49,15 @@ echo ""
 echo "The public IP address allocated to VM $vmName is $vmip"
 echo "The admin user name is: azrez"
 echo "The unique password is: $password"
+echo "Waiting for 15 seconds, save aside your credentials"
 
+# Giving time to 
+sleep 15
+
+#Saved aside
+############
 #pwsh
 #$rg='myVM'
 #$location='northeurope'
 #$vmName='winclient1'
 #Get-AzRemoteDesktopFile -ResourceGroupName $rg -Name $vmName -Launch
-

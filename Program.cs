@@ -168,7 +168,7 @@ do
                         // Run azvm-windows11.sh
                         using Process unixazvmwindows11 = new();
                         unixazvmwindows11.StartInfo.FileName = "sh";
-                        unixazvmwindows11.StartInfo.Arguments = "./azjobs/azsvm-windows11.sh";
+                        unixazvmwindows11.StartInfo.Arguments = "./azjobs/azvm-windows11.sh";
                         unixazvmwindows11.StartInfo.UseShellExecute = true;
                         // unixazvmwindows11.StartInfo.RedirectStandardOutput = true;
                         unixazvmwindows11.Start();

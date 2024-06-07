@@ -1,8 +1,8 @@
 # Setting variables
-suffix=$((10000 + RANDOM % 99999))
+suffix=$((100 + RANDOM % 999))
 rg="azresourcelauncher"
 location="uksouth"
-vmName="azvm-windows11-${suffix}"
+vmName="azvm-win22-${suffix}"
 image='MicrosoftWindowsServer:WindowsServer:2022-datacenter-azure-edition:latest'
 # az vm image list -f windows-11 -o table --all 
 
@@ -49,6 +49,9 @@ echo ""
 echo "The public IP address allocated to VM $vmName is $vmip"
 echo "The admin user name is: azrez"
 echo "The unique password is: $password"
+
+echo "Waiting for 15 seconds, save aside your credentials"
+sleep 15
 
 #pwsh
 #$rg='myVM'

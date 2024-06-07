@@ -2,11 +2,11 @@ Write-Output "Creating Windows 11 Azure Virtual Machine"
 Start-Sleep -Seconds 1
 
 # Setting variables
-$suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
+$suffix=$(Get-Random -Minimum 1000 -Maximum 9999)
 #suffix=$((10000 + RANDOM % 99999))
 $rg="azresourcelauncher"
 $location="uksouth"
-$vmName="azvm-windows11-${suffix}"
+$vmName="azvm-win11-${suffix}"
 $image="MicrosoftWindowsDesktop:windows-11:win11-23h2-pro:22631.3296.240303"
 $publicIp="win11IP-${suffix}"
 

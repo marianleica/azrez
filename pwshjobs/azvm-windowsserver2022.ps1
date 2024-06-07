@@ -2,11 +2,11 @@ Write-Output "Creating Windows Server 2022 Azure Virtual Machine"
 Start-Sleep -Seconds 1
 
 # Setting variables
-$suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
+$suffix=$(Get-Random -Minimum 1000 -Maximum 9999)
 #suffix=$((10000 + RANDOM % 99999))
 $rg="azresourcelauncher"
 $location="uksouth"
-$vmName="azvm-winserver2022-${suffix}"
+$vmName="azvm-win22-${suffix}"
 $image='MicrosoftWindowsServer:WindowsServer:2022-datacenter-azure-edition:latest'
 $publicIp="winserver22IP-${suffix}"
 
