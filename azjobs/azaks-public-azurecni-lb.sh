@@ -44,6 +44,8 @@ echo "The infrastructure resource group is $infra_rg"
 
 echo ""
 sleep 1
-Configuring "kubectl" to connect to the Kubernetes cluster
+echo "Configuring kubectl to connect to the Kubernetes cluster"
 # echo "If you want to connect to the cluster to run commands, run the following:"
 az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
+echo "You can start running kubectl commands on the created cluster"
+sleep 10
