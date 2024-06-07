@@ -11,10 +11,13 @@ sleep 1
 echo "Please login to Azure:"
 az login
 
-echo "These are the subscriptions associated with your account:"
-az account list -o table
-sleep 1
-read -p "Please choose your subscription from the list above and paste it here: " subscriptionid
-
-echo "Setting the subscription $subscriptionid for use"
-az account set --subscription $subscriptionid
+sleep 4
+# (*) Commenting the following lines since the new az login functionality
+# makes you choose the subscription in a better way
+############################################
+# echo "These are the subscriptions associated with your account:"
+# az account list -o table
+# sleep 1
+# read -p "Please choose your subscription from the list above and paste it here: " subscriptionid
+# echo "Setting the subscription $subscriptionid for use"
+# az account set --subscription $subscriptionid
