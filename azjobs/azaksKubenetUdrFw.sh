@@ -106,17 +106,18 @@ echo "To be able to connect to the cluster we are adding your IP address to the 
 # Retrieve your IP address and add it to approved range
 CURRENT_IP=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)
 
-sleep 1
-echo "Your IP address should be $CURRENT_IP"
-echo ""
-
-sleep 1
-az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges $CURRENT_IP
+# Avoiding the Authorized IP ranges setting
+#
+# sleep 1
+# echo "Your IP address should be $CURRENT_IP"
+# echo ""
+# sleep 1
+# az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges $CURRENT_IP
 
 # Issue alert
 # It seems that the IP address is correct and that it's found and applied correctly,
 # However I don't get access to the cluster API
-# Temporary workaround till I figure out why
+# Temporary workaround till I figure out a better way
 az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges 0.0.0.0/0
 
 echo ""
@@ -142,5 +143,7 @@ sleep 2
 # Adding NAT rule
 az network firewall nat-rule create --collection-name exampleset --destination-addresses $FWPUBLIC_IP --destination-ports 80 --firewall-name $FWNAME --name inboundrule --protocols Any --resource-group $RG --source-addresses '*' --translated-port 80 --action Dnat --priority 100 --translated-address $SERVICE_IP
 
+echo "Operation complete"
+sleep 5
 # cleaning up
 # az group delete -g $RG --yes --no-wait

@@ -106,12 +106,13 @@ echo "To be able to connect to the cluster we are adding your IP address to the 
 # Retrieve your IP address and add it to approved range
 CURRENT_IP=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)
 
-sleep 1
-echo "Your IP address should be $CURRENT_IP"
-echo ""
-
-sleep 1
-az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges $CURRENT_IP
+# Avoiding the Authorized IP ranges setting
+#
+# sleep 1
+# echo "Your IP address should be $CURRENT_IP"
+# echo ""
+# sleep 1
+# az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges $CURRENT_IP
 
 # Issue alert
 # It seems that the IP address is correct and that it's found and applied correctly,
