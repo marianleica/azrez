@@ -3,9 +3,13 @@
 // system session
 using System;
 using System.Diagnostics;
-Console.Title="azrez";
 
-// Variables for storing data
+// Variables for the console title
+string? applicationName = "azrez";
+string? applicationVersion = "1.01";
+Console.Title=$"{applicationName} - {applicationVersion}";
+
+// Variables for the app menu
 string? readResult; // Non-nullable string variable
 string menuSelection = "";
 string os = Environment.OSVersion.ToString(); // Get OS informaiton
