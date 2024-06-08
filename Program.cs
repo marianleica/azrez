@@ -3,6 +3,7 @@
 // system session
 using System;
 using System.Diagnostics;
+Console.Title="azrez";
 
 // Variables for storing data
 string? readResult; // Non-nullable string variable
