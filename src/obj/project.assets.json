@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/marianleica/Build/projects/azrez/azrez.csproj",
+      "projectUniqueName": "/Users/marianleica/Build/projects/azrez/src/azrez.csproj",
       "projectName": "azrez",
-      "projectPath": "/Users/marianleica/Build/projects/azrez/azrez.csproj",
+      "projectPath": "/Users/marianleica/Build/projects/azrez/src/azrez.csproj",
       "packagesPath": "/Users/marianleica/.nuget/packages/",
-      "outputPath": "/Users/marianleica/Build/projects/azrez/obj/",
+      "outputPath": "/Users/marianleica/Build/projects/azrez/src/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/marianleica/.nuget/NuGet/NuGet.Config"
