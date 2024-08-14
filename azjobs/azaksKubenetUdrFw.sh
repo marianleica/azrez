@@ -4,7 +4,7 @@ echo "Grab a coffee, this can take several minutes to complete.."
 
 PREFIX="aks-azurecni-udr"
 SUFFIX=$((10000 + RANDOM % 99999))
-RG="azresourcelauncher"
+RG="azrez"
 LOC="uksouth"
 PLUGIN=kubenet
 AKSNAME="aks-azurecni-udr_${SUFFIX}"

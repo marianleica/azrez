@@ -1,6 +1,6 @@
 # Setting variables
 suffix=$((100 + RANDOM % 999))
-rg="azresourcelauncher"
+rg="azrez"
 location="uksouth"
 vmName="azvm-win22-${suffix}"
 image='MicrosoftWindowsServer:WindowsServer:2022-datacenter-azure-edition:latest'

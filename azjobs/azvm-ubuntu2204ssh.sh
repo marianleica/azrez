@@ -1,6 +1,6 @@
 # Setting variables
 namesuffix=$((10000 + RANDOM % 99999))
-RG="azresourcelauncher"
+RG="azrez"
 VM="VM-${namesuffix}"
 location="uksouth"
 
