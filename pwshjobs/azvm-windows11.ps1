@@ -7,7 +7,8 @@ $suffix=$(Get-Random -Minimum 1000 -Maximum 9999)
 $rg="azrez"
 $location="uksouth"
 $vmName="azvm-win11-${suffix}"
-$image="MicrosoftWindowsDesktop:windows-11:win11-21h2-avd:22000.1100.221015"
+$image="MicrosoftWindowsDesktop:windows-11:win11-21h2-avd:22000.1100.221015
+"
 $publicIp="win11IP-${suffix}"
 
 # To update the image version when it is being deprecated, see available images with
