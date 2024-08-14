@@ -4,7 +4,7 @@ Write-Output "Grab a coffee, this can take several minutes to complete.."
 
 $PREFIX="aks-azurecni-udr"
 $SUFFIX=$(Get-Random -Minimum 10000 -Maximum 99999)
-$RG="azresourcelauncher"
+$RG="azrez"
 $LOC="uksouth"
 $PLUGIN=kubenet
 $AKSNAME="aks-azurecni-udr_${SUFFIX}"
