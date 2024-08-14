@@ -6,7 +6,7 @@ Start-Sleep -Seconds 1
 # Setting variables
 $suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
 #suffix=$((10000 + RANDOM % 99999))
-$rg="azresourcelauncher"
+$rg="azrez"
 $location="uksouth"
 $vmName="azvm-windows11-${suffix}"
 $image="Ubuntu2204"

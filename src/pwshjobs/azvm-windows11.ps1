@@ -4,11 +4,14 @@ Start-Sleep -Seconds 1
 # Setting variables
 $suffix=$(Get-Random -Minimum 1000 -Maximum 9999)
 #suffix=$((10000 + RANDOM % 99999))
-$rg="azresourcelauncher"
+$rg="azrez"
 $location="uksouth"
 $vmName="azvm-win11-${suffix}"
 $image="MicrosoftWindowsDesktop:windows-11:win11-23h2-pro:22631.3296.240303"
 $publicIp="win11IP-${suffix}"
+
+# To update the image version when it is being deprecated, see available images with
+# az vm image list -f windows-11 -o table --all
 
 # Generating a random string to use as password
 $UserName = "admin"

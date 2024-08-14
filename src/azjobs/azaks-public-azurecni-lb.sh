@@ -1,6 +1,6 @@
 # Setting variables
 namesuffix=$((10000 + RANDOM % 99999))
-RG="azresourcelauncher" # Name of resource group for the AKS cluster
+RG="azrez" # Name of resource group for the AKS cluster
 location="uksouth" # Name of the location 
 AKS="aks-azurecni-${namesuffix}" # Name of the AKS cluster
 

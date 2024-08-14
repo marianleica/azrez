@@ -1,6 +1,6 @@
 # Setting variables
 $suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
-$RG="azresourcelauncher" # Name of resource group for the AKS cluster
+$RG="azrez" # Name of resource group for the AKS cluster
 $location="uksouth" # Name of the location 
 $AKS="aks-kubenetlb-${suffix}" # Name of the AKS cluster
 

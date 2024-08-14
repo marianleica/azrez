@@ -4,7 +4,7 @@ Start-Sleep -Seconds 1
 # Setting variables
 $suffix=$(Get-Random -Minimum 1000 -Maximum 9999)
 #suffix=$((10000 + RANDOM % 99999))
-$rg="azresourcelauncher"
+$rg="azrez"
 $location="uksouth"
 $vmName="azvm-win22-${suffix}"
 $image='MicrosoftWindowsServer:WindowsServer:2022-datacenter-azure-edition:latest'
