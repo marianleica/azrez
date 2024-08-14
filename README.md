@@ -1,8 +1,6 @@
 ### Prerequisites:
 
-- For Windows Client & Server, have the .NET framework runtime or SDK installed on your system prior to running AZREZ.
-
-Reference: https://learn.microsoft.com/en-us/dotnet/core/install/windows
+- For Windows Client & Server, have the .NET framework runtime or SDK installed on your system prior to running AZREZ. Reference: https://learn.microsoft.com/en-us/dotnet/core/install/windows
 
 To install .NET with Powershell, follow the steps in: https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-powershell
 
