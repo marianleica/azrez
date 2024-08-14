@@ -14,7 +14,6 @@ Start-BitsTransfer -Source "https://dot.net/v1/dotnet-install.ps1" -Destination 
 cd "$HOME"
 
 .\dotnet-install.ps1 # This will install the .NET SDK
-
 ```
 
 Getting AZREZ ready on Windows Client manually using PowerShell cmdlets:
@@ -24,6 +23,5 @@ Start-BitsTransfer -Source "https://github.com/marianleica/azrez/archive/refs/he
 
 Expand-Archive -Path "$HOME/azrez.zip" -DestinationPath "$HOME/azrez" -Force 
 
-cd "$HOME\azrez\azrez-public" 
-
+$env:Path += "$HOME\azrez\azrez-public" 
 ```
