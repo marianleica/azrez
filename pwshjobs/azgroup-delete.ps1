@@ -1,2 +1,2 @@
 Write-Output "Deleting deployment resource group"
-Remove-AzResourceGroup -Name "azresourcelauncher" -Force
+Remove-AzResourceGroup -Name "azrez" -Force
