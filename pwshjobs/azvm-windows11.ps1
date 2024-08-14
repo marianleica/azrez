@@ -10,6 +10,9 @@ $vmName="azvm-win11-${suffix}"
 $image="MicrosoftWindowsDesktop:windows-11:win11-23h2-pro:22631.3296.240303"
 $publicIp="win11IP-${suffix}"
 
+# To update the image version when it is being deprecated, see available images with
+# az vm image list -f windows-11 -o table --all
+
 # Generating a random string to use as password
 $UserName = "admin"
 $randompass = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 30 | ForEach-Object {[char]$_})

@@ -3,7 +3,9 @@ suffix=$((100 + RANDOM % 999))
 rg="azrez"
 location="uksouth"
 vmName=$"azvm-win11-${suffix}"
-image="MicrosoftWindowsDesktop:windows-11:win11-23h2-pro:22631.3296.240303"
+image="MicrosoftWindowsDesktop:windows-11:win11-21h2-avd:22000.1100.221015"
+
+# To update the image version when it is being deprecated, see available images with
 # az vm image list -f windows-11 -o table --all 
 
 # Generating a random string to use as password
