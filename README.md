@@ -14,6 +14,10 @@ cd "$HOME"
 .\dotnet-install.ps1 # This will install the .NET SDK
 ```
 
+## Getting AZREZ locally
+
+### Getting AZREZ on Windows Client & Server
+
 #### Getting AZREZ ready on Windows Client manually using PowerShell cmdlets:
 
 ```
