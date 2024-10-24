@@ -35,3 +35,7 @@ $env:Path += "$HOME\azrez\azrez-public"
 
 - For any issues or questions about the tool,. please submit a github issue with the details on the repository page.
 - For any feature requests or changes, please submit a github issue with the details on the repository page.
+
+## Release notes
+
+#### v1.05
