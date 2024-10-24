@@ -1,4 +1,4 @@
-### Prerequisites:
+## Prerequisites:
 
 - For Windows Client & Server, have the .NET framework runtime or SDK installed on your system prior to running AZREZ. Reference: https://learn.microsoft.com/en-us/dotnet/core/install/windows
 
@@ -16,14 +16,17 @@ cd "$HOME"
 
 ## Getting AZREZ locally
 
-### Getting AZREZ on Windows Client & Server
+#### Getting AZREZ locally via the provided PowerShell script:
 
 #### Getting AZREZ ready on Windows Client manually using PowerShell cmdlets:
 
 ```
 Start-BitsTransfer -Source "https://github.com/marianleica/azrez/archive/refs/heads/public.zip" -Destination "$HOME/azrez.zip"
-
 Expand-Archive -Path "$HOME/azrez.zip" -DestinationPath "$HOME/azrez" -Force 
-
 $env:Path += "$HOME\azrez\azrez-public" 
 ```
+
+## Limitations
+
+- The AZREZ tool is supported only for Windows OS on Windows Client and Server versions supported by Microsoft
+- The AZREZ tool only works in the following directory path "C:\azrez" with the backend scripts on "C:\azrez\pwshjobs"
