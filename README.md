@@ -30,6 +30,7 @@ $env:Path += "$HOME\azrez\azrez-public"
 
 - The AZREZ tool is supported only for Windows OS on Windows Client and Server versions supported by Microsoft
 - The AZREZ tool only works in the following directory path "C:\azrez" with the backend scripts on "C:\azrez\pwshjobs"
+- All resources are by default using the 'azrez' resource group and the 'uksouth' Azure region. The job scripts are accessible for whoever wants to use a different resource group name or Azure region, as well as any alternate configurations.
 
 ## Feedback and feature requests
 
