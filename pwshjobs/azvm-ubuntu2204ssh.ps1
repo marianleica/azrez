@@ -12,6 +12,7 @@ $VM="azvm-windows11-${suffix}"
 $image="Ubuntu2204"
 $publicIp="win11IP-${suffix}"
 
+Start-Sleep -Seconds 1
 # Generating a random string to use as password
 $UserName = "azrez"
 $randompass = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 30 | ForEach-Object {[char]$_})
