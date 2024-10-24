@@ -21,9 +21,11 @@ cd "$HOME"
 #### Getting AZREZ ready on Windows Client manually using PowerShell cmdlets:
 
 ```
-Start-BitsTransfer -Source "https://github.com/marianleica/azrez/archive/refs/heads/public.zip" -Destination "$HOME/azrez.zip"
-Expand-Archive -Path "$HOME/azrez.zip" -DestinationPath "$HOME/azrez" -Force 
-$env:Path += "$HOME\azrez\azrez-public" 
+Start-BitsTransfer -Source "https://github.com/marianleica/azrez/archive/refs/heads/public.zip" -Destination "C:\azrez.zip"
+Expand-Archive -Path "C:\azrez.zip" -DestinationPath "C:\" -Force
+mv C:\azrez-public C:\azrez\
+rmdir C:\azrez.zip
+$env:Path += "C:\azrez\"
 ```
 
 ## Limitations of the current release
