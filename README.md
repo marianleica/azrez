@@ -26,7 +26,12 @@ Expand-Archive -Path "$HOME/azrez.zip" -DestinationPath "$HOME/azrez" -Force
 $env:Path += "$HOME\azrez\azrez-public" 
 ```
 
-## Limitations
+## Limitations of the current release
 
 - The AZREZ tool is supported only for Windows OS on Windows Client and Server versions supported by Microsoft
 - The AZREZ tool only works in the following directory path "C:\azrez" with the backend scripts on "C:\azrez\pwshjobs"
+
+## Feedback and feature requests
+
+- For any issues or questions about the tool,. please submit a github issue with the details on the repository page.
+- For any feature requests or changes, please submit a github issue with the details on the repository page.
