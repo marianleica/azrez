@@ -35,7 +35,7 @@ Write-Output ""
 Write-Output "Onboarding cluster {$AKS} to Azure Arc-enabled Kubernetes"
 # Onboarding the cluster to Azure Arc-enabled Kubernetes
 $ARC="arc-aks-${suffix}" # Name of the ARC cluster
-az extension install --name connectedk8s
+az extension add --name connectedk8s
 az connectedk8s connect --resource-Group $RG --name $ARC
 
 Start-Sleep -Seconds 5
