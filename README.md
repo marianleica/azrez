@@ -30,14 +30,15 @@ Expand-Archive -Path "C:\azrez.zip" -DestinationPath "C:\" -Force
 mv C:\azrez-public C:\azrez\
 rmdir C:\azrez.zip
 # Add to environment variables
-$env:Path += "C:\azrez\"
+$env:Path += ";C:\azrez\"
 ```
 
-## Limitations of the current release
+## Limitations of the current release: v1.05
 
 - The AZREZ tool is supported only for Windows OS on Windows Client versions supported by Microsoft
 - The AZREZ tool only works in the following directory path "C:\azrez" with the backend scripts on "C:\azrez\pwshjobs"
 - All resources are by default using the 'azrez' resource group and the 'uksouth' Azure region. The job scripts are accessible for whoever wants to use a different resource group name or Azure region, as well as any alternate configurations.
+- The command `$env:Path += ";C:\azrez\"` only sets env variable in the current terminal session. Workaround for permanent variable is to manually add C:\azrez\ to the Path environment variables in Advanced System Settings
 
 ## Feedback and feature requests
 
