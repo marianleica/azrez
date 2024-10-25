@@ -16,7 +16,7 @@ $image="MicrosoftWindowsDesktop:windows-11:win11-21h2-avd:22000.1100.221015"
 $userName = "azrez"
 $randompass = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 30 | ForEach-Object {[char]$_})
 #Read more: https://www.sharepointdiary.com/2020/04/powershell-generate-random-password.html#ixzz8XiwccFos
-$password = ConvertTo-SecureString $randompass -AsPlainText -Force
+# $password = ConvertTo-SecureString $randompass -AsPlainText -Force
 # $psCred = New-Object System.Management.Automation.PSCredential($UserName, $password)
 
 Write-Output "Creating virtual machine ${VM} in resource group ${RG} in location ${location}"
@@ -32,7 +32,7 @@ Write-Output "The virtual machine ${VM}:"
 
 # Create Windows 11
 # New-AzVm -ResourceGroupName $rg -Name $vmName -Location $location -Image $image -VirtualNetworkName "myVnet-${suffix}" -SubnetName "vmsubnet" -SecurityGroupName "vmNSG" -PublicIpAddressName $publicIp -OpenPorts 80,3389
-az vm create -g $RG -n $VM --image $image --admin-user $userName --admin-password $password --public-ip-sku Standard --nsg NSG4VM --nsg-rule RDP
+az vm create -g $RG -n $VM --image $image --admin-user $userName --admin-password $randompass --public-ip-sku Standard --nsg NSG4VM --nsg-rule RDP
 
 Start-Sleep -Seconds 2
 # This is the public IP address
