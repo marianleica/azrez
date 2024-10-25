@@ -87,3 +87,24 @@ Start-Sleep -Seconds 5
 Write-Output ""
 # Validate that the App Service Kubernetes Environment has been successfully created:
 az appservice kube show --resource-group $RG --name $kubeEnvironmentName
+
+Start-Sleep -Seconds 1
+Write-Output ""
+# Generating web app name - it has to be unique
+$appname="webapp-${suffix}"
+
+# Creating webapp in the custom location
+az webapp create --resource-group $RG --name $appname --custom-location $customLocationId --runtime 'NODE|12-lts'`
+
+Start-Sleep -Seconds 5
+Write-Output ""
+Write-Output "The webapp ${appname} is now created."
+Write-Output "To provide code to the webapp, you may use the example below"
+Write-Output ""
+Write-Output "git clone https://github.com/Azure-Samples/nodejs-docs-hello-world"
+Write-Output "cd nodejs-docs-hello-world"
+Write-Output "zip -r package.zip ."
+Write-Output "az webapp deployment source config-zip --resource-group ${RG} --name ${appname} --src package.zip"
+Write-Output ""
+Write-Output "Waiting 20 sec to save the plan aside"
+Start-Sleep -Seconds 20
