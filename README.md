@@ -4,7 +4,7 @@
 
 To install .NET with Powershell, follow the steps in: https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-powershell
 
-Or run the following cmdlets in PowerShell:
+Or run the following cmdlets in elevated PowerShell:
 
 ```
 Start-BitsTransfer -Source "https://dot.net/v1/dotnet-install.ps1" -Destination "$HOME/dotnet-install.ps1"
@@ -20,7 +20,7 @@ cd "$HOME"
 setup.ps1
 https://raw.githubusercontent.com/marianleica/azrez/refs/heads/public/setup.ps1
 
-#### Getting AZREZ ready on Windows Client manually using PowerShell cmdlets:
+#### Getting AZREZ ready on Windows Client manually using elevated PowerShell cmdlets:
 
 ```
 # Download the repo contents to C:\azrez and expand the archive
