@@ -7,7 +7,7 @@ To install .NET with Powershell, follow the steps in: https://learn.microsoft.co
 Or run the following cmdlets in PowerShell:
 
 ```
-Start-BitsTransfer -Source "https://dot.net/v1/dotnet-install.ps1" -Destination "$HOME/dotnet-install"
+Start-BitsTransfer -Source "https://dot.net/v1/dotnet-install.ps1" -Destination "$HOME/dotnet-install.ps1"
 
 cd "$HOME"
 
