@@ -25,7 +25,7 @@ Write-Output ""
 Write-Output "The Resource Group:"
 
 # Create RG
-az group create -Name $rg -Location $location
+az group create -Name $RG -Location $location
 Start-Sleep -Seconds 1
 Write-Output ""
 Write-Output "The virtual machine ${VM}:"
