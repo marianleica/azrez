@@ -4,14 +4,12 @@
 
 To install .NET with Powershell, follow the steps in: https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-powershell
 
-Or run the following cmdlets in elevated PowerShell:
+Or run the following cmdlets in elevated PowerShell to install .NET runtime 8.0.10:
 
 ```
-Start-BitsTransfer -Source "https://dot.net/v1/dotnet-install.ps1" -Destination "$HOME/dotnet-install.ps1"
+Start-BitsTransfer -Source "https://download.visualstudio.microsoft.com/download/pr/f55ed80e-ba58-4ac8-a2b3-f2227cd628de/6fabf1c613cf9386d14ddbaaca1a5eb8/dotnet-runtime-8.0.10-win-x64.exe" -Destination "$HOME/dotnet-runtime-8.0.10-win-x64.exe"
 
-cd "$HOME"
-
-.\dotnet-install.ps1 # This will install the .NET SDK
+.\$HOME\dotnet-runtime-8.0.10-win-x64.exe
 ```
 
 ## Getting AZREZ locally
