@@ -68,3 +68,9 @@ Start-Sleep -Seconds 20
 #else
 #    echo "Save the command for later: ssh bestuser@$vmpip"
 #fi
+
+# Converted to PowerShell
+
+#$userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"
+#if ($userinput == "y") az ssh vm  -g $RG -n $VM --local-user $userName --ip $vmip 
+#else Write-Output "Save the command for later: az ssh vm  -g ${RG} -n ${VM} --local-user ${userName} --ip $vmip"
