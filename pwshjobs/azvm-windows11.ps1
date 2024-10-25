@@ -21,11 +21,11 @@ $randompass = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 30 | Fo
 
 Write-Output "Creating virtual machine ${VM} in resource group ${RG} in location ${location}"
 Start-Sleep -Seconds 1
+
 Write-Output ""
 Write-Output "The Resource Group:"
+az group create -n $RG -l $location
 
-# Create RG
-az group create -Name $RG -Location $location
 Start-Sleep -Seconds 1
 Write-Output ""
 Write-Output "The virtual machine ${VM}:"
