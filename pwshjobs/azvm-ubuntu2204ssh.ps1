@@ -10,17 +10,15 @@ $RG="azrez"
 $location="uksouth"
 $VM="azvm-windows11-${suffix}"
 $image="Ubuntu2204"
-$publicIp="win11IP-${suffix}"
 
-Start-Sleep -Seconds 1
 # Generating a random string to use as password
-$UserName = "azrez"
-$randompass = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 30 | ForEach-Object {[char]$_})
+$userName = "azrez"
+#$randompass = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 30 | ForEach-Object {[char]$_})
 #Read more: https://www.sharepointdiary.com/2020/04/powershell-generate-random-password.html#ixzz8XiwccFos
-$Password = ConvertTo-SecureString $randompass -AsPlainText -Force
-$psCred = New-Object System.Management.Automation.PSCredential($UserName, $Password)
+#$Password = ConvertTo-SecureString $randompass -AsPlainText -Force
+#$psCred = New-Object System.Management.Automation.PSCredential($UserName, $Password)
 
-Write-Output $"Creating virtual machine ${vmName} in resource group ${RG} in location ${location}"
+Write-Output $"Creating virtual machine ${VM} in resource group ${RG} in location ${location}"
 Start-Sleep -Seconds 1
 Write-Output ""
 
@@ -29,11 +27,11 @@ Write-Output "The Resource Group:"
 az group create -n $RG -l $location
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "The virtual machine {$VM}:"
+Write-Output "The virtual machine ${VM}:"
 
 # Create Ubuntu VM
 # New-AzVm -ResourceGroupName $RG -Name $vmName -Location $location -Image $image -VirtualNetworkName "myVnet-${suffix}" -SubnetName "vmsubnet" -SecurityGroupName "vmNSG" -PublicIpAddressName $publicIp -OpenPorts 80,22 -GenerateSshKey
-az vm create -n $VM -g $RG --image Ubuntu2204 --generate-ssh-keys --admin-username bestuser --size Standard_D2s_v3 --nsg-rule ssh --public-ip-sku Standard
+az vm create -n $VM -g $RG --image $image --generate-ssh-keys --admin-username $userName --size Standard_D2s_v3 --nsg-rule ssh --public-ip-sku Standard
 
 Start-Sleep -Seconds 2
 # This is the public IP address
@@ -44,8 +42,8 @@ Start-Sleep -Seconds 1
 Write-Output ""
 Write-Output "The public IP address allocated to VM {$VM} is {$vmip}"
 Write-Output "Save aside your credentials"
-Write-Output "The admin user name is: {$UserName}"
-Write-Output "The unique password is: {$password}"
+Write-Output "The admin user name is: ${userName}"
+#Write-Output "The unique password is: ${$password}"
 
 Start-Sleep -Seconds 20
 #pwsh
