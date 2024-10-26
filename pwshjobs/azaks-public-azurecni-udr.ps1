@@ -7,7 +7,7 @@ $SUFFIX=$(Get-Random -Minimum 10000 -Maximum 99999)
 $RG="azrez"
 $LOC="uksouth"
 $PLUGIN=azure
-$AKSNAME="aks-azurecni-udr_${SUFFIX}"
+$AKSNAME="aks-azurecni-udr-${SUFFIX}"
 $VNET_NAME="${PREFIX}-vnet-${SUFFIX}"
 $AKSSUBNET_NAME="aks-subnet"
 # DO NOT CHANGE FWSUBNET_NAME - This is currently a requirement for Azure Firewall.
@@ -25,7 +25,7 @@ az group create --name $RG --location $LOC
 
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "Creating VNET with subnet {$AKSSUBNET_NAME}:"
+Write-Output "Creating VNET with subnet ${AKSSUBNET_NAME}:"
 # Dedicated virtual network with AKS subnet
 az network vnet create --resource-group $RG --name $VNET_NAME --location $LOC --address-prefixes 10.42.0.0/16 --subnet-name $AKSSUBNET_NAME --subnet-prefix 10.42.1.0/24
 
