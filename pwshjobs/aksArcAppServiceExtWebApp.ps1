@@ -99,12 +99,12 @@ az webapp create --resource-group $RG --name $appname --custom-location $customL
 Start-Sleep -Seconds 5
 Write-Output ""
 Write-Output "The webapp ${appname} is now created."
-Write-Output "To provide code to the webapp, you may use the example below"
+Write-Output "To provide code to the webapp, you may use the example below:"
 Write-Output ""
 Write-Output "git clone https://github.com/Azure-Samples/nodejs-docs-hello-world"
 Write-Output "cd nodejs-docs-hello-world"
 Write-Output "zip -r package.zip ."
 Write-Output "az webapp deployment source config-zip --resource-group ${RG} --name ${appname} --src package.zip"
+
 Write-Output ""
-Write-Output "Waiting 20 sec to save the plan aside"
-Start-Sleep -Seconds 20
+Read-Host "Press any key to continue..."
