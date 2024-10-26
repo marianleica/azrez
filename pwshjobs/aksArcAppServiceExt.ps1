@@ -32,7 +32,7 @@ az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-exis
 
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "Onboarding cluster {$AKS} to Azure Arc-enabled Kubernetes"
+Write-Output "Onboarding cluster ${AKS} to Azure Arc-enabled Kubernetes"
 # Onboarding the cluster to Azure Arc-enabled Kubernetes
 $ARC="arc-aks-${suffix}" # Name of the ARC cluster
 az extension add --upgrade --name connectedk8s
