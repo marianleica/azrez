@@ -1,5 +1,4 @@
 # Source: https://learn.microsoft.com/en-us/azure/aks/limit-egress-traffic?tabs=aks-with-system-assigned-identities
-
 Write-Output "Grab a coffee, this can take several minutes to complete.."
 
 $PREFIX="aks-azurecni-udr"
@@ -17,8 +16,9 @@ $FWPUBLICIP_NAME="${PREFIX}-fwpublicip-${SUFFIX}"
 $FWIPCONFIG_NAME="${PREFIX}-fwconfig-${SUFFIX}"
 $FWROUTE_TABLE_NAME="${PREFIX}-fwrt-${SUFFIX}"
 $FWROUTE_NAME="${PREFIX}-fwr-${SUFFIX}"
-$FWROUTE_NAME_INTERNET="${PREFIX}-fwinternet$SUFFIX}"
+$FWROUTE_NAME_INTERNET="${PREFIX}-fwinternet-${SUFFIX}"
 
+Write-Output ""
 Write-Output "Creating resource group ${RG} in ${LOC}:"
 # Creating resource group
 az group create --name $RG --location $LOC
