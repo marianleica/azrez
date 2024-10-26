@@ -19,7 +19,7 @@ $FWROUTE_TABLE_NAME="${PREFIX}-fwrt-${SUFFIX}"
 $FWROUTE_NAME="${PREFIX}-fwr-${SUFFIX}"
 $FWROUTE_NAME_INTERNET="${PREFIX}-fwinternet$SUFFIX}"
 
-Write-Output "Creating resource group $RG in $LOC:"
+Write-Output "Creating resource group ${RG} in ${LOC}:"
 # Creating resource group
 az group create --name $RG --location $LOC
 
@@ -107,7 +107,7 @@ Write-Output "To be able to connect to the cluster we are adding your IP address
 $CURRENT_IP=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)
 
 Start-Sleep -Seconds 1
-Write-Output "Your IP address should be $CURRENT_IP"
+Write-Output "Your IP address should be ${CURRENT_IP}"
 Write-Output ""
 
 Start-Sleep -Seconds 1
