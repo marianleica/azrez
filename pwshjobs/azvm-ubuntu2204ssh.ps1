@@ -1,8 +1,5 @@
 Write-Output "We are now creating an Azure VM running Ubuntu2204"
 
-Write-Output "Creating Ubuntu2204 Azure Virtual Machine"
-Start-Sleep -Seconds 1
-
 # Setting variables
 $suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
 #suffix=$((10000 + RANDOM % 99999))
@@ -10,6 +7,9 @@ $RG="azrez"
 $location="uksouth"
 $VM="azvm-ubuntu-${suffix}"
 $image="Ubuntu2204"
+
+Write-Output "Creating ${image} Azure Virtual Machine"
+Start-Sleep -Seconds 1
 
 # Generating a random string to use as password
 $userName = "azrez"
