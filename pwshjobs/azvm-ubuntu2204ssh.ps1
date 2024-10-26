@@ -42,8 +42,8 @@ Write-Output "The public IP address allocated to VM ${VM} is ${vmip}"
 Write-Output "Save aside your credentials"
 Write-Output "The admin user name is: ${userName}"
 #Write-Output "The unique password is: ${$password}"
+Read-Host "Press any key to continue..."
 
-Start-Sleep -Seconds 20
 #pwsh
 #$rg='myVM'
 #$location='northeurope'
