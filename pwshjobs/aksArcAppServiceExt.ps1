@@ -4,7 +4,7 @@ $RG="azrez" # Name of resource group for the AKS cluster
 $location="uksouth" # Name of the location 
 $AKS="aks-kubenetlb-${suffix}" # Name of the AKS cluster
 
-Write-Output "Creating AKS cluster {$AKS} in resource group {$RG}"
+Write-Output "Creating AKS cluster ${AKS} in resource group ${RG}"
 # Create new Resource Group
 az group create -g $RG -l $location
 
@@ -18,7 +18,7 @@ Start-Sleep -Seconds 5
 
 # Get the AKS infrastructure resource group name
 $infra_rg=$(az aks show --resource-group $RG --name $AKS --output tsv --query nodeResourceGroup)
-Write-Output "The infrastructure resource group is {$infra_rg}"
+Write-Output "The infrastructure resource group is ${infra_rg}"
 
 # sleep 1
 # echo "Let's see if you have 'kubectl' installed locally. Please ignore any errors."
