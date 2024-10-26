@@ -37,13 +37,8 @@ Write-Output "Onboarding cluster ${AKS} to Azure Arc-enabled Kubernetes"
 # Onboarding the cluster to Azure Arc-enabled Kubernetes
 $ARC="arc-aks-${suffix}" # Name of the ARC cluster
 az extension add --name connectedk8s
-az connectedk8s connect --resource-group $RG --name $ARC
+az connectedk8s connect --resource-group $RG --name $ARC -l westeurope
 
-Start-Sleep -Seconds 5
-Write-Output ""
-Write-Output "The azure-arc namespace status:"
-# Showcase the azure-arc namespace
-az aks command invoke --resource-group $RG --name $AKS --command "kubectl get all -n azure-arc"
 Write-Output ""
 
 Read-Host "Press any key to continue..."
