@@ -21,7 +21,7 @@ https://raw.githubusercontent.com/marianleica/azrez/refs/heads/public/setup.ps1
 #### Getting AZREZ ready on Windows Client manually using elevated PowerShell cmdlets:
 
 ```
-# Remote the package if it already exists
+# Remove the package if it already exists
 Remove-Item -Path C:\azrez\ -Recurse
 # Download the repo contents to C:\azrez and expand the archive
 Start-BitsTransfer -Source "https://github.com/marianleica/azrez/archive/refs/heads/public.zip" -Destination "C:\azrez.zip"
