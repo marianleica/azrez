@@ -87,3 +87,6 @@ Start-Sleep -Seconds 5
 Write-Output ""
 # Validate that the App Service Kubernetes Environment has been successfully created:
 az appservice kube show --resource-group $RG --name $kubeEnvironmentName
+
+Write-Output ""
+Read-Host "Press any key to continue..."
