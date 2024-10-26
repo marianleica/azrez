@@ -1,2 +1,3 @@
-Write-Output "Deleting deployment resource group"
+Write-Output "Deleting deployment resource group.."
 az group delete -n azrez --yes --no-wait
+Start-Sleep 5
