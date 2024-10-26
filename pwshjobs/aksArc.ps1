@@ -45,3 +45,5 @@ Write-Output "The azure-arc namespace status:"
 # Showcase the azure-arc namespace
 az aks command invoke --resource-group $RG --name $AKS --command "kubectl get all -n azure-arc"
 Write-Output ""
+
+Read-Host "Press any key to continue..."
