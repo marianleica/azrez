@@ -23,7 +23,7 @@ Start-Sleep -Seconds 5
 Write-Output ""
 # Get the AKS infrastructure resource group name
 $infra_rg=$(az aks show --resource-group $RG --name $AKS --output tsv --query nodeResourceGroup)
-Write-Output "The infrastructure resource group is {$infra_rg}"
+Write-Output "The infrastructure resource group is ${infra_rg}"
 
 # sleep 1
 # echo "Let's see if you have 'kubectl' installed locally. Please ignore any errors."
