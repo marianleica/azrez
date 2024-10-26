@@ -52,3 +52,6 @@ Write-Output "Configuring kubectl to connect to the Kubernetes cluster"
 # echo "If you want to connect to the cluster to run commands, run the following:"
 # az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
 az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
+
+Write-Output ""
+Read-Host "Press any key to continue..."
