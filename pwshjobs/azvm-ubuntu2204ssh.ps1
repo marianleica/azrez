@@ -8,7 +8,7 @@ $suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
 #suffix=$((10000 + RANDOM % 99999))
 $RG="azrez"
 $location="uksouth"
-$VM="azvm-windows11-${suffix}"
+$VM="azvm-ubuntu-${suffix}"
 $image="Ubuntu2204"
 
 # Generating a random string to use as password
