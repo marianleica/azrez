@@ -30,6 +30,7 @@ mv C:\azrez-public C:\azrez\
 rmdir C:\azrez.zip
 # Add to environment variables
 $env:Path += ";C:\azrez\"
+
 ```
 
 ## Limitations of the current release: v1.05
