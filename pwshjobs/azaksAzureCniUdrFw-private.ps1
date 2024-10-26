@@ -7,7 +7,7 @@ $SUFFIX=$(Get-Random -Minimum 10000 -Maximum 99999)
 $RG="azrez"
 $LOC="uksouth"
 $PLUGIN=azure
-$AKSNAME="aks-azurecni-udr_${SUFFIX}"
+$AKSNAME="aks-azurecni-udr-${SUFFIX}"
 $VNET_NAME="${PREFIX}-vnet-${SUFFIX}"
 $AKSSUBNET_NAME="aks-subnet"
 # DO NOT CHANGE FWSUBNET_NAME - This is currently a requirement for Azure Firewall.
