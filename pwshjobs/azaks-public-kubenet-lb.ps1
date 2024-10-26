@@ -4,7 +4,7 @@ $RG="azrez" # Name of resource group for the AKS cluster
 $location="uksouth" # Name of the location 
 $AKS="aks-kubenetlb-${suffix}" # Name of the AKS cluster
 
-Write-Output "Creating AKS cluster $AKS in resource group $RG"
+Write-Output "Creating AKS cluster ${AKS} in resource group ${RG}"
 # Create new Resource Group
 # az group create -g $RG -l $location
 Write-Output "The Resource Group:"
