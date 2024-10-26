@@ -40,7 +40,7 @@ $vmip=$(az vm list-ip-addresses -g $RG -n $VM --query "[].virtualMachine.network
 
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "The public IP address allocated to VM {$VM} is {$vmip}"
+Write-Output "The public IP address allocated to VM ${VM} is ${vmip}"
 Write-Output "Save aside your credentials"
 Write-Output "The admin user name is: ${userName}"
 #Write-Output "The unique password is: ${$password}"
