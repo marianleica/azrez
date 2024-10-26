@@ -141,4 +141,7 @@ $SERVICE_IP=$(kubectl get svc store-front -o jsonpath='{.status.loadBalancer.ing
 # Adding NAT rule
 az network firewall nat-rule create --collection-name exampleset --destination-addresses $FWPUBLIC_IP --destination-ports 80 --firewall-name $FWNAME --name inboundrule --protocols Any --resource-group $RG --source-addresses '*' --translated-port 80 --action Dnat --priority 100 --translated-address $SERVICE_IP
 
+Write-Output ""
+Read-Host "Press any key to continue..."
+
 ##############################################
