@@ -57,7 +57,7 @@ az k8s-extension create --resource-group $RG --name $extensionName --cluster-typ
 Start-Sleep -Seconds 5
 Write-Output ""
 # Save the id of the appservice extension for the next step:
-$extensionId=$(az k8s-extension show --cluster-type connectedClusters --cluster-name $clusterName --resource-group $groupName --name $extensionName --query id --output tsv)
+$extensionId=$(az k8s-extension show --cluster-type connectedClusters --cluster-name $clusterName --resource-group $RG --name $extensionName --query id --output tsv)
 
 # Wait for the fully install before proceeding:
 az resource wait --ids $extensionId --custom "properties.installState!='Pending'" --api-version "2020-07-01-preview"
