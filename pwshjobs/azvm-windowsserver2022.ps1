@@ -11,13 +11,13 @@ $image='MicrosoftWindowsServer:WindowsServer:2022-datacenter-azure-edition:lates
 $publicIp="winsrv22IP-${suffix}"
 
 # Generating a random string to use as password
-$UserName = "azrez"
+$user = "azrez"
 $randompass = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 30 | ForEach-Object {[char]$_})
 #Read more: https://www.sharepointdiary.com/2020/04/powershell-generate-random-password.html#ixzz8XiwccFos
 #$Password = ConvertTo-SecureString $randompass -AsPlainText -Force
 #$psCred = New-Object System.Management.Automation.PSCredential($UserName, $Password)
 
-Write-Output "Creating virtual machine $VM in resource group $RG in location $location"
+Write-Output "Creating virtual machine ${VM} in resource group ${RG} in location ${location}"
 Start-Sleep -Seconds 1
 Write-Output ""
 
@@ -26,11 +26,11 @@ Write-Output "The Resource Group:"
 az group create -n $RG -l $location
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "The virtual machine $VM:"
+Write-Output "The virtual machine ${VM}:"
 
 # Create Windows Server 2022
 # New-AzVm -ResourceGroupName $rg -Name $vmName -Location $location -Image $image -VirtualNetworkName "myVnet-${suffix}" -SubnetName "vmsubnet" -SecurityGroupName "vmNSG" -PublicIpAddressName $publicIp -OpenPorts 80,3389
-az vm create -g $RG -n $VM --image $image --admin-user "azrez" --admin-password $randompass --public-ip-sku Standard --nsg NSG4VM --nsg-rule RDP
+az vm create -g $RG -n $VM --image $image --admin-user $user --admin-password $randompass --public-ip-sku Standard --nsg NSG4VM --nsg-rule RDP
 
 Start-Sleep -Seconds 2
 # This is the public IP address
@@ -40,7 +40,7 @@ $vmip=$(az vm list-ip-addresses -g $RG -n $VM --query "[].virtualMachine.network
 Start-Sleep -Seconds 1
 Write-Output ""
 Write-Output "The public IP address allocated to VM ${VM} is ${vmip}"
-Write-Output "The admin user name is: azrez"
+Write-Output "The admin user name is: ${user}"
 Write-Output "The unique password is: ${randompass}"
 
 Read-Host "Press any key to continue..."
