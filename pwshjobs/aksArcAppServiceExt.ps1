@@ -53,7 +53,7 @@ az k8s-extension create --resource-group $RG --name $extensionName --cluster-typ
 Start-Sleep -Seconds 5
 Write-Output ""
 # Save the id of the appservice extension for the next step:
-$extensionId=$(az k8s-extension show --cluster-type connectedClusters --cluster-name $clusterName --resource-group $RG --name $extensionName --query id --output tsv)
+$extensionId=$(az k8s-extension show --cluster-type connectedClusters --cluster-name $ARC --resource-group $RG --name $extensionName --query id --output tsv)
 
 # Wait for the fully install before proceeding:
 az resource wait --ids $extensionId --custom "properties.installState!='Pending'" --api-version "2020-07-01-preview"
@@ -63,7 +63,7 @@ Write-Output ""
 # Step 1.3 - Create a custom location
 # Set the required variables:
 $customLocationName="arc-location" # Name of the custom location
-$connectedClusterId=$(az connectedk8s show --resource-group $RG --name $clusterName --query id --output tsv)
+$connectedClusterId=$(az connectedk8s show --resource-group $RG --name $ARC --query id --output tsv)
 
 # Create the custom location:
 az customlocation create --resource-group $RG --name $customLocationName --host-resource-id $connectedClusterId --namespace $namespace --cluster-extension-ids $extensionId
