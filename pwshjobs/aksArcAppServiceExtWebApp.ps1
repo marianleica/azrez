@@ -66,7 +66,7 @@ $customLocationName="arc-location" # Name of the custom location
 $connectedClusterId=$(az connectedk8s show --resource-group $RG --name $ARC --query id --output tsv)
 
 # Create the custom location:
-az customlocation create --resource-group $RG --name $customLocationName --host-resource-id $connectedClusterId --namespace $namespace --cluster-extension-ids $extensionId
+az customlocation create --resource-group $RG --name $customLocationName --host-resource-id $connectedClusterId --namespace $namespace --cluster-extension-ids $extensionId --location westeurope
 
 Start-Sleep -Seconds 5
 Write-Output ""
