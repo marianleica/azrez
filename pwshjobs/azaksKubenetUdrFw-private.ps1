@@ -16,7 +16,7 @@ $FWNAME="${PREFIX}-fw"
 $FWPUBLICIP_NAME="${PREFIX}-fwpublicip-${SUFFIX}"
 $FWIPCONFIG_NAME="${PREFIX}-fwconfig-${SUFFIX}"
 $FWROUTE_TABLE_NAME="${PREFIX}-fwrt-${SUFFIX}"
-$WROUTE_NAME="${PREFIX}-fwr-${SUFFIX}"
+$FWROUTE_NAME="${PREFIX}-fwr-${SUFFIX}"
 $FWROUTE_NAME_INTERNET="${PREFIX}-fwinternet$SUFFIX}"
 
 Write-Output "Creating resource group ${RG} in ${LOC}:"
