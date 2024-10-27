@@ -90,7 +90,7 @@ Write-Output ""
 $appname="webapp-${suffix}"
 
 # Creating webapp in the custom location
-az webapp create --resource-group $RG --name $appname --custom-location $customLocationId --runtime 'NODE|12-lts'`
+az webapp create --resource-group $RG --name $appname --custom-location $customLocationId --runtime 'NODE|20-lts'`
 
 Start-Sleep -Seconds 5
 Write-Output ""
