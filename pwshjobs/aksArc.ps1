@@ -10,7 +10,7 @@ Write-Output "Creating AKS cluster ${AKS} in resource group ${RG}"
 az group create -g $RG -l $location
 
 # Create AKS cluster
-az aks create --resource-group $RG --name $AKS --enable-aad --enable-azure-rbac --generate-ssh-keys --enable-addons monitoring --node-count 1
+az aks create --resource-group $RG --name $AKS --enable-aad --enable-azure-rbac --generate-ssh-keys --enable-addons monitoring --node-count 2
 
 Start-Sleep -Seconds 5
 # Wait for the AKS cluster creation to be in Running state
