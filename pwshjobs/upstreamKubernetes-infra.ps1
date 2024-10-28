@@ -13,7 +13,7 @@ az group create -n $RG -l $loc
 
 Write-Output ""
 Write-Output "The VNET $vnet"
-az network vnet create --resource-group $RG --name kubeadm --address-prefix 192.168.0.0/16 --subnet-name kube --subnet-prefix 192.168.0.0/16
+az network vnet create --resource-group $RG --name $vnet --address-prefix 192.168.0.0/16 --subnet-name kube --subnet-prefix 192.168.0.0/16
 
 Start-Sleep -Seconds 2
 Write-Output ""
@@ -29,21 +29,21 @@ az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubead
 Start-Sleep -Seconds 2
 Write-Output ""
 Write-Output "Creating VNET subnet: "
-az network vnet subnet update -g $RG -n kube --vnet-name kubeadm --network-security-group kubeadm
+az network vnet subnet update -g $RG -n $subnet --vnet-name $vnet --network-security-group kubeadm
 
 Start-Sleep -Seconds 2
 Write-Output ""
 Write-Output "Creating Virtual Machines:"
-az vm create -n kube-master-1 -g $RG --image Ubuntu2204 --vnet-name kubeadm --subnet kube --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
+az vm create -n kube-master-1 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
 
 Start-Sleep -Seconds 2
-az vm create -n kube-master-2 -g $RG --image Ubuntu2204 --vnet-name kubeadm --subnet kube --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
+az vm create -n kube-master-2 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
 
 Start-Sleep -Seconds 2
-az vm create -n kube-worker-1 -g $RG --image Ubuntu2204 --vnet-name kubeadm --subnet kube --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
+az vm create -n kube-worker-1 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
 
 Start-Sleep -Seconds 2
-az vm create -n kube-worker-2 -g $RG --image Ubuntu2204 --vnet-name kubeadm --subnet kube --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard
+az vm create -n kube-worker-2 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard
 
 Start-Sleep -Seconds 2
 Write-Output ""
