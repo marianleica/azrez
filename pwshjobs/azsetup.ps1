@@ -10,13 +10,13 @@ Write-Output "Running initial setup for Windows development environment"
 
 Start-Sleep -Seconds 1
 
-Write-Output "Install Az CLI"
+# Write-Output "Install Az CLI"
 # Install az cli on windows
-$ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest -Uri https://aka.ms/installazurecliwindowsx64 -OutFile .\AzureCLI.msi
-.\AzureCLI.msi
+#$ProgressPreference = 'SilentlyContinue'
+#Invoke-WebRequest -Uri https://aka.ms/installazurecliwindowsx64 -OutFile .\AzureCLI.msi
+#.\AzureCLI.msi
 
-Start-Sleep -Seconds 1
+#Start-Sleep -Seconds 1
 
 # Write-Output "Installing Az PowerShell Module"
 # Install Az PowerShell module
@@ -26,7 +26,7 @@ Start-Sleep -Seconds 1
 # Update-Module -Name Az -Force
 
 # Now login to Azure and set subscription
-Start-Sleep -Seconds 1
+#Start-Sleep -Seconds 1
 Write-Output "Your browser will open now. Please login to Azure:"
 az login
 Write-Output ""
