@@ -42,10 +42,10 @@ Write-Output ""
 Write-Output "The public IP address allocated to VM ${VM} is ${vmip}"
 Write-Output "The admin user name is: ${user}"
 Write-Output "The unique password is: ${randompass}"
+Write-Output ""
+Start-Sleep -Seconds 1
 
-Read-Host "Press any key to continue..."
-#pwsh
-#$rg='myVM'
-#$location='northeurope'
-#$vmName='winclient1'
-#Get-AzRemoteDesktopFile -ResourceGroupName $rg -Name $vmName -Launch
+# Look for user input to perform RDP connection right now
+$userinput = Read-Host -Prompt "Do you want to connect to ${VM} via RDP now? (y/n)"
+if ($userinput -eq "y"){Get-AzRemoteDesktopFile -ResourceGroupName $RG -Name $VM -Launch}
+else {Write-Output "Save the command for later: Get-AzRemoteDesktopFile -ResourceGroupName $RG -Name $VM -Launch"}
