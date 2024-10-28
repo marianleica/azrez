@@ -1,3 +1,5 @@
+# Remove the package if it already exists
+Remove-Item -Path C:\azrez\ -Recurse
 # Download the repo contents to C:\azrez and expand the archive
 Start-BitsTransfer -Source "https://github.com/marianleica/azrez/archive/refs/heads/public.zip" -Destination "C:\azrez.zip"
 Expand-Archive -Path "C:\azrez.zip" -DestinationPath "C:\" -Force
@@ -5,4 +7,4 @@ Expand-Archive -Path "C:\azrez.zip" -DestinationPath "C:\" -Force
 mv C:\azrez-public C:\azrez\
 rmdir C:\azrez.zip
 # Add to environment variables
-$env:Path += "C:\azrez\"
+$env:Path += ";C:\azrez\"
