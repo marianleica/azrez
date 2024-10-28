@@ -50,7 +50,7 @@ Then input `azrez` to the console to start using the tool.
 
 ## Feedback and feature requests
 
-- For any issues or questions about the tool,. please submit a github issue with the details on the repository page.
+- For any issues or questions about the tool, please submit a github issue with the details on the repository page.
 - For any feature requests or changes, please submit a github issue with the details on the repository page.
 
 ## Release notes
