@@ -13,8 +13,7 @@ Start-Sleep -Seconds 1
 Write-Output "Install Az CLI"
 # Install az cli on windows
 $ProgressPreference = 'SilentlyContinue'
-Invoke-WebRequest -Uri https://aka.ms/installazurecliwindowsx64 -OutFile .\$HOME\AzureCLI.msi
-cd $HOME
+Invoke-WebRequest -Uri https://aka.ms/installazurecliwindowsx64 -OutFile .\AzureCLI.msi
 .\AzureCLI.msi
 
 Start-Sleep -Seconds 1
