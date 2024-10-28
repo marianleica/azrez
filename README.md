@@ -8,8 +8,8 @@
 
 ```
 Start-BitsTransfer -Source "https://download.visualstudio.microsoft.com/download/pr/f55ed80e-ba58-4ac8-a2b3-f2227cd628de/6fabf1c613cf9386d14ddbaaca1a5eb8/dotnet-runtime-8.0.10-win-x64.exe" -Destination "$HOME/dotnet-runtime-8.0.10-win-x64.exe"
-
-.\$HOME\dotnet-runtime-8.0.10-win-x64.exe
+cd $HOME
+.\dotnet-runtime-8.0.10-win-x64.exe
 ```
 
 ## Getting AZREZ locally
