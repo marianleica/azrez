@@ -34,6 +34,8 @@ $env:Path += ";C:\azrez\"
 
 ```
 
+Then input `azrez` to the console to start using the tool.
+
 ## Limitations of the current release: v1.05
 
 - The AZREZ tool is supported only for Windows OS on Windows Client versions supported by Microsoft
