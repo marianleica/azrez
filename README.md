@@ -12,6 +12,17 @@ cd $HOME
 .\dotnet-runtime-8.0.10-win-x64.exe
 ```
 
+- Have Azure CLI (azcli) installed on your machine
+
+**To install Azure CLI via elevated PowerShell**:
+```
+Write-Output "Install Az CLI"
+# Install az cli on windows
+$ProgressPreference = 'SilentlyContinue'
+Invoke-WebRequest -Uri https://aka.ms/installazurecliwindowsx64 -OutFile .\AzureCLI.msi
+.\AzureCLI.msi
+```
+
 ## Getting AZREZ locally
 
 #### Getting AZREZ ready on Windows Client manually using elevated PowerShell cmdlets:
