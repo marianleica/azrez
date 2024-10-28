@@ -1,6 +1,6 @@
 ## Prerequisites:
 
-- A Windows Client machine on which you have the .NET framework (minimum version .NET 8.0) runtime or SDK installed on your system prior to running AZREZ.
+1) A Windows Client machine on which you have the .NET framework (minimum version .NET 8.0) runtime or SDK installed on your system prior to running AZREZ.
 
   To install .NET with Powershell, follow the steps in: https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-powershell
 
@@ -12,7 +12,7 @@ cd $HOME
 .\dotnet-runtime-8.0.10-win-x64.exe
 ```
 
-- Have Azure CLI (azcli) installed on your machine
+2) Have Azure CLI (azcli) installed on your machine
 
 **To install Azure CLI via elevated PowerShell**:
 ```
