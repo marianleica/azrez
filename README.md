@@ -14,9 +14,6 @@ Start-BitsTransfer -Source "https://download.visualstudio.microsoft.com/download
 
 ## Getting AZREZ locally
 
-#### Getting AZREZ locally via the provided PowerShell script:
-`setup.ps1` -> https://raw.githubusercontent.com/marianleica/azrez/refs/heads/public/setup.ps1
-
 #### Getting AZREZ ready on Windows Client manually using elevated PowerShell cmdlets:
 
 ```
@@ -32,6 +29,8 @@ rmdir C:\azrez.zip
 $env:Path += ";C:\azrez\"
 
 ```
+
+Also available as: `setup.ps1` -> https://raw.githubusercontent.com/marianleica/azrez/refs/heads/public/setup.ps1
 
 Then input `azrez` to the console to start using the tool.
 
