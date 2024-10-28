@@ -1,6 +1,6 @@
 ## Prerequisites:
 
-1) A Windows Client machine on which you have the .NET framework (minimum version .NET 8.0) runtime or SDK installed on your system prior to running AZREZ.
+1) Have a Windows Client machine on which you have the .NET framework (minimum version .NET 8.0) runtime or SDK installed on your system prior to running AZREZ.
 
 **To install .NET runtime 8.0.10 via elevated PowerShell**:
 
