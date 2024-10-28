@@ -14,7 +14,6 @@ cd $HOME
 
 **To install Azure CLI via elevated PowerShell**:
 ```
-Write-Output "Install Az CLI"
 # Install az cli on windows
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest -Uri https://aka.ms/installazurecliwindowsx64 -OutFile .\AzureCLI.msi
