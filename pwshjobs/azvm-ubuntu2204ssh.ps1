@@ -41,34 +41,10 @@ Write-Output ""
 Write-Output "The public IP address allocated to VM ${VM} is ${vmip}"
 Write-Output "Save aside your credentials"
 Write-Output "The admin user name is: ${userName}"
-#Write-Output "The unique password is: ${$password}"
-Read-Host "Press any key to continue..."
+Write-Output ""
+Start-Sleep -Seconds 1
 
-#pwsh
-#$rg='myVM'
-#$location='northeurope'
-#$vmName='winclient1'
-#Get-AzRemoteDesktopFile -ResourceGroupName $rg -Name $vmName -Launch
-
-# Write-Output ""
-# $userinput = Read-Host "Do you want to connect to $VM via ssh now? (y/n)"
-
-#if ($userinput -eq "y") {
-#   Write-Host "The value $a is greater than 2."
-#}
-#else {
-#   Write-Host ("The value $a is less than or equal to 2," +
-#       " is not created or is not initialized.")
-#}
-
-#if [ $userinput = "y" ]; then
-#    ssh bestuser@$vmpip -o StrictHostKeyChecking=no
-#else
-#    echo "Save the command for later: ssh bestuser@$vmpip"
-#fi
-
-# Converted to PowerShell
-
-#$userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"
-#if ($userinput == "y") az ssh vm  -g $RG -n $VM --local-user $userName --ip $vmip 
-#else Write-Output "Save the command for later: az ssh vm  -g ${RG} -n ${VM} --local-user ${userName} --ip $vmip"
+# Look for user input to perform ssh connection right now
+$userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"
+if ($userinput -eq "y"){az ssh vm -g $RG -n $VM --local-user $userName --ip $vmip}
+else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --local-user ${userName} --ip $vmip"}
