@@ -4,8 +4,8 @@ $suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
 $RG="azrez" # Name of resource group for the AKS cluster
 $location="uksouth" # Name of the location 
 $AKS="aks-azurecni-${suffix}" # Name of the AKS cluster
-$WINDOWS_USERNAME="M"
-$WINDOWS_PASSWORD="LetmeInside123!"
+$WINDOWS_USERNAME="azrez"
+$WINDOWS_PASSWORD= -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 30 | ForEach-Object {[char]$_})
 
 Write-Output "Creating AKS cluster ${AKS} in resource group ${RG}"
 # Create new Resource Group
