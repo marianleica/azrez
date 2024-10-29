@@ -29,12 +29,16 @@ Write-Output ""
 Start-Sleep 2
 
 Write-Output "The AKS cluster: "
-az aks create --resource-group $RG --name $AKS --node-count 1 --network-plugin azure --vnet-subnet-id $subnetId --enable-aad --generate-ssh-keys
+az aks create --resource-group $RG --name $AKS --node-count 1 --network-plugin azure --vnet-subnet-id $subnetId --enable-aad --generate-ssh-keys --windows-admin-username $WINDOWS_USERNAME --windows-admin-password $WINDOWS_PASSWORD --enable-addons monitoring
 Start-Sleep -Seconds 5
 
 # Get the AKS infrastructure resource group name
 $infra_rg=$(az aks show --resource-group $RG --name $AKS --output tsv --query nodeResourceGroup)
 Write-Output "The infrastructure resource group is ${infra_rg}"
+Write-Output ""
+
+Write-Output ""
+az aks nodepool add --resource-group $RG --cluster-name $AKS --os-type Windows --os-sku Windows2022 --name winnp --node-count 1
 
 Write-Output ""
 Write-Output "Install kubectl locally, if needed: az aks install-cli"
@@ -47,4 +51,5 @@ Write-Output "Configuring kubectl to connect to the Kubernetes cluster"
 az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
 
 Write-Output ""
+Write-Output "You should be able to run kubectl commands to your cluster now"
 Read-Host "Press any key to continue..."
