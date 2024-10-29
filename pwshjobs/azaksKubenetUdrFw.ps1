@@ -104,7 +104,7 @@ az aks create -g $RG -n $AKSNAME -l $LOC --node-count 1 --network-plugin azure -
 Start-Sleep -Seconds 1
 Write-Output "To be able to connect to the cluster we are adding your IP address to the Authorized IP Ranges:"
 # Retrieve your IP address and add it to approved range
-$CURRENT_IP=$(curl ifconfig.me)
+$CURRENT_IP=$((Invoke-RestMethod -Uri "https://api.ipify.org?format=json").ip)
 
 Start-Sleep -Seconds 1
 Write-Output "Your IP address should be ${CURRENT_IP}"
