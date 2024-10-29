@@ -44,4 +44,5 @@ Write-Output "Configuring kubectl to connect to the Kubernetes cluster"
 az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
 
 Write-Output ""
+Write-Output "You should be able to run kubectl commands to your cluster now"
 Read-Host "Press any key to continue..."
