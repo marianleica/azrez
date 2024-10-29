@@ -85,4 +85,5 @@ Write-Output ""
 az appservice kube show --resource-group $RG --name $kubeEnvironmentName
 
 Write-Output ""
+Write-Output "You should be able to run kubectl commands to your cluster now"
 Read-Host "Press any key to continue..."
