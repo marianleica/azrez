@@ -103,4 +103,5 @@ Write-Output "zip -r package.zip ."
 Write-Output "az webapp deployment source config-zip --resource-group ${RG} --name ${appname} --src package.zip"
 
 Write-Output ""
+Write-Output "You should be able to run kubectl commands to your cluster now"
 Read-Host "Press any key to continue..."
