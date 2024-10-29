@@ -40,5 +40,5 @@ az extension add --name connectedk8s
 az connectedk8s connect --resource-group $RG --name $ARC -l westeurope
 
 Write-Output ""
-
+Write-Output "You should be able to run kubectl commands to your cluster now"
 Read-Host "Press any key to continue..."
