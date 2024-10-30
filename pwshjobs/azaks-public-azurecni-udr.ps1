@@ -112,12 +112,7 @@ Write-Output ""
 
 Start-Sleep -Seconds 1
 az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges $CURRENT_IP
-
-# Issue alert
-# It seems that the IP address is correct and that it's found and applied correctly,
-# However I don't get access to the cluster API
-# Temporary workaround till I figure out why
-az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges 0.0.0.0/0
+# az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges 0.0.0.0/0
 
 Write-Output ""
 Write-Output "Connecting to the AKS cluster:"
