@@ -27,6 +27,8 @@ Write-Output "The infrastructure resource group is ${infra_rg}"
 Write-Output "Configuring kubectl to connect to the Kubernetes cluster"
 az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
 Write-Output "You should be able to run kubectl commands to your cluster now"
+Write-Output ""
+Write-Output "Install kubectl locally, if needed: az aks install-cli"
 
 Write-Output ""
 Read-Host "Press any key to continue..."
