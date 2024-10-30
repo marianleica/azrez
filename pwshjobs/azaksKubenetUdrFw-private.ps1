@@ -124,6 +124,7 @@ Write-Output ""
 Write-Output "Connecting to the AKS cluster:"
 # Connect to the cluster
 az aks get-credentials -g $RG -n $AKSNAME --admin --overwrite-existing
+Write-Output "You should be able to run kubectl commands to your cluster now"
 
 Start-Sleep -Seconds 1
 Write-Output ""
