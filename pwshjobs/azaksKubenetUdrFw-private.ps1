@@ -114,17 +114,15 @@ Start-Sleep -Seconds 1
 az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges $CURRENT_IP
 
 Start-Sleep -Seconds 1
-# Issue alert
-# It seems that the IP address is correct and that it's found and applied correctly,
-# However I don't get access to the cluster API
-# Temporary workaround till I figure out why
-az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges 0.0.0.0/0
+#az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges 0.0.0.0/0
 
 Write-Output ""
 Write-Output "Connecting to the AKS cluster:"
 # Connect to the cluster
 az aks get-credentials -g $RG -n $AKSNAME --admin --overwrite-existing
 Write-Output "You should be able to run kubectl commands to your cluster now"
+Write-Output ""
+Write-Output "Install kubectl locally, if needed: az aks install-cli"
 
 Start-Sleep -Seconds 1
 Write-Output ""
