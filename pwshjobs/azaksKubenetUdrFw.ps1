@@ -125,6 +125,8 @@ Write-Output "Connecting to the AKS cluster:"
 # Connect to the cluster
 az aks get-credentials -g $RG -n $AKSNAME --admin --overwrite-existing
 Write-Output "You should be able to run kubectl commands to your cluster now"
+Write-Output ""
+Write-Output "Install kubectl locally, if needed: az aks install-cli"
 
 Start-Sleep -Seconds 1
 Write-Output ""
@@ -132,9 +134,6 @@ Write-Output "Deploying a sample workload for your testing, the aks-store-demo:"
 Write-Output "Find the yaml at: https://raw.githubusercontent.com/Azure-Samples/aks-store-demo/main/aks-store-quickstart.yaml"
 Write-Output ""
 
-# Write-Output "Installing kubectl"
-# Install kubectl
-# winget install -e --id Kubernetes.kubectl
 
 # Deploy public service workload to the cluster
 kubectl apply -f https://raw.githubusercontent.com/Azure-Samples/aks-store-demo/main/aks-store-quickstart.yaml
