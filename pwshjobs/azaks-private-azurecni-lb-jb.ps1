@@ -48,6 +48,7 @@ Start-Sleep -Seconds 3
 # Setting variables for Jumpbox VM
 $VM="azvm-ubuntu-${suffix}"
 $image="Ubuntu2204"
+$userName = "azrez"
 $subnetIdVM=$(az network vnet subnet show --resource-group $RG --vnet-name aksVnet --name vm_subnet --query id -o tsv)
 Start-Sleep -Seconds 2
 
