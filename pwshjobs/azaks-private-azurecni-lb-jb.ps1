@@ -86,4 +86,4 @@ else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --lo
 Start-Sleep -Seconds 1
 Write-Output ""
 
-Read-Host "Press any key to exit... "
+Read-Host -Prompt "Press any key to exit... "
