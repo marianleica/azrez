@@ -53,10 +53,10 @@ $subnetIdVM=$(az network vnet subnet show --resource-group $RG --vnet-name aksVn
 Start-Sleep -Seconds 2
 
 # Creating Ubuntu VM in the respective subnet
-Write-Output $"Creating virtual machine ${VM} in resource group ${RG} in location ${location}"
+Write-Output "Creating virtual machine ${VM} in resource group ${RG} in location ${location}"
 Start-Sleep -Seconds 1
 Write-Output ""
-az vm create -n $VM -g $RG --image $image --generate-ssh-keys --admin-username $userName --size Standard_D2s_v3 --nsg-rule ssh --public-ip-sku Standard --vnet-name aksVnet --subnet $subnetIdVM
+az vm create -n $VM -g $RG --image $image --generate-ssh-keys --admin-username $userName --size Standard_D2s_v3 --nsg-rule ssh --public-ip-sku Standard --vnet-name aksVnet --subnet vm_subnet
 
 Start-Sleep -Seconds 2
 # This is the public IP address
