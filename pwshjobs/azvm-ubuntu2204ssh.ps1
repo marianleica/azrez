@@ -16,7 +16,7 @@ $userName = "azrez"
 #$Password = ConvertTo-SecureString $randompass -AsPlainText -Force
 #$psCred = New-Object System.Management.Automation.PSCredential($UserName, $Password)
 
-Write-Output $"Creating virtual machine ${VM} in resource group ${RG} in location ${location}"
+Write-Output "Creating virtual machine ${VM} in resource group ${RG} in location ${location}"
 Start-Sleep -Seconds 1
 Write-Output ""
 
