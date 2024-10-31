@@ -68,6 +68,14 @@ Write-Output "The public IP address allocated to VM ${VM} is ${vmip}"
 Write-Output "Save aside your credentials"
 Write-Output "The admin user name is: ${userName}"
 Write-Output ""
+Write-Output "To install Azure CLI on the Ubuntu JumpBox VM:"
+Write-Output "apt-get update && apt-get install curl"
+Write-Output "curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash"
+Write-Output "Install kubectl on the Ubuntu JumpBox VM:"
+Write-Output "curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+Write-Output ""
+Write-Output "Then to connect to the AKS cluster, run:"
+Write-Output "az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing"
 Start-Sleep -Seconds 1
 
 # Look for user input to perform ssh connection right now
@@ -77,11 +85,5 @@ else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --lo
 
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "To install Azure CLI on the Ubuntu JumpBox VM:"
-Write-Output "apt-get update && apt-get install curl"
-Write-Output "curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash"
-Write-Output ""
-Write-Output "Then to connect to the AKS cluster, run:"
-Write-Output "az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing"
 
 Read-Host "Press any key to exit..."
