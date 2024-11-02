@@ -9,6 +9,7 @@ Start-BitsTransfer -Source "https://download.visualstudio.microsoft.com/download
 cd $HOME
 .\dotnet-runtime-8.0.10-win-x64.exe
 ```
+Restart the PowerShell console to continue.
 
 2) Have Azure CLI (azcli) installed on your machine
 
@@ -18,6 +19,7 @@ cd $HOME
 Invoke-WebRequest -Uri https://aka.ms/installazurecliwindowsx64 -OutFile .\AzureCLI.msi
 .\AzureCLI.msi
 ```
+Restart the PowerShell console to continue.
 
 ## Getting AZREZ locally
 
