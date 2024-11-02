@@ -32,7 +32,7 @@ Expand-Archive -Path "C:\azrez.zip" -DestinationPath "C:\" -Force
 # Edit the path name and remove the initial compressed file
 mv C:\azrez-public C:\azrez\
 rmdir C:\azrez.zip
-# Add to environment variables
+# Add to environment variables for the current PS session only
 $env:Path += ";C:\azrez\"
 
 ```
