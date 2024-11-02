@@ -24,6 +24,7 @@ Invoke-WebRequest -Uri https://aka.ms/installazurecliwindowsx64 -OutFile .\Azure
 #### Getting AZREZ ready on Windows Client manually using elevated PowerShell cmdlets:
 
 ```
+# In case of any errors, retry running the commands
 # Remove the package if it already exists
 Remove-Item -Path C:\azrez\ -Recurse
 # Download the repo contents to C:\azrez and expand the archive
