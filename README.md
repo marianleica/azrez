@@ -58,4 +58,8 @@ Then input `azrez` to the console to start using the tool.
 
 ## Release notes
 
+#### v1.06
+- Added new scenarios: AKS node pools, private AKS cluster with Jumpbox VM, UDR AKS private cluster with Jumpbox VM, Azure IaaS build setup ready for configuring kubeadm cluster
+- AZ CLI is now a prerequisite and the az setup function (input 1) performs Azure Login
+
 #### v1.05
