@@ -141,6 +141,54 @@ $SERVICE_IP=$(kubectl get svc store-front -o jsonpath='{.status.loadBalancer.ing
 Start-Sleep -Seconds 2
 # Adding NAT rule
 az network firewall nat-rule create --collection-name exampleset --destination-addresses $FWPUBLIC_IP --destination-ports 80 --firewall-name $FWNAME --name inboundrule --protocols Any --resource-group $RG --source-addresses '*' --translated-port 80 --action Dnat --priority 100 --translated-address $SERVICE_IP
+Start-Sleep -Seconds 2
 
+###################################
+
+# Creating subnet for the jumpbox Azure VM
+az network vnet subnet create --resource-group $RG --vnet-name $VNET_NAME --name vm_subnet --address-prefix 10.50.0.0/24
+Start-Sleep -Seconds 4
+
+# Setting variables for Jumpbox VM
+$VM="azvm-ubuntu-${suffix}"
+$image="Ubuntu2204"
+$userName = "azrez"
+$subnetIdVM=$(az network vnet subnet show --resource-group $RG --vnet-name $VNET_NAME --name vm_subnet --query id -o tsv)
+Start-Sleep -Seconds 2
+
+# Creating Ubuntu VM in the respective subnet
+Write-Output "Creating virtual machine ${VM} in resource group ${RG} in location ${location}"
+Start-Sleep -Seconds 1
 Write-Output ""
-Read-Host "Press any key to continue..."
+az vm create -n $VM -g $RG --image $image --generate-ssh-keys --admin-username $userName --size Standard_D2s_v3 --nsg-rule ssh --public-ip-sku Standard --vnet-name aksVnet --subnet vm_subnet
+
+Start-Sleep -Seconds 2
+# This is the public IP address
+$vmip=$(az vm list-ip-addresses -g $RG -n $VM --query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
+
+Start-Sleep -Seconds 1
+Write-Output ""
+Write-Output "The public IP address allocated to VM ${VM} is ${vmip}"
+Write-Output "Save aside your credentials"
+Write-Output "The admin user name is: ${userName}"
+Write-Output ""
+Write-Output "To install Azure CLI on the Ubuntu JumpBox VM:"
+Write-Output "apt-get update && apt-get install curl"
+Write-Output "curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash"
+Write-Output "Install kubectl on the Ubuntu JumpBox VM:"
+Write-Output "curl -LO 'https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl'"
+Write-Output ""
+Write-Output "Then to connect to the AKS cluster, run:"
+Write-Output "az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing"
+Start-Sleep -Seconds 1
+
+# Look for user input to perform ssh connection right now
+$userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"
+if ($userinput -eq "y"){az ssh vm -g $RG -n $VM --local-user $userName}
+else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --local-user ${userName}"}
+
+Start-Sleep -Seconds 1
+Write-Output ""
+
+Read-Host "Press any key to exit..."
+#####################################
