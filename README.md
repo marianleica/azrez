@@ -1,6 +1,6 @@
 ## Prerequisites:
 
-1) Have a Windows Client machine on which you have the .NET framework (minimum version .NET 8.0) runtime or SDK installed on your system prior to running AZREZ.
+1) Have a Windows Client machine on which you have the .NET framework (minimum .NET 8.0) runtime or SDK installed on your system prior to running AZREZ.
 
 **To install .NET runtime 8.0.10 via elevated PowerShell**:
 
@@ -23,9 +23,9 @@ Invoke-WebRequest -Uri https://aka.ms/installazurecliwindowsx64 -OutFile .\Azure
 ```
 Restart the PowerShell console to continue.
 
-## Getting AZREZ locally
+## Get AZREZ locally
 
-#### Getting AZREZ ready on Windows Client manually using elevated PowerShell cmdlets:
+#### Get AZREZ ready on Windows Client using elevated PowerShell cmdlets:
 
 ```
 # In case of any errors, retry running the commands
