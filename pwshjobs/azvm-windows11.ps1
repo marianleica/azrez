@@ -63,7 +63,7 @@ Start-Sleep -Seconds 1
 
 # Look for user input to perform RDP connection right now
 $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via RDP now? (y/n)"
-if ($userinput -eq "y"){Install-Module Az.Compute -Force}
+# if ($userinput -eq "y"){Install-Module Az.Compute -Force}
 if ($userinput -eq "y"){Get-AzRemoteDesktopFile -ResourceGroupName $RG -Name $VM -Launch}
 else {Write-Output "Save the command for later: Get-AzRemoteDesktopFile -ResourceGroupName $RG -Name $VM -Launch"}
 
