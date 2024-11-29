@@ -65,5 +65,3 @@ Then input `azrez` to the console to start using the tool.
 - AZ CLI is now a prerequisite and the az setup function (input 1) performs Azure Login
 
 #### v1.05
-
-
