@@ -44,6 +44,8 @@ $env:Path += ";C:\azrez\"
 
 Also available as: `setup.ps1` -> https://raw.githubusercontent.com/marianleica/azrez/refs/heads/public/setup.ps1
 
+(*) In case error "Start-BitsTransfer: The resource loader cache doesn't have loaded MUI entry. (0x80073B01)" is thrown, just run again the commands.
+
 Then input `azrez` to the console to start using the tool.
 
 ## Limitations of the current release: v1.06
