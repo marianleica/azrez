@@ -11,11 +11,11 @@ $suffix=$(Get-Random -Minimum 1000 -Maximum 9999)
 #suffix=$((10000 + RANDOM % 99999))
 $RG="azrez"
 $location="uksouth"
-$location="uksouth ; " >> C:\azrez\azrez.log 
+Write-Output "${location} ; " >> C:\azrez\azrez.log 
 $VM="azvm-win11-${suffix}"
-$VM="azvm-win11-${suffix} ; " >> C:\azrez\azrez.log
+Write-Output "${VM} ; " >> C:\azrez\azrez.log
 $image="MicrosoftWindowsDesktop:windows-11:win11-21h2-avd:22000.1100.221015"
-$image="MicrosoftWindowsDesktop:windows-11:win11-21h2-avd:22000.1100.221015 ; " >> C:\azrez\azrez.log 
+Write-Output "${image} ; " >> C:\azrez\azrez.log 
 
 # To update the image version when it is being deprecated, see available images with
 # az vm image list -f windows-11 -o table --all
