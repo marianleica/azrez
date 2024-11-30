@@ -2,7 +2,7 @@ Write-Output "Creating Windows 11 Azure Virtual Machine"
 Start-Sleep -Seconds 1
 
 # Setting variables
-$timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm K")
+$timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
 $scenario = "azvm-windows11"
 $suffix=$(Get-Random -Minimum 1000 -Maximum 9999)
 #suffix=$((10000 + RANDOM % 99999))
