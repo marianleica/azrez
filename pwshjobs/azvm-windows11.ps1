@@ -1,21 +1,15 @@
-# Logging
-Get-Date -Format "yyyy/MM/dd-HH:mm K" >> C:\azrez\azrez.log
-Write-Output " --> azvm-windows11" >> C:\azrez\azrez.log
-Write-Output " { " >> C:\azrez\azrez.log
-
 Write-Output "Creating Windows 11 Azure Virtual Machine"
 Start-Sleep -Seconds 1
 
 # Setting variables
+$timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm K")
+$scenario = "azvm-windows11"
 $suffix=$(Get-Random -Minimum 1000 -Maximum 9999)
 #suffix=$((10000 + RANDOM % 99999))
 $RG="azrez"
 $location="uksouth"
-Write-Output "${location} ; " >> C:\azrez\azrez.log 
 $VM="azvm-win11-${suffix}"
-Write-Output "${VM} ; " >> C:\azrez\azrez.log
 $image="MicrosoftWindowsDesktop:windows-11:win11-21h2-avd:22000.1100.221015"
-Write-Output "${image} ; " >> C:\azrez\azrez.log 
 
 # To update the image version when it is being deprecated, see available images with
 # az vm image list -f windows-11 -o table --all
@@ -28,7 +22,6 @@ $randompass = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 30 | Fo
 # $psCred = New-Object System.Management.Automation.PSCredential($UserName, $password)
 
 Write-Output "Creating virtual machine ${VM} in resource group ${RG} in location ${location}"
-Write-Output "Creating virtual machine ${VM} in resource group ${RG} in location ${location} ; " >> C:\azrez\azrez.log 
 Start-Sleep -Seconds 1
 
 Write-Output ""
@@ -38,7 +31,6 @@ az group create -n $RG -l $location -o tsv >> C:\azrez\azrez.log
 Start-Sleep -Seconds 1
 Write-Output ""
 Write-Output "The virtual machine ${VM}:"
-Write-Output "; The virtual machine ${VM} ; " >> C:\azrez\azrez.log 
 
 # Create Windows 11
 # New-AzVm -ResourceGroupName $rg -Name $vmName -Location $location -Image $image -VirtualNetworkName "myVnet-${suffix}" -SubnetName "vmsubnet" -SecurityGroupName "vmNSG" -PublicIpAddressName $publicIp -OpenPorts 80,3389
@@ -53,11 +45,8 @@ $vmip=$(az vm list-ip-addresses -g $RG -n $VM --query "[].virtualMachine.network
 Start-Sleep -Seconds 1
 Write-Output ""
 Write-Output "The public IP address allocated to VM ${VM} is ${vmip}"
-Write-Output "; The public IP address allocated to VM ${VM} is ${vmip} ; " >> C:\azrez\azrez.log
 Write-Output "The admin user name is: azrez"
-Write-Output "The admin user name is: azrez ; " >> C:\azrez\azrez.log
 Write-Output "The unique password is: ${randompass}"
-Write-Output "The unique password is: ${randompass}" >> C:\azrez\azrez.log
 Write-Output ""
 Start-Sleep -Seconds 1
 
@@ -67,4 +56,4 @@ $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via RDP now? (y/
 if ($userinput -eq "y"){Get-AzRemoteDesktopFile -ResourceGroupName $RG -Name $VM -Launch}
 else {Write-Output "Save the command for later: Get-AzRemoteDesktopFile -ResourceGroupName $RG -Name $VM -Launch"}
 
-Write-Output " } " >> C:\azrez\azrez.log
+Write-Output "{${timestamp}; ${scenario}; RG: ${RG}; Location: ${location}; ResType: VM; ResName: ${VM}; PublicIP: ${vmip}; Admin: azrez; Pass: ${randompass} }" >> C:\azrez\azrez.log
