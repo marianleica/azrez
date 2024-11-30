@@ -3,6 +3,7 @@ Start-Sleep -Seconds 1
 
 # Setting variables
 $timestamp=$()
+$scenario="azvm-ubuntu2204ssh"
 $suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
 #suffix=$((10000 + RANDOM % 99999))
 $RG="azrez"
