@@ -1,20 +1,27 @@
-aksArc.ps1
-aksArcAppServiceExt.ps1
-aksArcAppServiceExtWebApp.ps1
-aksKubenetUdrFw-privateJB.ps1
-azaks-private-azurecni-lb-jb.ps1
-azaks-public-azurecni-lb.ps1
-azaks-public-azurecni-udr.ps1
-azaks-public-kubenet-lb.ps1
-azaks-public-kubenet-udr.ps1
-azaks-windowsnp.ps1
-azaksAzureCniUdrFw-private.ps1
-azaksAzureCniUdrFw.ps1
-azaksKubenetUdrFw-private.ps1
-azaksKubenetUdrFw.ps1
-azgroup-delete.ps1
-azsetup.ps1
-azvm-ubuntu2204ssh.ps1
-azvm-windows11.ps1
-azvm-windowsserver2022.ps1
-upstreamKubernetes-infra.ps1
+### Administrative tasks
+- azsetup
+- azgroup-delete
+
+### Azure VM scenarios
+- azvm-ubuntu2204ssh
+- azvm-windows11
+- azvm-windowsserver2022
+
+### ACT scenarios
+- aksKubenetUdrFw-privateJB
+- azaks-private-azurecni-lb-jb
+- azaks-public-azurecni-lb
+- azaks-public-azurecni-udr
+- azaks-public-kubenet-lb
+- azaks-public-kubenet-udr
+- azaks-windowsnp
+- azaksAzureCniUdrFw-private
+- azaksAzureCniUdrFw
+- azaksKubenetUdrFw-private
+- azaksKubenetUdrFw
+
+### ARC scenarios
+- aksArc
+- aksArcAppServiceExt
+- aksArcAppServiceExtWebApp
+- upstreamKubernetes-infra
