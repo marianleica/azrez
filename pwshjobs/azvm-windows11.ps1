@@ -26,7 +26,7 @@ Start-Sleep -Seconds 1
 
 Write-Output ""
 Write-Output "The Resource Group:"
-az group create -n $RG -l $location -o tsv >> C:\azrez\azrez.log
+az group create -n $RG -l $location -o tsv
 
 Start-Sleep -Seconds 1
 Write-Output ""
@@ -34,7 +34,7 @@ Write-Output "The virtual machine ${VM}:"
 
 # Create Windows 11
 # New-AzVm -ResourceGroupName $rg -Name $vmName -Location $location -Image $image -VirtualNetworkName "myVnet-${suffix}" -SubnetName "vmsubnet" -SecurityGroupName "vmNSG" -PublicIpAddressName $publicIp -OpenPorts 80,3389
-az vm create -g $RG -n $VM --image $image --admin-user $userName --admin-password $randompass --public-ip-sku Standard --nsg NSG4VM --nsg-rule RDP --size Standard_D2s_v3 >> C:\azrez\azrez.log
+az vm create -g $RG -n $VM --image $image --admin-user $userName --admin-password $randompass --public-ip-sku Standard --nsg NSG4VM --nsg-rule RDP --size Standard_D2s_v3
 
 Start-Sleep -Seconds 2
 # This is the public IP address
