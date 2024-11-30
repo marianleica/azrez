@@ -51,7 +51,7 @@ Write-Output ""
 Start-Sleep -Seconds 1
 
 # Logging
-Write-Output "{${timestamp}; ${scenario}; RG: ${RG}; Location: ${location}; ResType: VM; ResName: ${VM}; PublicIP: ${vmip}; Admin: azrez; Pass: ${randompass} }" >> C:\azrez\azrez.log
+Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: VM; ResName: ${VM}; PublicIP: ${vmip}; Admin: azrez; Pass: ${randompass}}" >> C:\azrez\azrez.log
 
 # Look for user input to perform RDP connection right now
 $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via RDP now? (y/n)"
