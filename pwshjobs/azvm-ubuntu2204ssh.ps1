@@ -2,7 +2,7 @@ Write-Output "Creating an Azure VM running Ubuntu2204"
 Start-Sleep -Seconds 1
 
 # Setting variables
-$timestamp=$()
+$timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
 $scenario="azvm-ubuntu2204ssh"
 $suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
 #suffix=$((10000 + RANDOM % 99999))
