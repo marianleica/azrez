@@ -50,10 +50,12 @@ Write-Output "The unique password is: ${randompass}"
 Write-Output ""
 Start-Sleep -Seconds 1
 
+# Logging
+Write-Output "{${timestamp}; ${scenario}; RG: ${RG}; Location: ${location}; ResType: VM; ResName: ${VM}; PublicIP: ${vmip}; Admin: azrez; Pass: ${randompass} }" >> C:\azrez\azrez.log
+
 # Look for user input to perform RDP connection right now
 $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via RDP now? (y/n)"
 # if ($userinput -eq "y"){Install-Module Az.Compute -Force}
 if ($userinput -eq "y"){Get-AzRemoteDesktopFile -ResourceGroupName $RG -Name $VM -Launch}
 else {Write-Output "Save the command for later: Get-AzRemoteDesktopFile -ResourceGroupName $RG -Name $VM -Launch"}
 
-Write-Output "{${timestamp}; ${scenario}; RG: ${RG}; Location: ${location}; ResType: VM; ResName: ${VM}; PublicIP: ${vmip}; Admin: azrez; Pass: ${randompass} }" >> C:\azrez\azrez.log
