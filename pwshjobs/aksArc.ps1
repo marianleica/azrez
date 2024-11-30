@@ -1,10 +1,6 @@
-# Logging
-Get-Date -Format "yyyy/MM/dd-HH:mm K" > C:\azrez\azrez.log
-Write-Output " --> aksArc" >> C:\azrez\azrez.log
-Write-Output " { " >> C:\azrez\azrez.log
-
 # Setting variables
-# $namesuffix=$((10000 + RANDOM % 99999))
+$timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
+$scenario = "aksarc"
 $suffix=$(Get-Random -Minimum 1000 -Maximum 9999)
 $RG="azrez" # Name of resource group for the AKS cluster
 $location="uksouth" # Name of the location 
