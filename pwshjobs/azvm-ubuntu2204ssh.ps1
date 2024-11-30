@@ -2,6 +2,7 @@ Write-Output "Creating an Azure VM running Ubuntu2204"
 Start-Sleep -Seconds 1
 
 # Setting variables
+$timestamp=$()
 $suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
 #suffix=$((10000 + RANDOM % 99999))
 $RG="azrez"
@@ -43,6 +44,10 @@ Write-Output "Save aside your credentials"
 Write-Output "The admin user name is: ${userName}"
 Write-Output ""
 Start-Sleep -Seconds 1
+
+
+# Logging
+Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: VM; ResName: ${VM}; PublicIP: ${vmip}; Admin: azrez; Pass: ${randompass}}" >> C:\azrez\azrez.log
 
 # Look for user input to perform ssh connection right now
 $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"
