@@ -1,4 +1,6 @@
 # Setting variables
+$timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
+$scenario = "aksArcAppServiceExtApp"
 $suffix=$(Get-Random -Minimum 1000 -Maximum 9999)
 $RG="azrez" # Name of resource group for the AKS cluster
 $location="uksouth" # Name of the location 
