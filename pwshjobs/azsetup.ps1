@@ -1,5 +1,7 @@
 Write-Output "Running initial setup for Windows development environment"
 
+$timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
+$scenario = "azsetup"
 # If all is PowerShell-based we might not need az cli
 # Start-Sleep -Seconds 2
 # Write-Output "Installing AZCLI latest version"
