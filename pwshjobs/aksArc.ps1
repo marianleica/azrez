@@ -20,7 +20,7 @@ Start-Sleep -Seconds 5
 
 # Get the AKS infrastructure resource group name
 $infra_rg=$(az aks show --resource-group $RG --name $AKS --output tsv --query nodeResourceGroup)
-Write-Output "The infrastructure resource group is ${infra_rg}" >> C:\azrez\azrez.log
+Write-Output "The infrastructure resource group is ${infra_rg}"
 
 # sleep 1
 # echo "Let's see if you have 'kubectl' installed locally. Please ignore any errors."
@@ -42,6 +42,9 @@ az connectedk8s connect --resource-group $RG --name $ARC -l westeurope
 
 Write-Output ""
 Write-Output "You should be able to run kubectl commands to your cluster now"
-Write-Output " } " >> C:\azrez\azrez.log
+
+# Logging
+Write-Output "${timestamp}; {${scenario}; ARC: ${RG}; Location: ${location}; ResType: AKS; ResName: ${AKS}; ConnectedCluster: ${ARC}}" >> C:\azrez\azrez.log
+
 Read-Host "Press any key to continue..."
 
