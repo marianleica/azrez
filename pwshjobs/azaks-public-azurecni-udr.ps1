@@ -2,6 +2,8 @@
 
 Write-Output "Grab a coffee, this can take several minutes to complete.."
 
+$timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
+$scenario = "azaks-public-azurecni-udr"
 $PREFIX="aks-azurecni-udr"
 $SUFFIX=$(Get-Random -Minimum 10000 -Maximum 99999)
 $RG="azrez"
