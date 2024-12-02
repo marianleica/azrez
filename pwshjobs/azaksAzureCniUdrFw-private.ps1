@@ -1,6 +1,8 @@
 # Source: https://learn.microsoft.com/en-us/azure/aks/limit-egress-traffic?tabs=aks-with-system-assigned-identities
 Write-Output "Grab a coffee, this can take several minutes to complete.."
 
+$timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
+$scenario = "azaksAzureCniUdrFw-private"
 $PREFIX="aks-azurecni-udr"
 $SUFFIX=$(Get-Random -Minimum 10000 -Maximum 99999)
 $RG="azrez"
