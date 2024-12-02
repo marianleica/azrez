@@ -1,4 +1,6 @@
 # Setting variables
+$timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
+$scenario = "azaks-private-azurecni-lb-jb"
 $suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
 $RG="azrez" # Name of resource group for the AKS cluster
 $location="uksouth" # Name of the location 
