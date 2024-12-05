@@ -2,13 +2,6 @@ Write-Output "Running initial setup for Windows development environment"
 
 $timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
 $scenario = "azsetup"
-# If all is PowerShell-based we might not need az cli
-# Start-Sleep -Seconds 2
-# Write-Output "Installing AZCLI latest version"
-# curl -L https://aka.ms/InstallAzureCli | bash
-# Start-Sleep -Seconds 1
-# Write-Output "Confirming AZCLI is installed"
-# az version
 
 Start-Sleep -Seconds 1
 
