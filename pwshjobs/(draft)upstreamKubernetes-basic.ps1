@@ -99,11 +99,11 @@ Write-Output "ssh ${admin}@${WORKER2IP}"
 Write-Output ""
 Read-Host "Press any key to continue..."
 
-1
+# the script doesn't proceed with the config after the ssh session is started
+# we should put all lines below before the ssh prompt
+# the procedure should be with az vm invoke command to the respective vm
 
 sudo apt update && sudo apt upgrade -y
-
-2
 
 sudo swapoff -a
 
