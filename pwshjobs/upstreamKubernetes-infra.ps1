@@ -79,6 +79,9 @@ Start-Sleep -Seconds 1
 $WORKER2IP=$(az vm list-ip-addresses -g $RG -n kube-worker-2 --query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
 Start-Sleep -Seconds 1
 
+# Logging
+Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: Distributed; ResName: ${VM}; Admin: ${admin} PublicIP: ${MASTER1IP}, ${MASTER2IP}, ${WORKER1IP}, ${WORKER2IP} ; Commands: ssh ${admin}@${MASTER1IP} , ssh ${admin}@${MASTER2IP} , ssh ${admin}@${WORKER1IP} , ssh ${admin}@${WORKER2IP} }" >> C:\azrez\azrez.log
+
 Write-Output ""
 Write-Output "Save aside the setup details:"
 Write-Output "VM node kube-master-1 has ${MASTER1IP}"
