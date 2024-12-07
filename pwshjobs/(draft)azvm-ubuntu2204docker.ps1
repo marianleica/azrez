@@ -54,6 +54,10 @@ $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/
 if ($userinput -eq "y"){az ssh vm -g $RG -n $VM --local-user $userName}
 else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --local-user ${userName}"}
 
+# the script doesn't proceed with the config after the ssh session is started
+# we should put all lines below before the ssh prompt
+# the procedure should be with az vm invoke command to the respective vm
+
 # Add Docker's official GPG key:
 echo "Adding the Docker's official GPG"
 sudo apt-get update
