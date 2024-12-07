@@ -36,16 +36,17 @@ az network vnet subnet update -g $RG -n $subnet --vnet-name $vnet --network-secu
 Start-Sleep -Seconds 2
 Write-Output ""
 Write-Output "Creating Virtual Machines:"
-az vm create -n kube-master-1 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
+az vm create -n kube-master-1 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --generate-ssh-keys --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
+# modified from --ssh-key-value $HOME/.ssh/id_rsa.pub to --generate-ssh-keys <- it fails on blank environments
 
 Start-Sleep -Seconds 2
-az vm create -n kube-master-2 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
+az vm create -n kube-master-2 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --generate-ssh-keys --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
 
 Start-Sleep -Seconds 2
-az vm create -n kube-worker-1 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
+az vm create -n kube-worker-1 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --generate-ssh-keys --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
 
 Start-Sleep -Seconds 2
-az vm create -n kube-worker-2 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --ssh-key-value $HOME/.ssh/id_rsa.pub --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard
+az vm create -n kube-worker-2 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --generate-ssh-keys --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard
 
 Start-Sleep -Seconds 2
 Write-Output ""
