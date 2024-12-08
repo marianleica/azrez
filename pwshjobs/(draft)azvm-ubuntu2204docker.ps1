@@ -59,8 +59,7 @@ else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --lo
 # the procedure should be with az vm invoke command to the respective vm
 
 
-# az vm run-command create --resource-group $RG --async-execution false --run-as-user "user1" --script "Write-Host Hello World!" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name $VM
-
+# az vm run-command create --resource-group $RG --async-execution false --run-as-user $userName --script "sudo apt-get update && sudo apt-get install ca-certificates curl && sudo install -m 0755 -d /etc/apt/keyrings && sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && sudo chmod a+r /etc/apt/keyrings/docker.asc && " --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name $VM
 
 # Add Docker's official GPG key:
 echo "Adding the Docker's official GPG"
