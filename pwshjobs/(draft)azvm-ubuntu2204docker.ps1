@@ -58,6 +58,10 @@ else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --lo
 # we should put all lines below before the ssh prompt
 # the procedure should be with az vm invoke command to the respective vm
 
+
+# az vm run-command create --resource-group $RG --async-execution false --run-as-user "user1" --script "Write-Host Hello World!" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name $VM
+
+
 # Add Docker's official GPG key:
 echo "Adding the Docker's official GPG"
 sudo apt-get update
