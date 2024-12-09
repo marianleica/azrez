@@ -49,6 +49,11 @@ Start-Sleep -Seconds 1
 # Logging
 Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: VM; ResName: ${VM}; PublicIP: ${vmip}; Admin: azrez}" >> C:\azrez\azrez.log
 
+az vm run-command create --resource-group $RG --async-execution false --run-as-user $userName --script "sudo apt-get update && sudo apt-get install ca-certificates curl && sudo install -m 0755 -d /etc/apt/keyrings && sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && sudo chmod a+r /etc/apt/keyrings/docker.asc" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name $VM
+az vm run-command create --resource-group $RG --async-execution false --run-as-user $userName --script "echo deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && sudo apt-get update && sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name $VM
+az vm run-command create --resource-group $RG --async-execution false --run-as-user $userName --script "sudo docker run hello-world" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name $VM
+
+
 # Look for user input to perform ssh connection right now
 $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"
 if ($userinput -eq "y"){az ssh vm -g $RG -n $VM --local-user $userName}
@@ -58,16 +63,13 @@ else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --lo
 # we should put all lines below before the ssh prompt
 # the procedure should be with az vm invoke command to the respective vm
 
-
-# az vm run-command create --resource-group $RG --async-execution false --run-as-user $userName --script "sudo apt-get update && sudo apt-get install ca-certificates curl && sudo install -m 0755 -d /etc/apt/keyrings && sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && sudo chmod a+r /etc/apt/keyrings/docker.asc && " --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name $VM
-
 # Add Docker's official GPG key:
-echo "Adding the Docker's official GPG"
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
+#echo "Adding the Docker's official GPG"
+#sudo apt-get update
+#sudo apt-get install ca-certificates curl
+#sudo install -m 0755 -d /etc/apt/keyrings
+#sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+#sudo chmod a+r /etc/apt/keyrings/docker.asc
 
 # Add the repository to Apt sources:
 echo "Adding the repository to the apt sources"
