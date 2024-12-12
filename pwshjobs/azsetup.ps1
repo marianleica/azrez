@@ -35,3 +35,4 @@ Start-Sleep -Seconds 1
 # Write-Output ""
 # Write-Output "Setting the subscription $subscriptionid for use"
 # Set-AzContext -Subscription $subscriptionid
+
