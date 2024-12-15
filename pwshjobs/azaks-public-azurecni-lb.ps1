@@ -35,7 +35,6 @@ Start-Sleep -Seconds 5
 $infra_rg=$(az aks show --resource-group $RG --name $AKS --output tsv --query nodeResourceGroup)
 Write-Output "The infrastructure resource group is ${infra_rg}"
 
-
 Write-Output ""
 Start-Sleep -Seconds 1
 Write-Output "Configuring kubectl to connect to the Kubernetes cluster"
@@ -47,3 +46,5 @@ Write-Output ""
 Write-Output "Install kubectl locally, if needed: az aks install-cli"
 Write-Output ""
 Read-Host "Press any key to continue..."
+
+#################################
