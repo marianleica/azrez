@@ -1,6 +1,6 @@
 # Setting variables
 $timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
-$scenario = "upstreamKubernetes-infra"
+$scenario = "upstreamKubernetes-azureArc"
 $suffix=$(Get-Random -Minimum 100 -Maximum 999)
 $suffix2=$(Get-Random -Minimum 10 -Maximum 99)
 $RG="azrez"
