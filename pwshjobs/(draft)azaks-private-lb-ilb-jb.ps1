@@ -85,27 +85,7 @@ $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/
 if ($userinput -eq "y"){az ssh vm -g $RG -n $VM --local-user $userName}
 else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --local-user ${userName}"}
 
-Write-Output "The AKS cluster: "
-az aks create --resource-group $RG --name $AKS --node-count 1 --network-plugin azure --vnet-subnet-id $subnetId --enable-aad --generate-ssh-keys
-Start-Sleep -Seconds 5
-
-# Get the AKS infrastructure resource group name
-$infra_rg=$(az aks show --resource-group $RG --name $AKS --output tsv --query nodeResourceGroup)
-Write-Output "The infrastructure resource group is ${infra_rg}"
-
-Write-Output ""
-Start-Sleep -Seconds 1
-Write-Output "Configuring kubectl to connect to the Kubernetes cluster"
-# echo "If you want to connect to the cluster to run commands, run the following:"
-# az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
-az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
-Write-Output "You should be able to run kubectl commands to your cluster now"
-Write-Output ""
-Write-Output "Install kubectl locally, if needed: az aks install-cli"
-Write-Output ""
-
 # Deploy application and NodePort services
-
 kubectl create deploy tstapp1 --image=nginx:alpine --replicas 2 --port 80
 kubectl create deploy tstapp2 --image=nginx --replicas 2 --port 80
 
@@ -113,6 +93,7 @@ kubectl expose deploy tstapp1 --type NodePort --port 80
 kubectl expose deploy tstapp2 --type NodePort --port 80
 
 # Deploy ILB for the NodePort services
+# Need to integrate these somehow
 
 kubectl apply -f - <<EOF
 apiVersion: v1
