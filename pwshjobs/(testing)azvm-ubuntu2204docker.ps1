@@ -54,5 +54,5 @@ az vm run-command create --resource-group $RG --async-execution false --run-as-u
 
 # Look for user input to perform ssh connection right now
 $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"
-if ($userinput -eq "y"){az ssh vm -g $RG -n $VM --local-user $userName -o StrictHostKeyChecking=no}
+if ($userinput -eq "y"){az ssh vm -g $RG -n $VM --local-user $userName}
 else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --local-user ${userName}"}
