@@ -45,7 +45,7 @@ echo "Copy this information from the kubeadm init output to run on worker nodes 
 echo "Below is an example, your output has an unique token"
 echo "kubeadm join 192.168.0.4:6443 --token jjzu4e.xsrs0fknopxaqhhx --discovery-token-ca-cert-hash sha256:823ff397ce70aa7b3d99c2434bd07ddde27c0bf0c14d9c34eea1069ae9a44eb4"
 echo ""
-sudo kubeadm init
+sudo kubeadm init > kubeadminit.log
 
 sleep 15
 
