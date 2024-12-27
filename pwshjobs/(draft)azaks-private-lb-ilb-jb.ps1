@@ -80,54 +80,17 @@ Write-Output "Then to connect to the AKS cluster, run:"
 Write-Output "az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing"
 Start-Sleep -Seconds 1
 
+Write-Output ""
+Write-Output "Once ready and connected to the cluster, apply the Azure Internal Load Balancer (ILB) application setup with the command below:"
+Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-ubuntu2204-docker-runcommand.sh | bash"
+
 # Look for user input to perform ssh connection right now
 $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"
 if ($userinput -eq "y"){az ssh vm -g $RG -n $VM --local-user $userName}
 else {Write-Output "Save the command for later: az ssh vm -g ${RG} -n ${VM} --local-user ${userName}"}
 
-# Deploy application and NodePort services
-kubectl create deploy tstapp1 --image=nginx:alpine --replicas 2 --port 80
-kubectl create deploy tstapp2 --image=nginx --replicas 2 --port 80
-
-kubectl expose deploy tstapp1 --type NodePort --port 80
-kubectl expose deploy tstapp2 --type NodePort --port 80
-
-# Deploy ILB for the NodePort services
-# Need to integrate these somehow
-
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Service
-metadata:
-  name: tstapp1-ilb
-  annotations:
-    service.beta.kubernetes.io/azure-load-balancer-ipv4: 10.240.0.50
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 80
-    nodePort: 30557
-  selector:
-    app: tstapp1
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: tstapp2-ilb
-  annotations:
-    service.beta.kubernetes.io/azure-load-balancer-ipv4: 10.240.0.51
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 80
-    nodePort: 30558
-  selector:
-    app: tstapp2
-EOF
+# Run the ILB setup
+# az vm run-command create --resource-group $RG --async-execution false --run-as-user $userName --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-ubuntu2204-docker-runcommand.sh | bash" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name $VM
 
 Start-Sleep -Seconds 1
 Write-Output ""
