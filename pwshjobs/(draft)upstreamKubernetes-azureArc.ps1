@@ -106,9 +106,9 @@ Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez
 
 Write-Output ""
 Write-Output "The commands you need to onboard the cluster to Azure Arc-enabled Kubernetes are at:"
-Write-Output ""
+Write-Output "https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-onboardingArc-runcommand.sh"
 Write-Output "Or apply quickly with:"
-Write-Output "sudo wget -O - . | bash"
+Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-onboardingArc-runcommand.sh | bash"
 Write-Output ""
 
 # Logging
