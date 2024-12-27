@@ -82,7 +82,7 @@ Start-Sleep -Seconds 1
 
 Write-Output ""
 Write-Output "Once ready and connected to the cluster, apply the Azure Internal Load Balancer (ILB) application setup with the command below:"
-Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-ubuntu2204-docker-runcommand.sh | bash"
+Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azaks-puiblic-ilbsetup-runcommand.sh | bash"
 
 # Look for user input to perform ssh connection right now
 $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"
