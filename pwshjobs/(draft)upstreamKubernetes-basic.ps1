@@ -79,12 +79,18 @@ $WORKER1IP=$(az vm list-ip-addresses -g $RG -n kube-worker-1 --query "[].virtual
 Start-Sleep -Seconds 1
 $WORKER2IP=$(az vm list-ip-addresses -g $RG -n kube-worker-2 --query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
 Start-Sleep -Seconds 1
+Write-Output ""
+Write-Output "The commands you need to run to set up the upstream kubernetes cluster via kubeadm are at:"
+Write-Output "https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh"
+Write-Output "Or apply quickly with:"
+Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh | bash"
+Write-Output ""
 
 # Logging
 Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: Distributed; ResName: -; Admin: ${admin} PublicIP: ${MASTER1IP}, ${MASTER2IP}, ${WORKER1IP}, ${WORKER2IP} ; Commands: ssh ${admin}@${MASTER1IP} , ssh ${admin}@${MASTER2IP} , ssh ${admin}@${WORKER1IP} , ssh ${admin}@${WORKER2IP} }" >> C:\azrez\azrez.log
 
 # Run the docker install script commands inside the VM
-az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh | bash" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name kube-master-1
+#az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh | bash" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name kube-master-1
 
 Write-Output ""
 Write-Output "Save aside the setup details:"
