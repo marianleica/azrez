@@ -1,3 +1,19 @@
+# Azure Resource Launcher (azrez)
+
+`azrez` is a simple console application for Windows Client that uses an Azure PowerShell & Azure CLI based collection of scripts to create Azure scenarios surround Azure Compute and Container Services. All scripts the application launches are open-source and can be located For experience's sake, available for the Azure community of users to review and improve. The console application itself is developed using .NET and C#, it is provided in the repository as an executable, though its openess and reduced complexity leaves it easy to understand and reproduce.
+
+## What can you do with it?
+
+Once you have met a couple of prerequisites (see below) and downloaded it to your local machine, you may open the `azrez` console app. You may then select your scenario by write single integer values as input and press Enter.
+
+First, use option 1 to perform an azure login operation to select your account and set subscription.
+
+The console then shows a branch of scenario options for you to choose.
+
+Once you have chosen your scenario, a script will be launched.
+
+To quit the application, input "exit" and press Enter.
+
 ## Prerequisites:
 
 1) Have a Windows Client machine on which you have the .NET framework (minimum .NET 8.0) runtime or SDK installed on your system prior to running AZREZ.
