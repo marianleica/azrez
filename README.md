@@ -4,11 +4,16 @@
 
 ## What can you do with it?
 
-Once you have met a couple of prerequisites (see below) and downloaded it to your local machine, you may open the `azrez` console app. You may then select your scenario by write single integer values as input and press Enter.
+Once you have met a couple of prerequisites (see below) and downloaded it to your local machine, you may open the `azrez` console app.
 
-First, use option 1 to perform an azure login operation to select your account and set subscription.
+Select your scenario by write single integer values as input and press Enter.
 
-The console then shows a branch of scenario options for you to choose.
+<img width="620" alt="image" src="https://github.com/user-attachments/assets/4c63e7c8-6050-41c1-9e00-626b4eea2fb7" />
+
+The console then shows a branch of scenario options for you to choose. You may first use option 1 to perform an azure login operation to select your account and set subscription.
+
+e.g.
+<img width="690" alt="image" src="https://github.com/user-attachments/assets/d0d20bdc-10ad-4fde-b3cc-cafa91e749e7" />
 
 Once you have chosen your scenario, a script will be launched.
 
@@ -78,8 +83,11 @@ Then input `azrez` to the console to start using the tool.
 
 ## Release notes
 
+#### v1.07
+- Added new scenarios: Azure VM running Ubuntu2204 Docker-ready, 
+
 #### v1.06
-- Added new scenarios: AKS node pools, private AKS cluster with Jumpbox VM, UDR outbound AKS private cluster with Jumpbox VM, Azure IaaS build setup ready for configuring kubeadm cluster
+- Added new scenarios: AKS Windows node pool, private AKS cluster with Jumpbox VM, UDR outbound AKS private cluster with Jumpbox VM, Azure IaaS build setup ready for configuring kubeadm cluster
 - AZ CLI is now a prerequisite and the az setup function (input 1) performs Azure Login
 
 #### v1.05
