@@ -84,10 +84,13 @@ Then input `azrez` to the console to start using the tool.
 ## Release notes
 
 #### v1.07
-- Added new scenarios: Azure VM running Ubuntu2204 Docker-ready, 
+- Added new scenarios: Azure VM running Ubuntu2204 Docker-ready, Private AKS cluster with Jumpbox VM, Private AKS with UDR outbound via Azure Firewall and Jumpbox VM, Upstream Kubernetes environment deployment, and Upstream Kubernetes environment with onboarding to Azure Arc-enabled Kubernetes.
+- Bug fixes and enhancements on existing scenarios
 
 #### v1.06
 - Added new scenarios: AKS Windows node pool, private AKS cluster with Jumpbox VM, UDR outbound AKS private cluster with Jumpbox VM, Azure IaaS build setup ready for configuring kubeadm cluster
 - AZ CLI is now a prerequisite and the az setup function (input 1) performs Azure Login
 
 #### v1.05
+
+- First Public Preview version.
