@@ -1,3 +1,24 @@
+# Azure Resource Launcher (azrez)
+
+`azrez` is a simple console application for Windows Client that uses an Azure PowerShell & Azure CLI based collection of scripts to create Azure scenarios surround Azure Compute and Container Services. All scripts the application launches are openly provided in the `\pwshjobs\` directory, available for the Azure community of users to review, make changes locally to fit own preferences, and improve. The console application itself is developed with .NET and C#, it is provided in the repository as an executable, though its reduced complexity leaves it easy to understand and reproduce.
+
+## What can you do with it?
+
+Once you have met a couple of prerequisites (see below) and downloaded it to your local machine, you may open the `azrez` console app.
+
+Select your scenario by write single integer values as input and press Enter.
+
+<img width="620" alt="image" src="https://github.com/user-attachments/assets/4c63e7c8-6050-41c1-9e00-626b4eea2fb7" />
+
+The console then shows a branch of scenario options for you to choose. You may first use option 1 to perform an azure login operation to select your account and set subscription.
+
+e.g.
+<img width="690" alt="image" src="https://github.com/user-attachments/assets/d0d20bdc-10ad-4fde-b3cc-cafa91e749e7" />
+
+Once you have chosen your scenario, a script will be launched.
+
+To quit the application, input "exit" and press Enter.
+
 ## Prerequisites:
 
 1) Have a Windows Client machine on which you have the .NET framework (minimum .NET 8.0) runtime or SDK installed on your system prior to running AZREZ.
@@ -62,8 +83,14 @@ Then input `azrez` to the console to start using the tool.
 
 ## Release notes
 
+#### v1.07
+- Added new scenarios: Azure VM running Ubuntu2204 Docker-ready, Private AKS cluster with Jumpbox VM, Private AKS with UDR outbound via Azure Firewall and Jumpbox VM, Upstream Kubernetes environment deployment, and Upstream Kubernetes environment with onboarding to Azure Arc-enabled Kubernetes.
+- Bug fixes and enhancements on existing scenarios
+
 #### v1.06
-- Added new scenarios: AKS node pools, private AKS cluster with Jumpbox VM, UDR outbound AKS private cluster with Jumpbox VM, Azure IaaS build setup ready for configuring kubeadm cluster
+- Added new scenarios: AKS Windows node pool, private AKS cluster with Jumpbox VM, UDR outbound AKS private cluster with Jumpbox VM, Azure IaaS build setup ready for configuring kubeadm cluster
 - AZ CLI is now a prerequisite and the az setup function (input 1) performs Azure Login
 
 #### v1.05
+
+- First Public Preview version.
