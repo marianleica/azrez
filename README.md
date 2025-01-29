@@ -70,7 +70,7 @@ Also available as: `setup.ps1` -> https://raw.githubusercontent.com/marianleica/
 
 Then input `azrez` to the console to start using the tool.
 
-## Limitations of the current release: v1.06
+## Limitations of the current release: v1.07
 
 - The AZREZ tool is supported only for Windows OS on Windows Client versions supported by Microsoft
 - The AZREZ tool only works in the following directory path "C:\azrez" with the backend scripts on "C:\azrez\pwshjobs"
