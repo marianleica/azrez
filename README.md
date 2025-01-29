@@ -1,6 +1,6 @@
 # Azure Resource Launcher (azrez)
 
-`azrez` is a simple console application for Windows Client that uses an Azure PowerShell & Azure CLI based collection of scripts to create Azure scenarios surround Azure Compute and Container Services. All scripts the application launches are openly provided in the `\pwshjobs\` directory, available for the Azure community of users to review, make changes locally to fit own preferences, and improve. The console application itself is developed with .NET and C#, it is provided in the repository as an executable, though its reduced complexity leaves it easy to understand and reproduce.
+`azrez` is a console application for Windows Client that uses an Azure PowerShell & Azure CLI based collection of scripts to create Azure scenarios surround Azure Compute and Container Services. All scripts the application launches are openly provided in the `\pwshjobs\` directory, available for the Azure community of users to review, make changes locally to fit own preferences, and improve. The console application itself is developed with .NET and C#, it is provided in the repository as an executable, though its reduced complexity leaves it easy to understand and reproduce.
 
 ## What can you do with it?
 
@@ -70,7 +70,7 @@ Also available as: `setup.ps1` -> https://raw.githubusercontent.com/marianleica/
 
 Then input `azrez` to the console to start using the tool.
 
-## Limitations of the current release: v1.06
+## Limitations of the current release: v1.07
 
 - The AZREZ tool is supported only for Windows OS on Windows Client versions supported by Microsoft
 - The AZREZ tool only works in the following directory path "C:\azrez" with the backend scripts on "C:\azrez\pwshjobs"
