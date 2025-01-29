@@ -16,7 +16,7 @@ Then choose your scenario, for this input digits to the console. The menu will s
 
 <img width="690" alt="image" src="https://github.com/user-attachments/assets/d0d20bdc-10ad-4fde-b3cc-cafa91e749e7" />
 
-Once you have chosen your scenario, a PowerShell script will be launched from the `/pwshjobs/` path with the respective deployment.
+Once you selected your scenario, a PowerShell script will be launched from the `/pwshjobs/` path with the respective deployment.
 
 To quit the application, input "exit" and press Enter.
 
