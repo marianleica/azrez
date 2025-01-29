@@ -6,7 +6,7 @@
 
 Once you have met a couple of prerequisites (see below) and downloaded it to your local machine, you may open the `azrez` console app.
 
-Select your scenario by write single integer values as input and press Enter.
+Select your scenario by writting single digit values as input and press _Enter_.
 
 <img width="620" alt="image" src="https://github.com/user-attachments/assets/4c63e7c8-6050-41c1-9e00-626b4eea2fb7" />
 
