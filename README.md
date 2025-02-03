@@ -8,7 +8,7 @@ Once you have met a couple of prerequisites (see below) and downloaded it to you
 
 Select your scenario by writting single digit values as input and press _Enter_.
 
-<img width="620" alt="image" src="https://github.com/user-attachments/assets/4c63e7c8-6050-41c1-9e00-626b4eea2fb7" />
+<img width="620" alt="AzRez" src="https://github.com/user-attachments/assets/ac93b192-a538-42a8-81ab-58e420c306da" />
 
 The console then shows a branch of scenario options for you to choose. You may first use option 1 to perform an azure login operation to select your account and set subscription.
 
