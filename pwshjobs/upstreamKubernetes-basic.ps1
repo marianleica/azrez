@@ -81,15 +81,41 @@ $WORKER2IP=$(az vm list-ip-addresses -g $RG -n kube-worker-2 --query "[].virtual
 Start-Sleep -Seconds 1
 Write-Output ""
 Write-Output "The commands you need to run to set up the upstream kubernetes cluster via kubeadm are at:"
-Write-Output "https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh"
+Write-Output "https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-init.sh"
 Write-Output "Or apply quickly with:"
-Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh | bash"
+Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-init.sh | bash"
 Write-Output ""
+Start-Sleep -Seconds 2
+
+# Run the kubeadm setup and init script commands inside the Master1 VM
+az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-init.sh | bash" --timeout-in-seconds 3600 --run-command-name "KubeadmSetupAndInit" --vm-name kube-master-1
+Start-Sleep -Seconds 1
+
+# # Run the kubeadm setup and init script commands inside the other VMs
+az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-setup.sh | bash" --timeout-in-seconds 3600 --run-command-name "KubeadmSetupAndInit" --vm-name kube-master-2
+Start-Sleep -Seconds 1
+az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-setup.sh | bash" --timeout-in-seconds 3600 --run-command-name "KubeadmSetupAndInit" --vm-name kube-worker-1
+Start-Sleep -Seconds 1
+az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-setup.sh | bash" --timeout-in-seconds 3600 --run-command-name "KubeadmSetupAndInit" --vm-name kube-worker-2
+Start-Sleep -Seconds 1
+
+# plan:
+# find out if the azure vm master-1 accepts nested ssh,
+# i.e. after ssh to master-1, run ssh to another node like master-2
+
+# reference scp command:
+# scp admin@MASTER1IP:/tmp/kubeinit.log .
+# next use awk to take only the necessary lines
+# awk 'NR>=5 && NR<=7' kubeinit.sh
+# after the other nodes have run ..setup.sh,
+# run kuneinit.sh on each
+# either with scp to each machine and run with bash
+# either with az vm runcommand
 
 # Logging
 Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: Distributed; ResName: -; Admin: ${admin} PublicIP: ${MASTER1IP}, ${MASTER2IP}, ${WORKER1IP}, ${WORKER2IP} ; Commands: ssh ${admin}@${MASTER1IP} , ssh ${admin}@${MASTER2IP} , ssh ${admin}@${WORKER1IP} , ssh ${admin}@${WORKER2IP} }" >> C:\azrez\azrez.log
 
-# Run the docker install script commands inside the VM
+#Run the docker install script commands inside the VM
 #az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh | bash" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name kube-master-1
 
 Write-Output ""
