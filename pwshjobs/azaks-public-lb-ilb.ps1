@@ -41,13 +41,13 @@ Write-Output "Configuring kubectl to connect to the Kubernetes cluster"
 # echo "If you want to connect to the cluster to run commands, run the following:"
 # az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
 az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
+
 Write-Output "You should be able to run kubectl commands to your cluster now"
 Write-Output ""
-Write-Output "Install kubectl locally, if needed: az aks install-cli"
+Write-Output "For that you need kubectl locally, but if needed, run first: az aks install-cli"
 Write-Output ""
 
 # Deploy application and NodePort services
-
 kubectl create deploy tstapp1 --image=nginx:alpine --replicas 2 --port 80
 kubectl create deploy tstapp2 --image=nginx --replicas 2 --port 80
 
@@ -91,8 +91,5 @@ spec:
 EOF
 
 Read-Host "Press any key to continue..."
-
-
-
 
 #################################
