@@ -8,7 +8,7 @@ $suffix=$(Get-Random -Minimum 10000 -Maximum 99999)
 #suffix=$((10000 + RANDOM % 99999))
 $rg="azrez"
 $location="uksouth"
-$acr="azacr-public-${suffix}"
+$acr="azacrpublic${suffix}"
 $acrpath=${acr}.azurecr.io
 
 # Create the ACR resource
