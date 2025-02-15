@@ -14,7 +14,7 @@ The console then shows a branch of scenario options for you to choose. You may f
 
 Then choose your scenario, for this input digits to the console. The menu will show the available scenarios, for example:
 
-<img width="690" alt="image" src="https://github.com/user-attachments/assets/d0d20bdc-10ad-4fde-b3cc-cafa91e749e7" />
+![alt text](image.png)
 
 Once you selected your scenario, a PowerShell script will be launched from the `/pwshjobs/` path with the respective deployment.
 
