@@ -14,9 +14,9 @@ sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 sleep 1
 
 # Login to Azure with the pre-created service principal
-az login --service-principal --username $clientId --password <clientSecret> --tenant <tenantId>
 az login --service-principal --username $clientId --password $clientSecret --tenant $tenantId
 
+sleep 1
 # Run the onboarding command
 az connectedk8s connect -g azrez -n kubeadm-connected
 
