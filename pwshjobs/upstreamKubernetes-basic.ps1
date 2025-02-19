@@ -2,14 +2,14 @@
 $timestamp = $(Get-Date -Format "yyyy/MM/dd-HH:mm UTCK")
 $scenario = "upstreamKubernetes-infra"
 $suffix=$(Get-Random -Minimum 100 -Maximum 999)
-$suffix2=$(Get-Random -Minimum 10 -Maximum 99)
+#$suffix2=$(Get-Random -Minimum 10 -Maximum 99)
 $RG="azrez"
 $vnet="kubeadm"
 $subnet="kube"
 $admin="adm${suffix}"
 $loc="uksouth"
 
-# Step 1. Create infrastructure: VNET, NSG, 2 master VMs, 2 worker VMs, load balncer for master VMs
+# Step 1. Create infrastructure: VNET, NSG, 1 master VMs, 3 worker VMs, load balncer for master VM
 Write-Output "The resource group: "
 az group create -n $RG -l $loc -o table
 
@@ -40,7 +40,7 @@ az vm create -n kube-master-1 -g $RG --image Ubuntu2204 --vnet-name $vnet --subn
 # modified from --ssh-key-value $HOME/.ssh/id_rsa.pub to --generate-ssh-keys <- it fails on blank environments
 
 Start-Sleep -Seconds 2
-az vm create -n kube-master-2 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --generate-ssh-keys --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
+az vm create -n kube-worker-0 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --generate-ssh-keys --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
 
 Start-Sleep -Seconds 2
 az vm create -n kube-worker-1 -g $RG --image Ubuntu2204 --vnet-name $vnet --subnet $subnet --admin-username $admin --generate-ssh-keys --size Standard_D2ds_v4 --nsg kubeadm --public-ip-sku Standard --no-wait
@@ -66,97 +66,97 @@ Start-Sleep -Seconds 1
 az network nic ip-config address-pool add --address-pool masternodes --ip-config-name ipconfigkube-master-1 --nic-name kube-master-1VMNic --resource-group $RG --lb-name kubemaster
 
 Start-Sleep -Seconds 1
-az network nic ip-config address-pool add --address-pool masternodes --ip-config-name ipconfigkube-master-2 --nic-name kube-master-2VMNic --resource-group $RG --lb-name kubemaster
+#az network nic ip-config address-pool add --address-pool masternodes --ip-config-name ipconfigkube-master-2 --nic-name kube-master-2VMNic --resource-group $RG --lb-name kubemaster
 
 Start-Sleep -Seconds 5
 Write-Output ""
 Write-Output "Getting public IPs of all the Kubernetes nodes:"
 $MASTER1IP=$(az vm list-ip-addresses -g $RG -n kube-master-1 --query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
 Start-Sleep -Seconds 1
-$MASTER2IP=$(az vm list-ip-addresses -g $RG -n kube-master-2 --query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
+$WORKER0IP=$(az vm list-ip-addresses -g $RG -n kube-worker-0 --query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
 Start-Sleep -Seconds 1
 $WORKER1IP=$(az vm list-ip-addresses -g $RG -n kube-worker-1 --query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
 Start-Sleep -Seconds 1
 $WORKER2IP=$(az vm list-ip-addresses -g $RG -n kube-worker-2 --query "[].virtualMachine.network.publicIpAddresses[0].ipAddress" --output tsv)
 Start-Sleep -Seconds 1
 Write-Output ""
-Write-Output "The commands you need to run to set up the upstream kubernetes cluster via kubeadm are at:"
-Write-Output "https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-init.sh"
-Write-Output "Or apply quickly with:"
-Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-init.sh | bash"
-Write-Output ""
-Start-Sleep -Seconds 2
+#Write-Output "The commands you need to run to set up the upstream kubernetes cluster via kubeadm are at:"
+#Write-Output "https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-init.sh"
+#Write-Output "Or apply quickly with:"
+#Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-init.sh | bash"
+#Write-Output ""
+#Start-Sleep -Seconds 2
 
 # Run the kubeadm setup and init script commands inside the Master1 VM
 az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-init.sh | bash" --timeout-in-seconds 3600 --run-command-name "KubeadmSetupAndInit" --vm-name kube-master-1
 Start-Sleep -Seconds 1
 
 # # Run the kubeadm setup and init script commands inside the other VMs
-az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-setup.sh | bash" --timeout-in-seconds 3600 --run-command-name "KubeadmSetupAndInit" --vm-name kube-master-2
+az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-setup.sh | bash" --timeout-in-seconds 3600 --run-command-name "KubeadmSetupAndInit" --vm-name kube-worker-0
 Start-Sleep -Seconds 1
 az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-setup.sh | bash" --timeout-in-seconds 3600 --run-command-name "KubeadmSetupAndInit" --vm-name kube-worker-1
 Start-Sleep -Seconds 1
 az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand-setup.sh | bash" --timeout-in-seconds 3600 --run-command-name "KubeadmSetupAndInit" --vm-name kube-worker-2
 Start-Sleep -Seconds 1
 
-# plan:
-# find out if the azure vm master-1 accepts nested ssh,
-# i.e. after ssh to master-1, run ssh to another node like master-2
-
-# reference scp command:
-# scp admin@MASTER1IP:/tmp/kubeinit.log .
-# next use awk to take only the necessary lines
-# awk 'NR>=5 && NR<=7' kubeinit.sh
-# after the other nodes have run ..setup.sh,
-# run kuneinit.sh on each
-# either with scp to each machine and run with bash
-# either with az vm runcommand
-
 # Logging
-Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: Distributed; ResName: -; Admin: ${admin} PublicIP: ${MASTER1IP}, ${MASTER2IP}, ${WORKER1IP}, ${WORKER2IP} ; Commands: ssh ${admin}@${MASTER1IP} , ssh ${admin}@${MASTER2IP} , ssh ${admin}@${WORKER1IP} , ssh ${admin}@${WORKER2IP} }" >> C:\azrez\azrez.log
+Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: Distributed; ResName: -; Admin: ${admin} PublicIP: ${MASTER1IP}, ${WORKER0IP}, ${WORKER1IP}, ${WORKER2IP} ; Commands: ssh ${admin}@${MASTER1IP} , ssh ${admin}@${WORKER0IP} , ssh ${admin}@${WORKER1IP} , ssh ${admin}@${WORKER2IP} }" >> C:\azrez\azrez.log
 
 #Run the docker install script commands inside the VM
 #az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh | bash" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name kube-master-1
 
-Write-Output ""
-Write-Output "Save aside the setup details:"
-Write-Output "VM node kube-master-1 has ${MASTER1IP}"
-Write-Output "VM node kube-master-2 has ${MASTER2IP}"
-Write-Output "VM node kube-worker-1 has ${WORKER1IP}"
-Write-Output "VM node kube-worker-2 has ${WORKER2IP}"
-Write-Output "The VM admin account is ${admin}"
-Write-Output ""
-Write-Output "The ssh commands for the nodes are:"
-Write-Output "ssh ${admin}@${MASTER1IP}"
-Write-Output "ssh ${admin}@${MASTER2IP}"
-Write-Output "ssh ${admin}@${WORKER1IP}"
-Write-Output "ssh ${admin}@${WORKER2IP}"
-Write-Output ""
 
 Start-Sleep -Seconds 2
+Write-Output ""
+Write-Output "Installing GIT for the SCP utility:"
+winget install --id Git.Git -e --source winget
+
 # Define the full path to the scp executable
 $scpPath = "C:\Program Files\Git\usr\bin\scp.exe"
 
 # Copy the kubeadmjoin.sh file to join the kubernetes cluster to the other nodes
-scp ${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${MASTER2IP}:~/
-scp ${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER1IP}:~/
-scp ${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER2IP}:~/
+#scp ${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER0IP}:~/
+#scp ${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER1IP}:~/
+#scp ${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER2IP}:~/
 
-# Start-Process -FilePath $scpPath -ArgumentList "${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${MASTER2IP}:~/"
+# Start-Process -FilePath $scpPath -ArgumentList "${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER0IP}:~/"
 # Start-Process -FilePath $scpPath -ArgumentList "${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER1IP}:~/"
 # Start-Process -FilePath $scpPath -ArgumentList "${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER2IP}:~/"
 
-& $scpPath "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${MASTER2IP}:~/"
+& $scpPath "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER0IP}:~/"
 & $scpPath "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER1IP}:~/"
 & $scpPath "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER2IP}:~/"
 
 # Run the kubeadm join command on the other nodes
+Write-Output ""
+Write-Output "Joining the other nodes to the cluster:"
+Write-Output "Adding node WORKER0"
 Start-Sleep -Seconds 2
-ssh ${admin}@${MASTER2IP} 'sudo sh ~/kubeadmjoin.sh'
+ssh -o StrictHostKeyChecking=no ${admin}@${WORKER0IP} 'sudo sh ~/kubeadmjoin.sh'
 Start-Sleep -Seconds 1
-ssh ${admin}@${WORKER1IP} 'sudo sh ~/kubeadmjoin.sh'
+Write-Output "Adding node WORKER1"
+ssh -o StrictHostKeyChecking=no ${admin}@${WORKER1IP} 'sudo sh ~/kubeadmjoin.sh'
 Start-Sleep -Seconds 1
-ssh ${admin}@${WORKER2IP} 'sudo sh ~/kubeadmjoin.sh'
+Write-Output "Adding node WORKER2"
+ssh -o StrictHostKeyChecking=no ${admin}@${WORKER2IP} 'sudo sh ~/kubeadmjoin.sh'
 
 Write-Output ""
+Write-Output "Save aside the setup details:"
+Write-Output "VM node kube-master-1 has ${MASTER1IP}"
+Write-Output "VM node kube-worker-0 has ${WORKER0IP}"
+Write-Output "VM node kube-worker-1 has ${WORKER1IP}"
+Write-Output "VM node kube-worker-2 has ${WORKER2IP}"
+Write-Output "The VM admin account is ${admin}"
+Write-Output ""
+
+Write-Output "The Kubernetes cluster should be created now and nodes joined."
+Write-Output "The ssh commands for the nodes are:"
+Write-Output "ssh ${admin}@${MASTER1IP}"
+Write-Output "ssh ${admin}@${WORKER0IP}"
+Write-Output "ssh ${admin}@${WORKER1IP}"
+Write-Output "ssh ${admin}@${WORKER2IP}"
+Write-Output ""
+Write-Output "Connect to the master node to start using the cluster."
+Write-Output ""
+
 Read-Host "Press any key to continue..."
