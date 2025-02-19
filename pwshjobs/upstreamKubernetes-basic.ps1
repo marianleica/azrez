@@ -11,11 +11,11 @@ $loc="uksouth"
 
 # Step 1. Create infrastructure: VNET, NSG, 2 master VMs, 2 worker VMs, load balncer for master VMs
 Write-Output "The resource group: "
-az group create -n $RG -l $loc
+az group create -n $RG -l $loc -o table
 
 Write-Output ""
 Write-Output "The VNET $vnet"
-az network vnet create --resource-group $RG --name $vnet --address-prefix 192.168.0.0/16 --subnet-name kube --subnet-prefix 192.168.0.0/16
+az network vnet create --resource-group $RG --name $vnet --address-prefix 192.168.0.0/16 --subnet-name kube --subnet-prefix 192.168.0.0/16 -o table
 
 Start-Sleep -Seconds 2
 Write-Output ""
@@ -133,3 +133,28 @@ Write-Output "ssh ${admin}@${WORKER1IP}"
 Write-Output "ssh ${admin}@${WORKER2IP}"
 Write-Output ""
 Read-Host "Press any key to continue..."
+
+Start-Sleep -Seconds 2
+# Define the full path to the scp executable
+$scpPath = "C:\Program Files\Git\usr\bin\scp.exe"
+
+# Copy the kubeadmjoin.sh file to join the kubernetes cluster to the other nodes
+scp ${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${MASTER2IP}:~/
+scp ${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER1IP}:~/
+scp ${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER2IP}:~/
+
+# Start-Process -FilePath $scpPath -ArgumentList "${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${MASTER2IP}:~/"
+# Start-Process -FilePath $scpPath -ArgumentList "${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER1IP}:~/"
+# Start-Process -FilePath $scpPath -ArgumentList "${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER2IP}:~/"
+
+& $scpPath "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${MASTER2IP}:~/"
+& $scpPath "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER1IP}:~/"
+& $scpPath "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER2IP}:~/"
+
+# Run the kubeadm join command on the other nodes
+Start-Sleep -Seconds 2
+ssh ${admin}@${MASTER2IP} 'sh ~/kubeadmjoin.sh'
+Start-Sleep -Seconds 1
+ssh ${admin}@${WORKER1IP} 'sh ~/kubeadmjoin.sh'
+Start-Sleep -Seconds 1
+ssh ${admin}@${WORKER2IP} 'sh ~/kubeadmjoin.sh'
