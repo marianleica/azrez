@@ -55,8 +55,41 @@ kubectl expose deploy tstapp1 --type NodePort --port 80
 kubectl expose deploy tstapp2 --type NodePort --port 80
 
 # Deploy ILB for the NodePort services
+# kubectl apply -f - <<EOF
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: tstapp1-ilb
+#   annotations:
+#     service.beta.kubernetes.io/azure-load-balancer-ipv4: 10.240.0.50
+#     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - port: 80
+#     targetPort: 80
+#     nodePort: 30557
+#   selector:
+#     app: tstapp1
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: tstapp2-ilb
+#   annotations:
+#     service.beta.kubernetes.io/azure-load-balancer-ipv4: 10.240.0.51
+#     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - port: 80
+#     targetPort: 80
+#     nodePort: 30558
+#   selector:
+#     app: tstapp2
+# EOF
 
-kubectl apply -f - <<EOF
+$ilbservice = @"
 apiVersion: v1
 kind: Service
 metadata:
@@ -88,7 +121,9 @@ spec:
     nodePort: 30558
   selector:
     app: tstapp2
-EOF
+"@
+
+$ilbservice | kubectl apply -f -
 
 Read-Host "Press any key to continue..."
 

@@ -81,8 +81,9 @@ Write-Output "az aks get-credentials --resource-group $RG --name $AKS --admin --
 Start-Sleep -Seconds 1
 
 Write-Output ""
-Write-Output "Once ready and connected to the cluster, apply the Azure Internal Load Balancer (ILB) application setup with the command below:"
-Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azaks-puiblic-ilbsetup-runcommand.sh | bash"
+Write-Output "Once ready and connected to the VM, run az login, connect to the AKS cluster, then apply the Azure Internal Load Balancer (ILB) application setup with the command below:"
+Write-Output "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azaks-public-ilbsetup-runcommand.sh | bash"
+Write-Output ""
 
 # Look for user input to perform ssh connection right now
 $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"

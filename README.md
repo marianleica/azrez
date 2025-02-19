@@ -8,13 +8,13 @@ Once you have met a couple of prerequisites (see below) and downloaded it to you
 
 Select your scenario by writting single digit values as input and press _Enter_.
 
-<img width="620" alt="image" src="https://github.com/user-attachments/assets/4c63e7c8-6050-41c1-9e00-626b4eea2fb7" />
+![image](https://github.com/user-attachments/assets/b2743a83-8ddb-4acc-98f0-c6eaf7ea5615)
 
 The console then shows a branch of scenario options for you to choose. You may first use option 1 to perform an azure login operation to select your account and set subscription.
 
 Then choose your scenario, for this input digits to the console. The menu will show the available scenarios, for example:
 
-<img width="690" alt="image" src="https://github.com/user-attachments/assets/d0d20bdc-10ad-4fde-b3cc-cafa91e749e7" />
+![image](https://github.com/user-attachments/assets/317b8d95-83f2-410a-9aa8-662c900b2812)
 
 Once you selected your scenario, a PowerShell script will be launched from the `/pwshjobs/` path with the respective deployment.
 
