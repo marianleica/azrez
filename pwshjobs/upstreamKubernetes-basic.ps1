@@ -105,11 +105,18 @@ Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResT
 #Run the docker install script commands inside the VM
 #az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh | bash" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name kube-master-1
 
-
-Start-Sleep -Seconds 2
+Start-Sleep -Seconds 1
 Write-Output ""
 Write-Output "Installing GIT for the SCP utility:"
-winget install --id Git.Git -e --source winget
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    Write-Output "Git is not installed. Installing Git for the SCP utility:"
+    winget install --id Git.Git -e --source winget
+    Start-Sleep -Seconds 2
+} else {
+    Write-Output "Git is already installed. Moving ahead."
+}
+
+Start-Sleep -Seconds 2
 
 # Define the full path to the scp executable
 $scpPath = "C:\Program Files\Git\usr\bin\scp.exe"
@@ -122,10 +129,10 @@ $scpPath = "C:\Program Files\Git\usr\bin\scp.exe"
 # Start-Process -FilePath $scpPath -ArgumentList "${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER0IP}:~/"
 # Start-Process -FilePath $scpPath -ArgumentList "${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER1IP}:~/"
 # Start-Process -FilePath $scpPath -ArgumentList "${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER2IP}:~/"
-
-& $scpPath "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER0IP}:~/"
-& $scpPath "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER1IP}:~/"
-& $scpPath "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER2IP}:~/"
+# Converting it into:
+& $scpPath -o StrictHostKeyChecking=no "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER0IP}:~/"
+& $scpPath -o StrictHostKeyChecking=no "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER1IP}:~/"
+& $scpPath -o StrictHostKeyChecking=no "${admin}@${MASTER1IP}:~/kubeadmjoin.sh" "${admin}@${WORKER2IP}:~/"
 
 # Run the kubeadm join command on the other nodes
 Write-Output ""
@@ -158,5 +165,5 @@ Write-Output "ssh ${admin}@${WORKER2IP}"
 Write-Output ""
 Write-Output "Connect to the master node to start using the cluster."
 Write-Output ""
-
+Start-Sleep -Seconds 2
 Read-Host "Press any key to continue..."
