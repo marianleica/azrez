@@ -175,6 +175,7 @@ Write-Output "The VM admin account is ${admin}"
 Write-Output ""
 
 Write-Output "The Kubernetes cluster should be created now and nodes joined."
+Write-Output "The Azure Arc onboarding should be completed by now."
 Write-Output "The ssh commands for the nodes are:"
 Write-Output "ssh ${admin}@${MASTER1IP}"
 Write-Output "ssh ${admin}@${WORKER0IP}"
