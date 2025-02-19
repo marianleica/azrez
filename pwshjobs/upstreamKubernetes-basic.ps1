@@ -132,7 +132,6 @@ Write-Output "ssh ${admin}@${MASTER2IP}"
 Write-Output "ssh ${admin}@${WORKER1IP}"
 Write-Output "ssh ${admin}@${WORKER2IP}"
 Write-Output ""
-Read-Host "Press any key to continue..."
 
 Start-Sleep -Seconds 2
 # Define the full path to the scp executable
@@ -153,8 +152,11 @@ scp ${admin}@${MASTER1IP}:~/kubeadmjoin.sh ${admin}@${WORKER2IP}:~/
 
 # Run the kubeadm join command on the other nodes
 Start-Sleep -Seconds 2
-ssh ${admin}@${MASTER2IP} 'sh ~/kubeadmjoin.sh'
+ssh ${admin}@${MASTER2IP} 'sudo sh ~/kubeadmjoin.sh'
 Start-Sleep -Seconds 1
-ssh ${admin}@${WORKER1IP} 'sh ~/kubeadmjoin.sh'
+ssh ${admin}@${WORKER1IP} 'sudo sh ~/kubeadmjoin.sh'
 Start-Sleep -Seconds 1
-ssh ${admin}@${WORKER2IP} 'sh ~/kubeadmjoin.sh'
+ssh ${admin}@${WORKER2IP} 'sudo sh ~/kubeadmjoin.sh'
+
+Write-Output ""
+Read-Host "Press any key to continue..."

@@ -66,4 +66,3 @@ kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/
 
 # to select the kubeadm join command
 cat ~/kubeadminit.log | grep -i "kubeadm join" -A1 > ~/kubeadmjoin.sh
-
