@@ -30,6 +30,15 @@ Start-Sleep -Seconds 2
 az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmWeb --protocol tcp --priority 1001 --destination-port-range 6443 --access allow
 
 Start-Sleep -Seconds 2
+az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmapp --protocol tcp --priority 110 --destination-port-range 443 --access allow --direction Outbound
+
+Start-Sleep -Seconds 2
+az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmregion --protocol tcp --priority 111 --destination-port-range 8084 --access allow --direction Outbound
+
+#Start-Sleep -Seconds 2
+#az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmdns --protocol tcp --priority 112 --destination-port-range 53 --access allow --direction Outbound
+
+Start-Sleep -Seconds 2
 Write-Output ""
 Write-Output "Creating VNET subnet: "
 az network vnet subnet update -g $RG -n $subnet --vnet-name $vnet --network-security-group kubeadm
@@ -151,6 +160,11 @@ ssh -o StrictHostKeyChecking=no ${admin}@${WORKER2IP} 'sudo sh ~/kubeadmjoin.sh'
 ########################
 # AZURE ARC ONBOARDING #
 ########################
+
+# Register necessart resource providers on the subscription
+az provider register --namespace Microsoft.Kubernetes
+az provider register --namespace Microsoft.KubernetesConfiguration
+az provider register --namespace Microsoft.ExtendedLocation
 
 # Creating a service principal for login for Azure Arc onboarding
 $sp=$(az ad sp create-for-rbac --name "onboardersp" --role Contributor --scopes /subscriptions/$subscriptionId/resourceGroups/$RG --sdk-auth --output json | ConvertFrom-Json)

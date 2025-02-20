@@ -29,6 +29,15 @@ Start-Sleep -Seconds 2
 az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmWeb --protocol tcp --priority 1001 --destination-port-range 6443 --access allow
 
 Start-Sleep -Seconds 2
+az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmapp --protocol tcp --priority 110 --destination-port-range 443 --access allow
+
+Start-Sleep -Seconds 2
+az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmregion --protocol tcp --priority 111 --destination-port-range 8084 --access allow
+
+Start-Sleep -Seconds 2
+az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmdns --protocol tcp --priority 112 --destination-port-range 53 --access allow
+
+Start-Sleep -Seconds 2
 Write-Output ""
 Write-Output "Creating VNET subnet: "
 az network vnet subnet update -g $RG -n $subnet --vnet-name $vnet --network-security-group kubeadm
