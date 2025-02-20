@@ -48,7 +48,11 @@ Start-Sleep -Seconds 1
 
 
 # Logging
+if (Test-Path -Path "C:\" --ErrorAction SilentlyContinue) {
 Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: VM; ResName: ${VM}; PublicIP: ${vmip}; Admin: azrez}" >> C:\azrez\azrez.log
+} else {
+Write-Output "C drive not found, skipping logging."
+}
 
 # Look for user input to perform ssh connection right now
 $userinput = Read-Host -Prompt "Do you want to connect to ${VM} via ssh now? (y/n)"
