@@ -47,7 +47,11 @@ Write-Output ""
 Start-Sleep -Seconds 1
 
 # Logging
+if (Test-Path -Path "C:\" --ErrorAction SilentlyContinue) {
 Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: VM; ResName: ${VM}; PublicIP: ${vmip}; Admin: azrez}" >> C:\azrez\azrez.log
+} else {
+Write-Output "C drive not found, skipping logging."
+}
 
 # Run the docker install script commands inside the VM
 az vm run-command create --resource-group $RG --async-execution false --run-as-user $userName --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-ubuntu2204-docker-runcommand.sh | bash" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name $VM
