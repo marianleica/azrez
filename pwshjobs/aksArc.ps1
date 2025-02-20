@@ -44,7 +44,11 @@ Write-Output ""
 Write-Output "You should be able to run kubectl commands to your cluster now"
 
 # Logging
+if (Test-Path -Path "C:\" -ErrorAction SilentlyContinue) {
 Write-Output "${timestamp}; {${scenario}; ARC: ${RG}; Location: ${location}; ResType: AKS; ResName: ${AKS}; ConnectedCluster: ${ARC}}" >> C:\azrez\azrez.log
+} else {
+    Write-Output "C drive not found, skipping logging."
+}
 
 Read-Host "Press any key to continue..."
 

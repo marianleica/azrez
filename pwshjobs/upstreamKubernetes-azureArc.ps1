@@ -110,7 +110,11 @@ az vm run-command create --resource-group $RG --async-execution false --run-as-u
 Start-Sleep -Seconds 1
 
 # Logging
+if (Test-Path -Path "C:\" -ErrorAction SilentlyContinue) {
 Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: Distributed; ResName: -; Admin: ${admin} PublicIP: ${MASTER1IP}, ${WORKER0IP}, ${WORKER1IP}, ${WORKER2IP} ; Commands: ssh ${admin}@${MASTER1IP} , ssh ${admin}@${WORKER0IP} , ssh ${admin}@${WORKER1IP} , ssh ${admin}@${WORKER2IP} }" >> C:\azrez\azrez.log
+} else {
+    Write-Output "C drive not found, skipping logging."
+}
 
 #Run the docker install script commands inside the VM
 #az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh | bash" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name kube-master-1
