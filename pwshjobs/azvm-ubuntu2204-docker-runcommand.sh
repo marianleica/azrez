@@ -23,3 +23,6 @@ sleep 2
 echo "Let's test it with a quick hello-wolrd container"
 sudo docker run hello-world
 sleep 2
+
+# Adding user to docker group to avoid needing sudo privileges
+# usermod -aG docker $USER
