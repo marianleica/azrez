@@ -29,6 +29,15 @@ Start-Sleep -Seconds 2
 az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmWeb --protocol tcp --priority 1001 --destination-port-range 6443 --access allow
 
 Start-Sleep -Seconds 2
+az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmapp --protocol tcp --priority 110 --destination-port-range 443 --access allow
+
+Start-Sleep -Seconds 2
+az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmregion --protocol tcp --priority 111 --destination-port-range 8084 --access allow
+
+Start-Sleep -Seconds 2
+az network nsg rule create --resource-group $RG --nsg-name kubeadm --name kubeadmdns --protocol tcp --priority 112 --destination-port-range 53 --access allow
+
+Start-Sleep -Seconds 2
 Write-Output ""
 Write-Output "Creating VNET subnet: "
 az network vnet subnet update -g $RG -n $subnet --vnet-name $vnet --network-security-group kubeadm
@@ -100,7 +109,11 @@ az vm run-command create --resource-group $RG --async-execution false --run-as-u
 Start-Sleep -Seconds 1
 
 # Logging
+if (Test-Path -Path "C:\" -ErrorAction SilentlyContinue) {
 Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResType: Distributed; ResName: -; Admin: ${admin} PublicIP: ${MASTER1IP}, ${WORKER0IP}, ${WORKER1IP}, ${WORKER2IP} ; Commands: ssh ${admin}@${MASTER1IP} , ssh ${admin}@${WORKER0IP} , ssh ${admin}@${WORKER1IP} , ssh ${admin}@${WORKER2IP} }" >> C:\azrez\azrez.log
+} else {
+    Write-Output "C drive not found, skipping logging."
+}
 
 #Run the docker install script commands inside the VM
 #az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh | bash" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name kube-master-1
