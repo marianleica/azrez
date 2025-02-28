@@ -34,11 +34,10 @@ Write-Progress -Activity "Script Progress" -Status "Getting Infrastructure Resou
 
 Start-Sleep -Seconds 1
 Write-Output "Configuring kubectl to connect to the Kubernetes cluster"
-az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
-
-Start-Sleep -Seconds 1
 $progress += $progressIncrement
 Write-Progress -Activity "Script Progress" -Status "Configuring kubectl" -PercentComplete $progress
+az aks get-credentials --resource-group $RG --name $AKS --admin --overwrite-existing
+Start-Sleep -Seconds 1
 
 Write-Output ""
 Write-Output "Onboarding cluster ${AKS} to Azure Arc-enabled Kubernetes"
