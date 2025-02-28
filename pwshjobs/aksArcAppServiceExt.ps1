@@ -58,10 +58,9 @@ $namespace="appservice-ns" # Namespace in your cluster to install the extension 
 $kubeEnvironmentName="kube-environment" # Name of the App Service Kubernetes environment resource
 
 # Install the appservice extension:
-az k8s-extension create --resource-group $RG --name $extensionName --cluster-type connectedClusters --cluster-name $ARC --extension-type 'Microsoft.Web.Appservice' --release-train stable --auto-upgrade-minor-version true --scope cluster --release-namespace $namespace --configuration-settings "Microsoft.CustomLocation.ServiceAccount=default" --configuration-settings "appsNamespace=${namespace}" --configuration-settings "clusterName=${kubeEnvironmentName}" --configuration-settings "keda.enabled=true" --configuration-settings "buildService.storageClassName=default" --configuration-settings "buildService.storageAccessMode=ReadWriteOnce" --configuration-settings "customConfigMap=${namespace}/kube-environment-config" --configuration-settings "envoy.annotations.service.beta.kubernetes.io/azure-load-balancer-resource-group=${aksClusterGroupName}"
-
 $progress += $progressIncrement
 Write-Progress -Activity "Script Progress" -Status "Installing App Service Extension" -PercentComplete $progress
+az k8s-extension create --resource-group $RG --name $extensionName --cluster-type connectedClusters --cluster-name $ARC --extension-type 'Microsoft.Web.Appservice' --release-train stable --auto-upgrade-minor-version true --scope cluster --release-namespace $namespace --configuration-settings "Microsoft.CustomLocation.ServiceAccount=default" --configuration-settings "appsNamespace=${namespace}" --configuration-settings "clusterName=${kubeEnvironmentName}" --configuration-settings "keda.enabled=true" --configuration-settings "buildService.storageClassName=default" --configuration-settings "buildService.storageAccessMode=ReadWriteOnce" --configuration-settings "customConfigMap=${namespace}/kube-environment-config" --configuration-settings "envoy.annotations.service.beta.kubernetes.io/azure-load-balancer-resource-group=${aksClusterGroupName}"
 
 Start-Sleep -Seconds 5
 Write-Output ""
