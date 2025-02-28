@@ -10,18 +10,19 @@ $RG="azrez" # Name of resource group for the AKS cluster
 $location="uksouth" # Name of the location 
 $AKS="aks-kubenetlb-${suffix}" # Name of the AKS cluster
 $progress += $progressIncrement
+
 Write-Progress -Activity "Script Progress" -Status "Setting variables" -PercentComplete $progress
 
 Write-Output "Creating AKS cluster ${AKS} in resource group ${RG}"
 # Create new Resource Group
 $progress += $progressIncrement
 Write-Progress -Activity "Script Progress" -Status "Creating Resource Group" -PercentComplete $progress
-az group create -g $RG -l $location
+az group create -g $RG -l $location -o none
 
 # Create AKS cluster
 $progress += $progressIncrement
 Write-Progress -Activity "Script Progress" -Status "Creating AKS Cluster" -PercentComplete $progress
-az aks create --resource-group $RG --name $AKS --enable-aad --enable-azure-rbac --generate-ssh-keys --enable-addons monitoring --node-count 2
+az aks create --resource-group $RG --name $AKS --enable-aad --enable-azure-rbac --generate-ssh-keys --enable-addons monitoring --node-count 2 -o none
 
 Start-Sleep -Seconds 1
 
@@ -58,7 +59,7 @@ $kubeEnvironmentName="kube-environment" # Name of the App Service Kubernetes env
 
 Write-Progress -Activity "Script Progress" -Status "Installing App Service Extension" -PercentComplete $progress
 $progress += $progressIncrement
-az k8s-extension create --resource-group $RG --name $extensionName --cluster-type connectedClusters --cluster-name $ARC --extension-type 'Microsoft.Web.Appservice' --release-train stable --auto-upgrade-minor-version true --scope cluster --release-namespace $namespace --configuration-settings "Microsoft.CustomLocation.ServiceAccount=default" --configuration-settings "appsNamespace=${namespace}" --configuration-settings "clusterName=${kubeEnvironmentName}" --configuration-settings "keda.enabled=true" --configuration-settings "buildService.storageClassName=default" --configuration-settings "buildService.storageAccessMode=ReadWriteOnce" --configuration-settings "customConfigMap=${namespace}/kube-environment-config" --configuration-settings "envoy.annotations.service.beta.kubernetes.io/azure-load-balancer-resource-group=${aksClusterGroupName}"
+az k8s-extension create --resource-group $RG --name $extensionName --cluster-type connectedClusters --cluster-name $ARC --extension-type 'Microsoft.Web.Appservice' --release-train stable --auto-upgrade-minor-version true --scope cluster --release-namespace $namespace --configuration-settings "Microsoft.CustomLocation.ServiceAccount=default" --configuration-settings "appsNamespace=${namespace}" --configuration-settings "clusterName=${kubeEnvironmentName}" --configuration-settings "keda.enabled=true" --configuration-settings "buildService.storageClassName=default" --configuration-settings "buildService.storageAccessMode=ReadWriteOnce" --configuration-settings "customConfigMap=${namespace}/kube-environment-config" --configuration-settings "envoy.annotations.service.beta.kubernetes.io/azure-load-balancer-resource-group=${aksClusterGroupName}" -o none
 
 Start-Sleep -Seconds 5
 Write-Output ""
@@ -67,7 +68,7 @@ $progress += $progressIncrement
 Write-Progress -Activity "Script Progress" -Status "Waiting for Extension Installation" -PercentComplete $progress
 $extensionId=$(az k8s-extension show --cluster-type connectedClusters --cluster-name $ARC --resource-group $RG --name $extensionName --query id --output tsv)
 # Wait for the fully install before proceeding:
-az resource wait --ids $extensionId --custom "properties.installState!='Pending'" --api-version "2020-07-01-preview"
+az resource wait --ids $extensionId --custom "properties.installState!='Pending'" --api-version "2020-07-01-preview" -o none
 
 Start-Sleep -Seconds 5
 Write-Output ""
@@ -80,28 +81,28 @@ $connectedClusterId=$(az connectedk8s show --resource-group $RG --name $ARC --qu
 # Create the custom location:
 $progress += $progressIncrement
 Write-Progress -Activity "Script Progress" -Status "Creating Custom Location" -PercentComplete $progress
-az customlocation create --resource-group $RG --name $customLocationName --host-resource-id $connectedClusterId --namespace $namespace --cluster-extension-ids $extensionId --location westeurope
+az customlocation create --resource-group $RG --name $customLocationName --host-resource-id $connectedClusterId --namespace $namespace --cluster-extension-ids $extensionId --location westeurope -o none
 
 Start-Sleep -Seconds 5
 Write-Output ""
 # Validate the custom location creation:
 $progress += $progressIncrement
 Write-Progress -Activity "Script Progress" -Status "Validating Custom Location" -PercentComplete $progress
-az customlocation show --resource-group $RG --name $customLocationName
+az customlocation show --resource-group $RG --name $customLocationName -o none
 # Save the custom location ID for the next step:
 $customLocationId=$(az customlocation show --resource-group $RG --name $customLocationName --query id --output tsv)
 
 # Create the App Service Kubernetes Environment
 $progress += $progressIncrement
 Write-Progress -Activity "Script Progress" -Status "Creating App Service Kubernetes Environment" -PercentComplete $progress
-az appservice kube create --resource-group $RG --name $kubeEnvironmentName --custom-location $customLocationId
+az appservice kube create --resource-group $RG --name $kubeEnvironmentName --custom-location $customLocationId -o none
 
 Start-Sleep -Seconds 5
 Write-Output ""
 # Validate that the App Service Kubernetes Environment has been successfully created:
 $progress += $progressIncrement
 Write-Progress -Activity "Script Progress" -Status "Validating App Service Kubernetes Environment" -PercentComplete $progress
-az appservice kube show --resource-group $RG --name $kubeEnvironmentName
+az appservice kube show --resource-group $RG --name $kubeEnvironmentName -o none
 
 Start-Sleep -Seconds 1
 Write-Output ""
@@ -111,7 +112,7 @@ $appname="webapp-${suffix}"
 # Creating webapp in the custom location
 $progress += $progressIncrement
 Write-Progress -Activity "Script Progress" -Status "Creating Web App" -PercentComplete $progress
-az webapp create --resource-group $RG --name $appname --custom-location $customLocationId --runtime 'NODE:20-lts'
+az webapp create --resource-group $RG --name $appname --custom-location $customLocationId --runtime 'NODE:20-lts' -o none
 
 Start-Sleep -Seconds 5
 Write-Output ""
