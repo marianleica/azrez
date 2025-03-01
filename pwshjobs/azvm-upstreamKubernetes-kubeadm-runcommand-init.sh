@@ -68,8 +68,8 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-# Apply calico for network management 
-kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+# Apply Weave Net for CNI 
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 
 # to select the kubeadm join command
 cat ~/kubeadminit.log | grep -i "kubeadm join" -A1 > ~/kubeadmjoin.sh
