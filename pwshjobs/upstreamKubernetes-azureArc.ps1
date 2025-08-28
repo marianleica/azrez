@@ -116,9 +116,6 @@ Write-Output "${timestamp}; {${scenario}; RG: ${RG}; Location: ${location}; ResT
     Write-Output "C drive not found, skipping logging."
 }
 
-#Run the docker install script commands inside the VM
-#az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-upstreamKubernetes-kubeadm-runcommand.sh | bash" --timeout-in-seconds 3600 --run-command-name "SetDockerUp" --vm-name kube-master-1
-
 Start-Sleep -Seconds 1
 Write-Output ""
 Write-Output "Installing GIT for the SCP utility:"
@@ -172,11 +169,13 @@ az provider register --namespace Microsoft.ExtendedLocation
 
 # Creating a service principal for login for Azure Arc onboarding
 $sp=$(az ad sp create-for-rbac --name "onboardersp" --role Contributor --scopes /subscriptions/$subscriptionId/resourceGroups/$RG --sdk-auth --output json | ConvertFrom-Json)
+Start-Sleep -Seconds 2
 
 # Save the clientId, clientSecret, and tenantId
 $clientId = $sp.clientId
 $clientSecret = $sp.clientSecret
 $tenantId = $sp.tenantId
+Start-Sleep -Seconds 3
 
 # Run prerequisites and onboarding commands within the master node
 az vm run-command create --resource-group $RG --async-execution false --run-as-user $admin --script "sudo wget -O - https://raw.githubusercontent.com/marianleica/azrez/refs/heads/progress/pwshjobs/azvm-onboardingArc-runcommand.sh | bash -s -- $clientId $clientSecret $tenantId" --timeout-in-seconds 3600 --run-command-name "OnboardingToArc" --vm-name kube-master-1
